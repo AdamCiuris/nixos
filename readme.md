@@ -7,20 +7,20 @@
 Clone my repo.
 
 ```bash
-git clone git@github.com:AdamCiuris/nixos.git
+git clone git@github.com:AdamCiuris/nixos.git && cd nixos
 ```
 
 Clear everything in your nixos config and remake.
 
 ```bash
-sudo rm -r /etc/nixos/ && sudo mkdir /etc/nixos
+sudo rm -r /etc/nixos/ && sudo mkdir /etc/nixos 
 ```
 
 Hardlink this repo into there.
 
 ```bash
 sudo ln ./configuration.nix /etc/nixos/ \
-sudo ln ./hardware-configuration.nix /etc/nixos/
+&& sudo ln ./hardware-configuration.nix /etc/nixos/
 ```
 
 Rebuild and switch.
