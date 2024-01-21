@@ -1,5 +1,7 @@
 <h1>NixOS config</h1>
 
+My configuration for NixOS. Obtain a NixOS ISO [here.](https://nixos.org/manual/nix/stable/#sec-obtaining)
+
 ---
 
 <h3>How to Use</h3>
