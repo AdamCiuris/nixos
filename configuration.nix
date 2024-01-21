@@ -98,12 +98,14 @@
   environment.systemPackages = with pkgs; [
 	vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
 	wget
-	pkgs.geckodriver
+	pkgs.geckodriver #firefox selenium
 	pkgs.git
 	pkgs.python313
 	pkgs.python311Packages.pip
-	pkgs.vscode
+	pkgs.vscode # unfree
   ];
+
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
