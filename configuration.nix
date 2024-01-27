@@ -7,7 +7,8 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+	./hardware-configuration.nix
+	./nix-alien.nix
     ];
 
   # Bootloader.
@@ -85,6 +86,7 @@
     description = "nyx";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
+	google-chrome
 	firefox
 	brave
     #  thunderbird
