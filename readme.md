@@ -22,7 +22,8 @@ Hardlink this repo into there.
 
 ```bash
 sudo ln ./configuration.nix /etc/nixos/ \
-&& sudo ln ./hardware-configuration.nix /etc/nixos/
+&& sudo ln ./hardware-configuration.nix /etc/nixos/ && \
+sudo ln ./nix-alien.nix /etc/nixos/
 ```
 
 Rebuild and switch.
