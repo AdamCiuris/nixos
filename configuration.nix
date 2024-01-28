@@ -89,6 +89,7 @@
 	google-chrome
 	firefox
 	brave
+	
     #  thunderbird
     ];
   };
@@ -101,6 +102,7 @@
   environment.systemPackages = with pkgs; [
 	vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
 	wget
+	
 	pkgs.geckodriver #firefox selenium
 	pkgs.git
 	pkgs.python313
@@ -121,13 +123,16 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  # services.openssh.enable = true; # TODO maybe
 
+  networking.firewall.enable = true; # this is on by default but still declaring it.
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+  services.flatpak.enable = true; # need for postman as postman isn't updated as of 01/28/24
+
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
