@@ -4,7 +4,7 @@ My configuration for NixOS. Obtain a NixOS ISO [here.](https://nixos.org/manual/
 
 ---
 
-<h3>How to Use</h3>
+<h3>How to use.</h3>
 
 Clone my repo.
 
@@ -31,3 +31,18 @@ Rebuild and switch.
 ```bash
 sudo nixos-rebuild switch
 ```
+
+---
+
+<h3>How to SSH into a machine and build.</h3>
+
+
+
+```bash
+git clone git@github.com:AdamCiuris/nixos.git && cd nixos
+```
+
+```bash
+scp ./configuration.nix  \
+./hardware-configuration.nix \
+./nix-alien.nix root@your_internal_ip:/etc/nixos/```
