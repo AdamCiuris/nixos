@@ -16,7 +16,7 @@
   boot.loader.grub.device = "/dev/vda";
   boot.loader.grub.useOSProber = true;
   # Nix settings
-  nix.settings.experimental-features = ["nix-command"]; # needed to try flakes from tutorial
+  nix.settings.experimental-features = ["nix-command" "flakes"]; # needed to try flakes from tutorial
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -52,6 +52,11 @@
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
+
+  services.mysql = {
+    enable = true;
+    package = pkgs.mariadb;
+  };
 
   # Configure keymap in X11
   services.xserver = {
