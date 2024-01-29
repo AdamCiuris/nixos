@@ -15,6 +15,8 @@
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/vda";
   boot.loader.grub.useOSProber = true;
+  # Nix settings
+  nix.settings.experimental-features = ["nix-command"]; # needed to try flakes from tutorial
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -100,14 +102,14 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-	vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-	wget
-	
-	pkgs.geckodriver #firefox selenium
-	pkgs.git
-	pkgs.python313
-	pkgs.python311Packages.pip
-	pkgs.vscode # unfree
+    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    wget
+    
+    pkgs.geckodriver #firefox selenium
+    pkgs.git
+    pkgs.python313
+    pkgs.python311Packages.pip
+    pkgs.vscode # unfree
   ];
 
 
