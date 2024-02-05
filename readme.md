@@ -2,6 +2,8 @@
 
 My configuration for NixOS. Obtain a NixOS ISO [here.](https://nixos.org/manual/nixos/stable/#sec-obtaining)
 
+Note that you may want to exclude linking my `hardware-configuration.nix` if it causes issues.
+
 ---
 
 <h3>How to use.</h3>
