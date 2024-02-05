@@ -21,7 +21,7 @@
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # Configure network proxy if necessary
+  # Configure network proxy if necessaryi
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
@@ -49,9 +49,9 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  # Enable cinnamon desktop environment.
+  services.xserver.displayManager.lightdm.enable = true; # lightweight display manager, "greeters" for 
+  services.xserver.desktopManager.cinnamon.enable = true;
 
   services.mysql = {
     enable = true;
