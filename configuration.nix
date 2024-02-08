@@ -94,9 +94,9 @@
 		description = "nyx";
 		extraGroups = [ "networkmanager" "wheel" ];
 		packages = with pkgs; [
-	google-chrome
-	firefox
-	brave
+			google-chrome
+			firefox
+			brave
 	
 		#	thunderbird
 		];
@@ -127,12 +127,12 @@
 	# Enable the OpenSSH daemon.
 	# services.openssh.enable = true; # TODO maybe
 
-	networking.firewall.enable = true; # this is on by default but still declaring it.
-	# Open ports in the firewall.
-	# networking.firewall.allowedTCPPorts = [ ... ];
-	# networking.firewall.allowedUDPPorts = [ ... ];
+	networking.firewall = {
+		enable = true; # this is on by default but still declaring it.
+		allowedTCPPorts = [ 22 ];
+		# allowedUDPPorts = [ ... ];
+	};
 	# Or disable the firewall altogether.
-	# networking.firewall.enable = false;
 	services.flatpak.enable = true; # need for postman as postman isn't updated as of 01/28/24
 
 
