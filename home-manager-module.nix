@@ -7,14 +7,9 @@ in
 	imports = [
 		(import "${home-manager}/nixos")
 	];
-	users.users.nyx.isNormalUser = true;
+	users.users.nyx.isNormalUser = true; # I'm a normal guy
 	home-manager.users.nyx = {
 
-		programs.git = {
-			enable = true;
-			userName = "Adam Ciuris";
-			userEmail = "adamciuris@gmail.com";
-		};
 
 		programs.bash.enable=true;
 		home.stateVersion = "23.11";
@@ -31,6 +26,12 @@ in
 		nixpkgs.config.allowUnfree=true;
 
 		# begin user configs
+		programs.git = {
+			enable = true;
+			userName = "Adam Ciuris";
+			userEmail = "adamciuris@gmail.com";
+		};
+
 		programs.vscode = {
 
 		enable=true;
@@ -52,6 +53,22 @@ in
 				{
 					key = "alt+q";
 					command = "editor.action.deleteLines";
+				}
+			];
+			# installing malware
+			extensions = with pkgs.vscode-extensions; [
+				ms-vscode-remote.remote-containers # for when flakes are too annoying
+				ms-azuretools.vscode-docker
+				batisteo.vscode-django
+				ms-python.vscode-pylance
+				ms-python.python
+				shd101wyy.markdown-preview-enhanced
+			]++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+				{
+					name = "Nix"; # testing if this works better (it doesn't)
+					publisher = "bbenoist";
+					version = "1.0.1";
+					sha256 ="sha256-qwxqOGublQeVP2qrLF94ndX/Be9oZOn+ZMCFX1yyoH0="; # to find sha just run without and steal from error message
 				}
 			];
 		};
