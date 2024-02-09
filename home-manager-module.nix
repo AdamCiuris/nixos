@@ -55,6 +55,7 @@ in
 					command = "editor.action.deleteLines";
 				}
 			];
+			mutableExtensionsDir = false; # stops vscode from editing ~/.vscode/extensions/* which makes the following extensions actually install
 			# installing malware
 			extensions = with pkgs.vscode-extensions; [
 				ms-vscode-remote.remote-containers # for when flakes are too annoying
@@ -65,8 +66,8 @@ in
 				shd101wyy.markdown-preview-enhanced
 			]++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
 				{
-					name = "Nix"; # testing if this works better (it doesn't)
-					publisher = "bbenoist";
+					name = "Nix";
+					publisher = "bbenoist"; # https://marketplace.visualstudio.com/items?itemName=bbenoist.Nix
 					version = "1.0.1";
 					sha256 ="sha256-qwxqOGublQeVP2qrLF94ndX/Be9oZOn+ZMCFX1yyoH0="; # to find sha just run without and steal from error message
 				}
