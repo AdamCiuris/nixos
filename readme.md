@@ -47,4 +47,5 @@ git clone git@github.com:AdamCiuris/nixos.git && cd nixos
 ```bash
 scp ./configuration.nix  \
 ./hardware-configuration.nix \
-./nix-alien.nix root@your_internal_ip:/etc/nixos/```
+./nix-alien.nix \
+./home-manager-module.nix root@your_vms_internal_ip:/etc/nixos/```
