@@ -6,7 +6,7 @@ Note that you may want to exclude linking my `hardware-configuration.nix` if it 
 
 ---
 
-<h3>How to use.</h3>
+<h3>How to use:</h3>
 
 Clone my repo.
 
@@ -36,7 +36,7 @@ sudo nixos-rebuild switch
 
 ---
 
-<h3>How to SSH into a machine and build.</h3>
+<h3>How to SSH into a machine and build:</h3>
 
 
 
