@@ -1,6 +1,6 @@
 { pkgs,... }:
 let
-	home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
+	home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
 in
 {
 	imports = [
@@ -29,11 +29,17 @@ in
 		];
 
 		# begin user configs
-		programs.vscode.userSettings = {
+		programs.vscode.userSettings  = {
 	
 			"files.autoSave" = "afterDelay";
 			"files.autoSaveDelay" = "20";
-			"workbench.colorTheme"= "Tomorrow Night Blue";
+			"window.zoomLevel"= "-1";
+			"workbench.colorTheme"= "Red";
+		};
+		programs.vscode.keybindings = {
+			key= "ctrl+shift+[";
+			command = "Debug: Select Debug Console";
+
 		};
 	};
 
