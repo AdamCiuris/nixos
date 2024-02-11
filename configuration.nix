@@ -49,7 +49,8 @@
 
 	# Enable the X11 windowing system.
 	services.xserver.enable = true;
-
+	
+	services.spice-vdagentd.enable = true; # enables clipboard sharing
 	# Enable cinnamon desktop environment.
 	services.xserver.displayManager.lightdm.enable = true; # lightweight display manager, "greeters" for 
 	services.xserver.desktopManager.cinnamon.enable = true;
