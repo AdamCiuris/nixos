@@ -17,15 +17,15 @@ git clone git@github.com:AdamCiuris/nixos.git && cd nixos
 Clear everything in your nixos config and remake.
 
 ```bash
-sudo rm -r /etc/nixos/ && sudo mkdir /etc/nixos 
+sudo rm /etc/nixos/* 
 ```
 
 Hardlink this repo into there.
 
 ```bash
-sudo ln ./configuration.nix /etc/nixos/ \
-&& sudo ln ./hardware-configuration.nix /etc/nixos/ && \
-sudo ln ./nix-alien.nix /etc/nixos/
+sudo ln ./configuration.nix /etc/nixos/ && \
+sudo ln ./nix-alien.nix /etc/nixos/ && \
+sudo ln ./home-manager-module.nix /etc/nixos/
 ```
 
 Rebuild and switch.
@@ -46,6 +46,6 @@ git clone git@github.com:AdamCiuris/nixos.git && cd nixos
 
 ```bash
 scp ./configuration.nix  \
-./hardware-configuration.nix \
 ./nix-alien.nix \
-./home-manager-module.nix root@your_vms_internal_ip:/etc/nixos/```
+./home-manager-module.nix root@your_vms_internal_ip:/etc/nixos/
+```
