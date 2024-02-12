@@ -10,8 +10,15 @@ in
 	users.users.nyx.isNormalUser = true; # I'm a normal guy
 	home-manager.users.nyx = {
 
-
-		programs.bash.enable=true;
+		programs.bash ={
+			enable=true;
+			shellAliases =  { src = "source"; "..." = "../../"; nrs = "sudo nixos-rebuild switch"; 
+								"g*" = "git add *"; "gcm" = "git commit -m";
+								gp = "git push"; # conflicts with global-platform-pro, pari
+								
+								
+								};
+		};
 		home.stateVersion = "23.11";
 		# programs.home-manager.enable=true;
 		home.packages = with pkgs; [
@@ -25,7 +32,7 @@ in
 		];
 		nixpkgs.config.allowUnfree=true;
 
-		# begin user configs
+		# begin user configs	
 		programs.git = {
 			enable = true;
 			userName = "Adam Ciuris";
