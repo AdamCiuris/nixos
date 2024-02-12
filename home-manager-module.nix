@@ -74,6 +74,16 @@ in
 					key = "alt+q";
 					command = "editor.action.deleteLines";
 				}
+				{
+					key = "ctrl+shift+UpArrow";
+					command = "workbench.action.terminal.resizePaneUp";
+					when = "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported";
+				}
+				{
+					key = "ctrl+shift+DownArrow";
+					command = "workbench.action.terminal.resizePaneDown";
+					when = "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported";
+				}
 			];
 			mutableExtensionsDir = false; # stops vscode from editing ~/.vscode/extensions/* which makes the following extensions actually install
 			# installing malware
