@@ -27,7 +27,7 @@ in
 				local activate="./$firstArg/bin/activate"
 				python -m venv $firstArg && source $activate
 				if [ ! -z "$2" ]; then
-					pip install $2
+					pip install -r $2
 				fi
 			}
 			'';
