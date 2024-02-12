@@ -12,10 +12,10 @@ in
 
 		programs.bash ={
 			enable=true;
+			historyControl = ["ignoredups"];
 			shellAliases =  { src = "source"; "..." = "../../"; nrs = "sudo nixos-rebuild switch"; 
 								"g*" = "git add *"; "gcm" = "git commit -m";
 								gp = "git push"; # conflicts with global-platform-pro, pari
-								
 								
 								};
 		};
