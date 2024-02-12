@@ -25,7 +25,8 @@ Hardlink this repo into there.
 ```bash
 sudo ln ./configuration.nix /etc/nixos/ && \
 sudo ln ./nix-alien.nix /etc/nixos/ && \
-sudo ln ./home-manager-module.nix /etc/nixos/
+sudo ln ./home-manager-module.nix /etc/nixos/ && \
+nixos-generate-config # to get your hardware config back
 ```
 
 Rebuild and switch.
