@@ -29,7 +29,11 @@ in
 			python311Packages.pip
 			vscode
 			wget
+			ghidra
+			gradle # for ghidra extensions
+			
 		];
+		
 		nixpkgs.config.allowUnfree=true;
 
 		# begin user configs	
@@ -38,7 +42,22 @@ in
 			userName = "Adam Ciuris";
 			userEmail = "adamciuris@gmail.com";
 		};
+			# extensions =
+			#  {
+			# 	name = "ghidra-extensions";
 
+			# 	paths = [ programs.ghidra ] ++ extensions;
+			# };
+
+		# programs.ghidra = {
+		# 	# enable = true;
+		# 	# extensions = with pkgs.ghidra-extensions; [
+		# 	# ];
+
+		# };
+		# ghidra-extensions = with pkgs.ghidra-extensions; [
+		# 	sample
+		# ];
 		programs.vscode = {
 
 		enable=true;
