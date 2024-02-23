@@ -12,12 +12,25 @@ in
 
 		programs.bash ={
 			enable=true;
+			historyControl = ["ignoredups"];
 			shellAliases =  { src = "source"; "..." = "../../"; nrs = "sudo nixos-rebuild switch"; 
 								"g*" = "git add *"; "gcm" = "git commit -m";
 								gp = "git push"; # conflicts with global-platform-pro, pari
-								
-								
+								resrc= "source ~/.bashrc";
 								};
+
+			initExtra = ''
+			pvenv() {
+				# starts a python virtual environment named after first arg and if a path to a requirements file is provided as second arg it installs it
+				# "deactivate" leaves the venv
+				local firstArg="$1"
+				local activate="./$firstArg/bin/activate"
+				python -m venv $firstArg && source $activate
+				if [ ! -z "$2" ]; then
+					pip install -r $2
+				fi
+			}
+			'';
 		};
 		home.stateVersion = "23.11";
 		# programs.home-manager.enable=true;
@@ -79,6 +92,16 @@ in
 				{
 					key = "alt+q";
 					command = "editor.action.deleteLines";
+				}
+				{
+					key = "ctrl+shift+UpArrow";
+					command = "workbench.action.terminal.resizePaneUp";
+					when = "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported";
+				}
+				{
+					key = "ctrl+shift+DownArrow";
+					command = "workbench.action.terminal.resizePaneDown";
+					when = "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported";
 				}
 			];
 			mutableExtensionsDir = false; # stops vscode from editing ~/.vscode/extensions/* which makes the following extensions actually install
