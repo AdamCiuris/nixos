@@ -120,8 +120,24 @@ in
 					version = "1.0.1";
 					sha256 ="sha256-qwxqOGublQeVP2qrLF94ndX/Be9oZOn+ZMCFX1yyoH0="; # to find sha just run without and steal from error message
 				}
+				{
+					name = "copilot";
+					publisher = "GitHub"; # https://marketplace.visualstudio.com/items?itemName=GitHub.copilot
+					version = "1.168.0";
+					sha256 ="sha256-KoN3elEi8DnF1uIXPi6UbLh+8MCSovXmBFlvJuwAOQg="; # to find sha just run without and steal from error message
+				}
 			];
 		};
+		xdg.mimeApps.enable = true; # makes .config/mimeapps.list read only
+
+		xdg.mimeApps.defaultApplications = {
+			"text/html"="brave-browser.desktop";
+			"x-scheme-handler/http"="brave-browser.desktop";
+			"x-scheme-handler/https"="brave-browser.desktop";
+			"x-scheme-handler/about"="google-chrome.desktop";
+			"x-scheme-handler/unknown"="google-chrome.desktop";
+		};
 	};
+	
 
 }	
