@@ -97,7 +97,7 @@ in
 					command= "workbench.action.terminal.focus";
 				}
 				{
-					key = "alt+q";
+					key = "alt+d";
 					command = "editor.action.deleteLines";
 				}
 				{
