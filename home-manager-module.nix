@@ -1,7 +1,6 @@
 {  pkgs,... }:
 let
-	amInixOS = if builtins.pathExists /etc/nixos then true else false;
-	home-manager = if amInixOS then builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz" else 0;
+	home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
 	shellExtra = ''
 			pvenv() {
 				# starts a python virtual environment named after first arg and if a path to a requirements file is provided as second arg it installs it
@@ -25,10 +24,10 @@ in
 	imports =  [
 		(import "${home-manager}/nixos")
 	];
-	users.users.nyx.isNormalUser = true; # I'm a normal guy
-	users.users.nyx.useDefaultShell = true;
 	users.defaultUserShell = pkgs.zsh;
-	# BEGIN NYX
+	# BEGIN USER NYX
+	users.users.nyx.isNormalUser = true; # I'm a normal guy
+	users.users.nyx.useDefaultShell = true; # should be zsh
 	home-manager.users.nyx = {
 		home.stateVersion = "23.11";
 		# BEGIN NIX HOME-MANAGER COPY
@@ -144,6 +143,6 @@ in
 				"x-scheme-handler/about"="google-chrome.desktop";
 				"x-scheme-handler/unknown"="google-chrome.desktop";
 			};
-		}; # END USER NYX # END NIX HOME-MANAGER COPY
-	} # END NYX
+		}; # END NIX HOME-MANAGER COPY
+	}; # END USER NYX 
 }
