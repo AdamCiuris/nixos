@@ -1,6 +1,24 @@
 {  pkgs,... }:
 let
 	home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
+	shellExtra = ''
+			pvenv() {
+				# starts a python virtual environment named after first arg and if a path to a requirements file is provided as second arg it installs it
+				# "deactivate" leaves the venv
+				local firstArg="$1"
+				local activate="./$firstArg/bin/activate"
+				python -m venv $firstArg && source $activate
+				if [ ! -z "$2" ]; then
+					pip install -r $2
+				fi
+			}
+			alias src="source"; 
+			alias ...="../../"; 
+			alias nrs="sudo nixos-rebuild switch"; 
+			alias "g*"="git add *"; 
+			alias gcm="git commit -m";
+			alias gp ="git push"; # conflicts with global-platform-pro, pari
+			'';
 in
 {
 	
@@ -13,29 +31,13 @@ in
 	home-manager.users.nyx = {
 
 		# BEGIN SHELL CONFIGS
+		
 
 		# BEGIN BASH
 		programs.bash ={
 			enable=true;
 			historyControl = ["ignoredups"];
-			shellAliases =  { src = "source"; "..." = "../../"; nrs = "sudo nixos-rebuild switch"; 
-								"g*" = "git add *"; "gcm" = "git commit -m";
-								gp = "git push"; # conflicts with global-platform-pro, pari
-								resrc= "source ~/.bashrc";
-								};
-
-			initExtra = ''
-			pvenv() {
-				# starts a python virtual environment named after first arg and if a path to a requirements file is provided as second arg it installs it
-				# "deactivate" leaves the venv
-				local firstArg="$1"
-				local activate="./$firstArg/bin/activate"
-				python -m venv $firstArg && source $activate
-				if [ ! -z "$2" ]; then
-					pip install -r $2
-				fi
-			}
-			'';
+			initExtra = shellExtra;
 		}; # END BASH
 		# BEGIN ZSH
 		programs.zsh = {
@@ -51,6 +53,8 @@ in
 				plugins = [ "git" "sudo" "systemd" "python"];  # a bunch of aliases and a few functions
 				theme = "agnoster";  # https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 				};
+
+				initExtra = shellExtra;
 			}; # END ZSH
 
 		
