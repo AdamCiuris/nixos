@@ -140,8 +140,8 @@ in
 				"text/html"="brave-browser.desktop";
 				"x-scheme-handler/http"="brave-browser.desktop";
 				"x-scheme-handler/https"="brave-browser.desktop";
-				"x-scheme-handler/about"="google-chrome.desktop";
-				"x-scheme-handler/unknown"="google-chrome.desktop";
+				"x-scheme-handler/about"="brave-browser.desktop";
+				"x-scheme-handler/unknown"="brave-browser.desktop";
 			};
 		}; # END NIX HOME-MANAGER COPY
 	}; # END USER NYX 
