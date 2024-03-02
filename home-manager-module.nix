@@ -18,6 +18,7 @@ let
 			alias "g*"="git add *"; 
 			alias gcm="git commit -m";
 			alias gp="git push"; # conflicts with global-platform-pro, pari
+			alias hms="home-manager switch";
 			'';
 in
 {
@@ -142,6 +143,8 @@ in
 				"x-scheme-handler/https"="brave-browser.desktop";
 				"x-scheme-handler/about"="brave-browser.desktop";
 				"x-scheme-handler/unknown"="brave-browser.desktop";
+				"image/webp"="brave-browser.desktop";
+				"video/webm"="brave-browser.desktop";		
 			};
 		}; # END NIX HOME-MANAGER COPY
 	}; # END USER NYX 
