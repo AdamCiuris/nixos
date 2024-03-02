@@ -1,6 +1,7 @@
 {  pkgs,... }:
 let
-	home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
+	amInixOS = if builtins.pathExists /etc/nixos then true else false;
+	home-manager = if amInixOS then builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz" else 0;
 	shellExtra = ''
 			pvenv() {
 				# starts a python virtual environment named after first arg and if a path to a requirements file is provided as second arg it installs it
@@ -17,18 +18,17 @@ let
 			alias nrs="sudo nixos-rebuild switch"; 
 			alias "g*"="git add *"; 
 			alias gcm="git commit -m";
-			alias gp ="git push"; # conflicts with global-platform-pro, pari
+			alias gp="git push"; # conflicts with global-platform-pro, pari
 			'';
 in
 {
-	
-	imports = [
-		(import "${home-manager}/nixos")
-	];
-	users.users.nyx.isNormalUser = true; # I'm a normal guy
-	users.users.nyx.useDefaultShell = true;
-	users.defaultUserShell = pkgs.zsh;
-	home-manager.users.nyx = {
+		imports =  [
+			(import "${home-manager}/nixos")
+		];
+		users.users.nyx.isNormalUser = true; # I'm a normal guy
+		users.users.nyx.useDefaultShell = true;
+		users.defaultUserShell = pkgs.zsh;
+		home-manager.users.nyx = {
 
 		# BEGIN SHELL CONFIGS
 		
@@ -60,6 +60,8 @@ in
 		
 		home.stateVersion = "23.11";
 		# programs.home-manager.enable=true;
+		fonts.fontconfig.enable = true;
+
 		home.packages = with pkgs; [
 			htop
 			git
@@ -70,6 +72,8 @@ in
 			wget
 			ghidra # src code analysis and decompilation
 			gradle # for ghidra extensions
+
+			(pkgs.nerdfonts.override { fonts=["DroidSansMono" ]; }) # for vscode
 			];
 
 		nixpkgs.config.allowUnfree=true;
@@ -104,6 +108,8 @@ in
 				"files.autoSaveDelay" = 0;
 				"window.zoomLevel"= -1;
 				"workbench.colorTheme"= "Tomorrow Night Blue";
+				"terminal.integrated.fontFamily" = "DroidSansM Nerd Font"; # fc-list to see all fonts
+				"terminal.integrated.rendererType"= "dom"; # allows us to use terminal dev tools
 			};
 			keybindings =  [
 				{
