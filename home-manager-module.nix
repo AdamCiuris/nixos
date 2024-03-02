@@ -8,10 +8,12 @@ in
 		(import "${home-manager}/nixos")
 	];
 	users.users.nyx.isNormalUser = true; # I'm a normal guy
+	users.users.nyx.useDefaultShell = true;
+	users.defaultUserShell = pkgs.zsh;
 	home-manager.users.nyx = {
 
 		# BEGIN SHELL CONFIGS
-		defaulShell=pkgs.zsh;
+
 		# BEGIN BASH
 		programs.bash ={
 			enable=true;

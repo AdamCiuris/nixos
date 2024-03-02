@@ -9,6 +9,7 @@
 		./hardware-configuration.nix
 		./nix-alien.nix
 		./home-manager-module.nix
+		# ./ghidra.nix # nsa decompiler
 		];
 
 	# Bootloader.
@@ -97,12 +98,14 @@
 			google-chrome
 			firefox
 			brave
+			zsh
 	
 		#	thunderbird
 		];
 	};
-	
 
+	
+	programs.zsh.enable = true;
 	# needed for vscode in pkgs
 	nixpkgs.config.allowUnfree = true;
 	# List packages installed in system profile. To search, run:
