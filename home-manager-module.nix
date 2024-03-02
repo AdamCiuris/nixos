@@ -144,6 +144,6 @@ in
 				"x-scheme-handler/about"="google-chrome.desktop";
 				"x-scheme-handler/unknown"="google-chrome.desktop";
 			};
-		}; # END NIX HOME-MANAGER COPY
+		}; # END USER NYX # END NIX HOME-MANAGER COPY
 	} # END NYX
 }
