@@ -22,17 +22,19 @@ let
 			'';
 in
 {
-		imports =  [
-			(import "${home-manager}/nixos")
-		];
-		users.users.nyx.isNormalUser = true; # I'm a normal guy
-		users.users.nyx.useDefaultShell = true;
-		users.defaultUserShell = pkgs.zsh;
-		home-manager.users.nyx = {
-
+	imports =  [
+		(import "${home-manager}/nixos")
+	];
+	users.users.nyx.isNormalUser = true; # I'm a normal guy
+	users.users.nyx.useDefaultShell = true;
+	users.defaultUserShell = pkgs.zsh;
+	# BEGIN NYX
+	home-manager.users.nyx = {
+		home.stateVersion = "23.11";
+		# BEGIN NIX HOME-MANAGER COPY
+		nixpkgs.config.allowUnfree=true;
+		fonts.fontconfig.enable = true;
 		# BEGIN SHELL CONFIGS
-		
-
 		# BEGIN BASH
 		programs.bash ={
 			enable=true;
@@ -53,15 +55,9 @@ in
 				plugins = [ "git" "sudo" "systemd" "python"];  # a bunch of aliases and a few functions
 				theme = "agnoster";  # https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 				};
-
-				initExtra = shellExtra;
+			initExtra = shellExtra;
 			}; # END ZSH
-
-		
-		home.stateVersion = "23.11";
 		# programs.home-manager.enable=true;
-		fonts.fontconfig.enable = true;
-
 		home.packages = with pkgs; [
 			htop
 			git
@@ -72,37 +68,17 @@ in
 			wget
 			ghidra # src code analysis and decompilation
 			gradle # for ghidra extensions
-
 			(pkgs.nerdfonts.override { fonts=["DroidSansMono" ]; }) # for vscode
 			];
-
-		nixpkgs.config.allowUnfree=true;
-
-		# begin user configs	
+		# BEGIN USER CONFIGS	
 		programs.git = {
 			enable = true;
 			userName = "Adam Ciuris";
 			userEmail = "adamciuris@gmail.com";
 		};
-			# extensions =
-			#  {
-			# 	name = "ghidra-extensions";
-
-			# 	paths = [ programs.ghidra ] ++ extensions;
-			# };
-
-		# programs.ghidra = {
-		# 	# enable = true;
-		# 	# extensions = with pkgs.ghidra-extensions; [
-		# 	# ];
-
-		# };
-		# ghidra-extensions = with pkgs.ghidra-extensions; [
-		# 	sample
-		# ];
+		# START VSCODE
 		programs.vscode = {
-
-		enable=true;
+			enable=true;
 			userSettings  = {
 				"files.autoSave" = "afterDelay";
 				"files.autoSaveDelay" = 0;
@@ -158,17 +134,16 @@ in
 					sha256 ="sha256-KoN3elEi8DnF1uIXPi6UbLh+8MCSovXmBFlvJuwAOQg="; # to find sha just run without and steal from error message
 				}
 			];
-		};
-		xdg.mimeApps.enable = true; # makes .config/mimeapps.list read only
-
-		xdg.mimeApps.defaultApplications = {
-			"text/html"="brave-browser.desktop";
-			"x-scheme-handler/http"="brave-browser.desktop";
-			"x-scheme-handler/https"="brave-browser.desktop";
-			"x-scheme-handler/about"="google-chrome.desktop";
-			"x-scheme-handler/unknown"="google-chrome.desktop";
-		};
-	};
-	
-
-}	
+		}; # END VSCODE
+		xdg.mimeApps = {
+			enable = true; # makes .config/mimeapps.list read only
+			defaultApplications = {
+				"text/html"="brave-browser.desktop";
+				"x-scheme-handler/http"="brave-browser.desktop";
+				"x-scheme-handler/https"="brave-browser.desktop";
+				"x-scheme-handler/about"="google-chrome.desktop";
+				"x-scheme-handler/unknown"="google-chrome.desktop";
+			};
+		}; # END NIX HOME-MANAGER COPY
+	} # END NYX
+}
