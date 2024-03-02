@@ -10,6 +10,9 @@ in
 	users.users.nyx.isNormalUser = true; # I'm a normal guy
 	home-manager.users.nyx = {
 
+		# BEGIN SHELL CONFIGS
+		defaulShell=pkgs.zsh;
+		# BEGIN BASH
 		programs.bash ={
 			enable=true;
 			historyControl = ["ignoredups"];
@@ -31,7 +34,24 @@ in
 				fi
 			}
 			'';
-		};
+		}; # END BASH
+		# BEGIN ZSH
+		programs.zsh = {
+			enable = true;
+			enableAutosuggestions = true;
+			syntaxHighlighting.enable = true;
+			oh-my-zsh={
+				enable = true;
+				# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
+				# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo
+				# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/systemd
+				# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/python
+				plugins = [ "git" "sudo" "systemd" "python"];  # a bunch of aliases and a few functions
+				theme = "agnoster";  # https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+				};
+			}; # END ZSH
+
+		
 		home.stateVersion = "23.11";
 		# programs.home-manager.enable=true;
 		home.packages = with pkgs; [
@@ -42,11 +62,10 @@ in
 			python311Packages.pip
 			vscode
 			wget
-			ghidra
+			ghidra # src code analysis and decompilation
 			gradle # for ghidra extensions
-			
-		];
-		
+			];
+
 		nixpkgs.config.allowUnfree=true;
 
 		# begin user configs	
