@@ -205,6 +205,7 @@ in
 				ms-python.vscode-pylance
 				ms-python.python
 				shd101wyy.markdown-preview-enhanced
+				ms-toolsai.jupyter
 			]++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
 				{
 					name = "Nix";
