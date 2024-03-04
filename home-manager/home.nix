@@ -17,9 +17,9 @@ let
 			local activate="./$firstArg/bin/activate"
 			python -m venv $firstArg 
 			if [ ! -z "$2" ]; then
-				source $activate && pip install -r $2
+				source $activate && pip install -r $2 && echo "deactivate to leave"
 			else
-				source $activate
+				source $activate && echo "deactivate to leave"
 			fi
 		}
 		apt-remove() {
