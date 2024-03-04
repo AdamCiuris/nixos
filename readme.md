@@ -23,7 +23,7 @@ sudo rm /etc/nixos/*
 Hardlink this repo into there.
 
 ```bash
-sudo ln -fn ./configuration.nix ./nix-alien.nix ./home-manager-module.nix /etc/nixos/ && \
+sudo ln -fn ./configuration.nix ./nix-alien.nix ./home-manager-module.nix ./home.nix /etc/nixos/ && \
 sudo nixos-generate-config # to get your hardware config back
 ```
 
@@ -31,6 +31,14 @@ Rebuild and switch.
 
 ```bash
 sudo nixos-rebuild switch
+```
+
+<h3>How to use just home-manager (you aren't on nixOS):</h3>
+
+```bash
+sudo ln -fn ./home.nix ~/.config/home-manager \
+&& home-manager switch
+
 ```
 
 ---
