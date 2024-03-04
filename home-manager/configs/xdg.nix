@@ -1,42 +1,72 @@
 {
-    xdg.mimeApps = {
-        enable = true; 
-        defaultApplications = { # linux works well and is worth using
-            "text/x-python"="code.desktop";
-            "text/x-shellscript"="code.desktop";
-            "text/x-markdown"="code.desktop";
-            "text/x-c"="code.desktop";
-            "text/x-c++"="code.desktop";
-            "text/x-java"="code.desktop";
-            "text/x-rust"="code.desktop";
-            "text/x-go"="code.desktop";
-            "text/x-ruby"="code.desktop";
-            "text/x-perl"="code.desktop";
-            "text/x-php"="code.desktop";
-            "text/csv"="code.desktop";
-            "text/plain"="code.desktop";
-            "text/json"="code.desktop";
-            "text/html"="brave-browser.desktop";
-            "text/xml"="brave-browser.desktop";
-            "text/markdown"="brave-browser.desktop";
-            "x-scheme-handler/http"="brave-browser.desktop";
-            "x-scheme-handler/https"="brave-browser.desktop";
-            "x-scheme-handler/about"="brave-browser.desktop";
-            "x-scheme-handler/unknown"="brave-browser.desktop";
-            "image/webp"="gimp.desktop";
-            "image/png"="gimp.desktop";
-            "image/svg+xml"="gimp.desktop";
-            "image/gif"="gimp.desktop";
-            "image/bmp"="gimp.desktop";
-            "image/tiff"="gimp.desktop";
-            "image/jpeg"="gimp.desktop";
-            "video/webm"="vlc.desktop";	
-            "video/ogg" = "vlc.desktop";
-            "video/mpeg" = "vlc.desktop";
-            "video/quicktime" = "vlc.desktop";
-            "audio/mpeg" = "vlc.desktop";
-            "audio/ogg" = "vlc.desktop";
-            "audio/wav" = "vlc.desktop";
-        };	
+  config,
+  pkgs,
+  ...
+}: let
+  browser = ["brave"];
+  imageViewer = ["gimp"];
+  videoPlayer = ["vlc"];
+  audioPlayer = ["vlc"];
+  scriptViewer = ["code"];
+
+  xdgAssociations = type: program: list:
+    builtins.listToAttrs (map (e: {
+        name = "${type}/${e}";
+        value = program;
+      })
+      list);
+
+  image = xdgAssociations "image" imageViewer ["png" "svg" "jpeg" "gif" "webp" "bmp" "tiff" "svg+xml"];
+  video = xdgAssociations "video" videoPlayer ["mpeg" "avi" "mkv" "quicktime" "webm"];
+  scripts = xdgAssociations "text" scriptViewer ["sh" "bash" "zsh" "fish" "py" "pl" "rb" "lua" "js" "ts" "html" "css" "json" "yaml" "toml" "xml" "md" "markdown" "rst" "txt"];
+  audio = xdgAssociations "audio" audioPlayer ["mpeg" "flac" "wav" "aac"];
+  browserTypes =
+    (xdgAssociations "application" browser [
+      "json"
+      "x-extension-htm"
+      "x-extension-html"
+      "x-extension-shtml"
+      "x-extension-xht"
+      "x-extension-xhtml"
+    ])
+    // (xdgAssociations "x-scheme-handler" browser [
+      "about"
+      "ftp"
+      "http"
+      "https"
+      "unknown"
+    ]);
+
+  # XDG MIME types
+  associations = builtins.mapAttrs (_: v: (map (e: "${e}.desktop") v)) ({
+      "application/pdf" = ["brave.desktop"];
+      "text/html" = browser;
+      "text/plain" = ["code.desktop"];
+      "x-scheme-handler/chrome" = ["brave.desktop"];
+    #   "inode/directory" = ["yazi"];
+    }
+    // image
+    // video
+    // audio
+    // scripts
+    // browserTypes);
+in {
+  xdg = {
+    enable = true;
+    # cacheHome = config.home.homeDirectory + "/.local/cache";
+
+    mimeApps = {
+      enable = true;
+      defaultApplications = associations;
     };
+
+    # userDirs = {
+    #   enable = true;
+    #   createDirectories = true;
+    #   extraConfig = {
+    #     XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/Screenshots";
+    #   };
+    # };
+  };
+
 }

@@ -1,4 +1,4 @@
-{  pkgs,... }:
+{	config,  pkgs,... }:
 let
 	shellExtra = ''
 		# BEGIN XDG_DATA_DIRS CHECK
@@ -152,6 +152,7 @@ in
 			ghidra # src code analysis and decompilation
 			gradle # for ghidra extensions
 			vlc
+			xdg-utils
 			(pkgs.nerdfonts.override { fonts=["DroidSansMono" ]; }) # for vscode
 			];
 		# BEGIN USER CONFIGS	
