@@ -6,9 +6,9 @@
 {
 	imports =
 		[ # Include the results of the hardware scan.
+		./home-manager/home-manager-module.nix
 		./hardware-configuration.nix
 		./nix-alien.nix
-		./home-manager-module.nix
 		# ./ghidra.nix # nsa decompiler
 		];
 
