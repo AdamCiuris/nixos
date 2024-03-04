@@ -1,29 +1,66 @@
 {  pkgs,... }:
 let
 	shellExtra = ''
-			pvenv() {
-				# starts a python virtual environment named after first arg and if a path to a requirements file is provided as second arg it installs it
-				# "deactivate" leaves the venv
-				local firstArg="$1"
-				local activate="./$firstArg/bin/activate"
-				python -m venv $firstArg && source $activate
-				if [ ! -z "$2" ]; then
-					pip install -r $2
+		# BEGIN XDG_DATA_DIRS CHECK
+		# used to add .desktop files to xdg-mime from nix profile if dne
+		# TODO figure out why this gets entered every home-manager switch
+		local xdgCheck="$HOME/.nix_profile/share/applications"
+		if  [[ ":$XDG_DATA_DIRS:" != *":$xdgCheck:"* ]] ; then
+			export XDG_DATA_DIRS="$xdgCheck${":$XDG_DATA_DIRS"}"
+		fi	
+		# ENd XDG_DATA_DIRS CHECK
+		# BEGIN FUNCTIONS
+		pvenv() {
+			# starts a python virtual environment named after first arg and if a path to a requirements file is provided as second arg it installs it
+			# "deactivate" leaves the venv
+			local firstArg="$1"
+			local activate="./$firstArg/bin/activate"
+			python -m venv $firstArg && source $activate
+			if [ ! -z "$2" ]; then
+				pip install -r $2
+			fi
+		}
+		apt-remove() {
+			# removes a package from apt and nix
+			local firstArg="$1"
+			sudo apt-get remove $(apt list --installed "$firstArg" 2>/dev/null | awk -F'/' 'NR>1{print $1}')
+		}
+		desktopFiles() {
+			local firstArg="$1"
+			echo "searching for $firstArg in $HOME/.nix-profile/share/applications/..."
+			ls ~/.nix-profile/share/applications | grep "$firstArg"
+			echo "searching for $firstArg in /usr/share/applications/..."
+			ls /usr/share/applications | grep "$firstArg"
+		} 
+		pathappend() {
+			for ARG in "$@"
+			do
+				if [ -d "$ARG" ] && [[ ":$PATH:" != *":$ARG:"* ]]; then
+					PATH="${"$PATH:"}$ARG"
 				fi
-			}
-			apt-remove() {
-				# removes a package from apt and nix
-				local firstArg="$1"
-				sudo apt-get remove $(apt list --installed "$firstArg" 2>/dev/null | awk -F'/' 'NR>1{print $1}')
-			}
-			alias src="source"; 
-			alias ...="../../"; 
-			alias nrs="sudo nixos-rebuild switch"; 
-			alias "g*"="git add *"; 
-			alias gcm="git commit -m";
-			alias gp="git push"; # conflicts with global-platform-pro, pari
-			alias hms="home-manager switch";
-			'';
+			done
+		}	# END FUNCTIONS
+		pathprepend() {
+			for ARG in "$@"
+			do
+				if [ -d "$ARG" ] && [[ ":$PATH:" != *":$ARG:"* ]]; then
+					PATH="$ARG${":$PATH"}"
+				fi
+			done
+		}	# END FUNCTIONS
+
+
+		# BEGIN ALIASES
+		alias src="source"; 
+		alias resrc="source ~/.zshrc";
+		alias ...="../../"; 
+		alias nrs="sudo nixos-rebuild switch"; 
+		alias "g*"="git add *"; 
+		alias gcm="git commit -m";
+		alias gp="git push"; # conflicts with global-platform-pro, pari
+		alias hms="home-manager switch";
+		# END ALIASES
+		'';
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -111,6 +148,7 @@ in
 			python311Packages.pip
 			vscode
 			wget
+			gimp
 			ghidra # src code analysis and decompilation
 			gradle # for ghidra extensions
 			vlc
@@ -181,21 +219,47 @@ in
 				}
 			];
 		}; # END VSCODE
+		# xdg-open is what gets called from open "file" in terminal
 		xdg.mimeApps = {
-			enable = true; # makes .config/mimeapps.list read only
-			defaultApplications = {
+			enable = true; 
+			defaultApplications = { # linux works well and is worth using
+				"text/x-python"="code.desktop";
+				"text/x-shellscript"="code.desktop";
+				"text/x-markdown"="code.desktop";
+				"text/x-c"="code.desktop";
+				"text/x-c++"="code.desktop";
+				"text/x-java"="code.desktop";
+				"text/x-rust"="code.desktop";
+				"text/x-go"="code.desktop";
+				"text/x-ruby"="code.desktop";
+				"text/x-perl"="code.desktop";
+				"text/x-php"="code.desktop";
+				"text/csv"="code.desktop";
+				"text/plain"="code.desktop";
+				"text/json"="code.desktop";
 				"text/html"="brave-browser.desktop";
+				"text/xml"="brave-browser.desktop";
+				"text/markdown"="brave-browser.desktop";
 				"x-scheme-handler/http"="brave-browser.desktop";
 				"x-scheme-handler/https"="brave-browser.desktop";
 				"x-scheme-handler/about"="brave-browser.desktop";
 				"x-scheme-handler/unknown"="brave-browser.desktop";
-				"image/webp"="brave-browser.desktop";
-				"video/webm"="brave-browser.desktop";	
-				# "video/mov" = "vlc.desktop";
-				"video/mp4" = "vlc.desktop";
-				
+				"image/webp"="gimp.desktop";
+				"image/png"="gimp.desktop";
+				"image/svg+xml"="gimp.desktop";
+				"image/gif"="gimp.desktop";
+				"image/bmp"="gimp.desktop";
+				"image/tiff"="gimp.desktop";
+				"image/jpeg"="gimp.desktop";
+				"video/webm"="vlc.desktop";	
+				"video/ogg" = "vlc.desktop";
+				"video/mpeg" = "vlc.desktop";
+				"video/quicktime" = "vlc.desktop";
+				"audio/mpeg" = "vlc.desktop";
+				"audio/ogg" = "vlc.desktop";
+				"audio/wav" = "vlc.desktop";
+
 			};	
 		};# END NIX HOME-MANAGER COPY
 		# END PASTE SPACE
-	
 }
