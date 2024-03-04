@@ -1,12 +1,13 @@
 #!/usr/bin/bash
 # Clear everything in your nixos config and remake.
 sudo rm -rf /etc/nixos/* 
-
+# sudo ln -fn $(find . -type f | grep .nix ) /etc/nixos
 
 # Hardlink this repo into there.
-sudo mkdir /etc/nixos/home-manager && sudo mkdir /etc/nixos/home-manager/configs \
-sudo ln -fn ./configuration.nix ./nix-alien.nix ./home-manager/home-manager-module.nix \
-./home-manager/home.nix /home-manager/configs/xdg.nix /etc/nixos/ && \
+sudo mkdir /etc/nixos/home-manager && sudo mkdir /etc/nixos/home-manager/configs && \
+sudo ln -fn ./configuration.nix ./nix-alien.nix /etc/nixos && \
+sudo ln -fn $(find home-manager/ -maxdepth 1 -type f -name "*.nix") /etc/nixos/home-manager && \
+sudo ln -fn $(find home-manager/configs -maxdepth 1 -type f -name "*.nix") /etc/nixos/home-manager/configs && \
 sudo nixos-generate-config # to get your hardware config back
 
 # rebuild and switch

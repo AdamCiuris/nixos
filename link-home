@@ -2,6 +2,6 @@
 # Clear everything in your nix home-manger config and remake.
 rm -rf ~/.config/home-manager/* && \
 mkdir ~/.config/home-manager/configs && \
-ln -fn ./home-manager/home.nix  ~/.config/home-manager && \
-ln -fn ./home-manager/configs/xdg.nix ~/.config/home-manager/configs \
+ln -fn $(find home-manager/ -maxdepth 1 -type f -name "*.nix") ~/.config/home-manager && \
+ln -fn $(find home-manager/configs -maxdepth 1 -type f -name "*.nix") ~/.config/home-manager/configs \
 && home-manager switch
