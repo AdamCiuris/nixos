@@ -63,6 +63,9 @@ let
 		alias hms="home-manager switch";
 		# END ALIASES
 		'';
+	ext =  name: publisher: version: sha256: pkgs.vscode-utils.buildVscodeMarketplaceExtension {
+	mktplcRef = { inherit name publisher version sha256 ; };
+	};
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -200,7 +203,8 @@ in
 			];
 			mutableExtensionsDir = false; # stops vscode from editing ~/.vscode/extensions/* which makes the following extensions actually install
 			# installing malware
-			extensions = with pkgs.vscode-extensions; [
+
+			extensions = (with pkgs.vscode-extensions; [
 				ms-vscode-remote.remote-containers # for when flakes are too annoying
 				ms-azuretools.vscode-docker
 				batisteo.vscode-django
@@ -208,19 +212,9 @@ in
 				ms-python.python
 				shd101wyy.markdown-preview-enhanced
 				ms-toolsai.jupyter
-			]++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-				{
-					name = "Nix";
-					publisher = "bbenoist"; # https://marketplace.visualstudio.com/items?itemName=bbenoist.Nix
-					version = "1.0.1";
-					sha256 ="sha256-qwxqOGublQeVP2qrLF94ndX/Be9oZOn+ZMCFX1yyoH0="; # to find sha just run without and steal from error message
-				}
-				{
-					name = "copilot";
-					publisher = "GitHub"; # https://marketplace.visualstudio.com/items?itemName=GitHub.copilot
-					version = "1.168.0";
-					sha256 ="sha256-KoN3elEi8DnF1uIXPi6UbLh+8MCSovXmBFlvJuwAOQg="; # to find sha just run without and steal from error message
-				}
+			]) ++ [
+				(ext "Nix" "bbenoist" "1.0.1" "sha256-qwxqOGublQeVP2qrLF94ndX/Be9oZOn+ZMCFX1yyoH0=") # https://marketplace.visualstudio.com/items?itemName=bbenoist.Nix
+				(ext "copilot" "GitHub"  "1.168.0" "sha256-KoN3elEi8DnF1uIXPi6UbLh+8MCSovXmBFlvJuwAOQg=") # https://marketplace.visualstudio.com/items?itemName=GitHub.copilot
 			];
 		}; # END VSCODE
 		# xdg-open is what gets called from open "file" in terminal
