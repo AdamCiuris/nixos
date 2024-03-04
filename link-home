@@ -1,0 +1,7 @@
+#!/usr/bin/bash
+# Clear everything in your nix home-manger config and remake.
+rm -rf ~/.config/home-manager/* && \
+mkdir ~/.config/home-manager/configs && \
+ln -fn ./home-manager/home.nix  ~/.config/home-manager && \
+ln -fn ./home-manager/configs/xdg.nix ~/.config/home-manager/configs \
+&& home-manager switch

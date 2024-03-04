@@ -6,24 +6,29 @@ Note that you may want to exclude linking my `hardware-configuration.nix` if it 
 
 ---
 
-<h3>How to use:</h3>
+<h3>How to use (NixOS):</h3>
 
 Clone my repo.
 
 ```bash
-git clone git@github.com:AdamCiuris/nixos.git && cd nixos
+git clone git@github.com:AdamCiuris/nixos.git && cd nixos && bash link
 ```
+
+<h5>link explanation:</h5>
+
 
 Clear everything in your nixos config and remake.
 
 ```bash
-sudo rm /etc/nixos/* 
+sudo rm -rf /etc/nixos/* 
 ```
 
 Hardlink this repo into there.
 
 ```bash
-sudo ln -fn ./configuration.nix ./nix-alien.nix ./home-manager-module.nix ./home.nix /etc/nixos/ && \
+sudo mkdir /etc/nixos/home-manager && sudo mkdir /etc/nixos/home-manager/configs \
+sudo ln -fn ./configuration.nix ./nix-alien.nix ./home-manager/home-manager-module.nix \
+./home-manager/home.nix /home-manager/configs/xdg.nix /etc/nixos/ && \
 sudo nixos-generate-config # to get your hardware config back
 ```
 
@@ -35,10 +40,14 @@ sudo nixos-rebuild switch
 
 <h3>How to use just home-manager (you aren't on nixOS):</h3>
 
-```bash
-sudo ln -fn ./home.nix ~/.config/home-manager \
-&& home-manager switch
+run `bash link-home` which clears everything in your nix home-manger config and relinks.
 
+```bash
+rm -rf ~/.config/home-manager/* && \
+mkdir ~/.config/home-manager/configs && \
+ln -fn ./home-manager/home.nix  ~/.config/home-manager && \
+ln -fn ./home-manager/configs/xdg.nix ~/.config/home-manager/configs \
+&& home-manager switch
 ```
 
 ---
