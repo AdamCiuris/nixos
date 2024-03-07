@@ -98,7 +98,6 @@
 			google-chrome
 			firefox
 			brave
-			nixos-generators
 			zsh
 	
 		#	thunderbird

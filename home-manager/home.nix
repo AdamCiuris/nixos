@@ -152,6 +152,7 @@ in
 			python313
 			python311Packages.pip
 			vscode
+			nixos-generators # nixos-generate -f iso -c "/path/to/configuration.nix"
 			wget
 			gimp
 			ghidra # src code analysis and decompilation
