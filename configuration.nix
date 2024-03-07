@@ -7,11 +7,11 @@
 	imports =
 		[ # Include the results of the hardware scan.
 		./home-manager/home-manager-module.nix
+		# ./system/nixos-generators.nix
 		./hardware-configuration.nix
 		./nix-alien.nix
 		# ./ghidra.nix # nsa decompiler
 		];
-
 	# Bootloader.
 	boot.loader.grub.enable = true;
 	boot.loader.grub.device = "/dev/vda";
@@ -98,6 +98,7 @@
 			google-chrome
 			firefox
 			brave
+			nixos-generators
 			zsh
 	
 		#	thunderbird
