@@ -191,12 +191,12 @@ in
 					command = "editor.action.deleteLines";
 				}
 				{
-					key = "shift+alt+up";
+					key = "shift+alt+9";
 					command = "workbench.action.terminal.resizePaneUp";
 					when = "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported";
 				}
 				{
-					key = "shift+alt+down";
+					key = "shift+alt+3";
 					command = "workbench.action.terminal.resizePaneDown";
 					when = "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported";
 				}
