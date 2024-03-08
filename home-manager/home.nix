@@ -152,6 +152,7 @@ in
 			python313
 			python311Packages.pip
 			vscode
+			# does bootloader.grub.enable = true always have to be commented out for iso gen
 			nixos-generators # nixos-generate -f iso -c "/path/to/configuration.nix"
 			wget
 			gimp

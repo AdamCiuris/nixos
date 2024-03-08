@@ -13,7 +13,7 @@
 		# ./ghidra.nix # nsa decompiler
 		];
 	# Bootloader.
-	boot.loader.grub.enable = true;
+	# boot.loader.grub.enable = true;
 	boot.loader.grub.device = "/dev/vda";
 	boot.loader.grub.useOSProber = true;
 	# Nix settings
@@ -138,6 +138,8 @@
 	# Or disable the firewall altogether.
 	services.flatpak.enable = true; # need for postman as postman isn't updated as of 01/28/24
 
+
+	
 
 	# This value determines the NixOS release from which the default
 	# settings for stateful data, like file locations and database versions
