@@ -160,6 +160,7 @@ in
 			gradle # for ghidra extensions
 			vlc
 			xdg-utils
+			veracrypt
 			(pkgs.nerdfonts.override { fonts=["DroidSansMono" ]; }) # for vscode
 			];
 		# BEGIN USER CONFIGS	
