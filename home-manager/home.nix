@@ -57,10 +57,25 @@ let
 		alias resrc="source ~/.zshrc";
 		alias ...="../../"; 
 		alias nrs="sudo nixos-rebuild switch"; 
+		
 		alias "g*"="git add *"; 
 		alias gcm="git commit -m";
 		alias gp="git push"; # conflicts with global-platform-pro, pari
+		alias gpl="git pull";
+		alias gco="git checkout";
+		alias gbr="git branch";
+		alias gcl="git clone";
+		alias glog="git log";
+		alias gdiff="git diff";
+		alias gstat="git status";
+		
 		alias hms="home-manager switch";
+		alias LS="ls -lAh";
+		alias CD="cd";
+		alias "cd.."="cd ..";
+		alias "cd..."="cd ../..";
+		alias "home manager"="home-manager";
+		
 		# END ALIASES
 		'';
 	ext =  name: publisher: version: sha256: pkgs.vscode-utils.buildVscodeMarketplaceExtension {
