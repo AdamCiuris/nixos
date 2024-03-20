@@ -4,7 +4,7 @@
   ...
 }: let
   browser = ["brave"];
-  imageViewer = ["gimp"];
+  imageViewer = ["feh"];
   videoPlayer = ["vlc"];
   audioPlayer = ["vlc"];
   scriptViewer = ["code"];

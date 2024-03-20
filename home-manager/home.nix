@@ -161,23 +161,25 @@ in
 			}; # END ZSH
 		# programs.home-manager.enable=true;
 		home.packages = with pkgs; [
-			htop
-			git
+			htop # system monitor
+			git # version control
 			geckodriver #firefox selenium
 			chromedriver # chrome selenium add this to driver_executable_path
-			python313
-			python311Packages.pip
-			vscode
+			python313 
+			python311Packages.pip 
+			vscode # microsoft electron IDE
 			# does bootloader.grub.enable = true always have to be commented out for iso gen
 			nixos-generators # nixos-generate -f iso -c "/path/to/configuration.nix"
-			wget
-			gimp
+			wget # for downloading files
+			gimp # image editing
 			ghidra # src code analysis and decompilation
 			gradle # for ghidra extensions
-			vlc
-			xdg-utils
-			veracrypt
+			vlc # video player
+			xdg-utils # xdg-open
+			veracrypt # encryption
 			x2goclient # remote desktop thru ssh
+			qbittorrent # torrent client
+			feh # image viewer
 			(pkgs.nerdfonts.override { fonts=["DroidSansMono" ]; }) # for vscode
 			];
 		# BEGIN USER CONFIGS	
