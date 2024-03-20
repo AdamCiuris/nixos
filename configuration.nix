@@ -139,7 +139,7 @@
 
 	networking.firewall = {
 		enable = true; # this is on by default but still declaring it.
-		allowedTCPPorts = [ 22 ];
+		allowedTCPPorts = [  ];
 		# allowedUDPPorts = [ ... ];
 	};
 	# Or disable the firewall altogether.
