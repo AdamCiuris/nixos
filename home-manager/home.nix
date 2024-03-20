@@ -164,6 +164,7 @@ in
 			htop
 			git
 			geckodriver #firefox selenium
+			chromedriver # chrome selenium add this to driver_executable_path
 			python313
 			python311Packages.pip
 			vscode
@@ -176,6 +177,7 @@ in
 			vlc
 			xdg-utils
 			veracrypt
+			x2goclient # remote desktop thru ssh
 			(pkgs.nerdfonts.override { fonts=["DroidSansMono" ]; }) # for vscode
 			];
 		# BEGIN USER CONFIGS	

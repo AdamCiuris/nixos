@@ -86,17 +86,6 @@
 		# no need to redefine it in your config for now)
 		#media-session.enable = true;
 	};
-	# remote
-	services.xrdp = {
-		enable = true;
-		port = 8181; # https://www.tweaking4all.com/software/linux-software/use-xrdp-remote-access-ubuntu-14-04/
-		openFirewall = false;
-	};
-	# services.x2go = {
-	# 	enable = true;
-	# 	port = 8182;
-	# 	openFirewall = false;
-	# };
 
 	# Enable touchpad support (enabled default in most desktopManager).
 	# services.xserver.libinput.enable = true;
@@ -125,8 +114,6 @@
 	environment.systemPackages = with pkgs; [
 		vim
 		nano # available by default but declare anyways
-		xrdp
-		x2goclient
 	];
 
 
