@@ -180,6 +180,9 @@ in
 			x2goclient # remote desktop thru ssh
 			qbittorrent # torrent client
 			feh # image viewer
+			nodejs_21 # npm and node
+			# nodejs_18 # npm and node
+			yarn # package manager for node
 			(pkgs.nerdfonts.override { fonts=["DroidSansMono" ]; }) # for vscode
 			];
 		# BEGIN USER CONFIGS	
@@ -241,6 +244,12 @@ in
 			];
 		}; # END VSCODE
 		# xdg-open is what gets called from open "file" in terminal
+		nix = {
+			package = pkgs.nixFlakes;
+			extraOptions = ''
+				experimental-features = nix-command flakes
+			'';
+		}; # turn on flakes for user
 		imports = [
 			./configs/xdg.nix
 		];
