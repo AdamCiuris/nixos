@@ -1,4 +1,4 @@
-{	config,  pkgs,... }:
+{	  pkgs,... }:
 let
 	shellExtra = ''
 		# BEGIN XDG_DATA_DIRS CHECK
@@ -135,6 +135,12 @@ in
 	# if not nixOS chsh to /usr/bin/zsh else change users.defaultShell
 	# START PASTE SPACE
 		nixpkgs.config.allowUnfree=true;
+		nix = {
+			# package = pkgs.nixFlakes;
+			extraOptions = ''
+				experimental-features = nix-command flakes
+			'';
+		}; # turn on flakes for user
 		fonts.fontconfig.enable = true;
 		# BEGIN SHELL CONFIGS
 		# BEGIN BASH
@@ -244,12 +250,7 @@ in
 			];
 		}; # END VSCODE
 		# xdg-open is what gets called from open "file" in terminal
-		nix = {
-			package = pkgs.nixFlakes;
-			extraOptions = ''
-				experimental-features = nix-command flakes
-			'';
-		}; # turn on flakes for user
+
 		imports = [
 			./configs/xdg.nix
 		];
