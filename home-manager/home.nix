@@ -1,4 +1,4 @@
-{	  pkgs,... }:
+{	config, home-manager,lib, pkgs,... }:
 let
 	shellExtra = ''
 		# BEGIN XDG_DATA_DIRS CHECK
@@ -81,6 +81,7 @@ let
 	ext =  name: publisher: version: sha256: pkgs.vscode-utils.buildVscodeMarketplaceExtension {
 	mktplcRef = { inherit name publisher version sha256 ; };
 	};
+	amIstandalone = if ./.  != /etc/nixos then true else false; # :l <nixpkgs/nixos>
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -95,7 +96,7 @@ in
 	};
 
 	# Let Home Manager install and manage itself.
-	programs.home-manager.enable = true; # only needed for standalone
+	programs.home-manager.enable = amIstandalone; # only needed for standalone
 
 
 	# Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -135,8 +136,10 @@ in
 	# if not nixOS chsh to /usr/bin/zsh else change users.defaultShell
 	# START PASTE SPACE
 		nixpkgs.config.allowUnfree=true;
+		
 		nix = {
-			# package = pkgs.nixFlakes;
+			
+			package = lib.mkIf (!amIstandalone) pkgs.nixFlakes;
 			extraOptions = ''
 				experimental-features = nix-command flakes
 			'';
