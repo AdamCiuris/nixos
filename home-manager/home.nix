@@ -81,7 +81,7 @@ let
 	ext =  name: publisher: version: sha256: pkgs.vscode-utils.buildVscodeMarketplaceExtension {
 	mktplcRef = { inherit name publisher version sha256 ; };
 	};
-	amIstandalone = if ./.  != /etc/nixos then true else false; # :l <nixpkgs/nixos>
+	amIstandalone = if ./.  != /etc/nixos/home-manager then true else false; # :l <nixpkgs/nixos>
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -139,7 +139,7 @@ in
 		
 		nix = {
 			
-			package = lib.mkIf (!amIstandalone) pkgs.nixFlakes;
+			package = lib.mkIf (amIstandalone) pkgs.nixFlakes;
 			extraOptions = ''
 				experimental-features = nix-command flakes
 			'';
