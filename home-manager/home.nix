@@ -69,7 +69,7 @@ let
 		alias gdiff="git diff";
 		alias gstat="git status";
 		
-		alias hms="home-manager switch";
+		alias hms="rm -f ~/.config/mimeapps.list && home-manager switch";
 		alias LS="ls -lAh";
 		alias CD="cd";
 		alias "cd.."="cd ..";
@@ -184,14 +184,12 @@ in
 			ghidra # src code analysis and decompilation
 			gradle # for ghidra extensions
 			vlc # video player
+			blender # video editor, 3d modeling
 			xdg-utils # xdg-open
 			veracrypt # encryption
-			x2goclient # remote desktop thru ssh
 			qbittorrent # torrent client
 			nomacs # image viewer
-			nodejs_21 # npm and node
-			# nodejs_18 # npm and node
-			yarn # package manager for node
+
 			(pkgs.nerdfonts.override { fonts=["DroidSansMono" ]; }) # for vscode
 			];
 		# BEGIN USER CONFIGS	
@@ -209,7 +207,6 @@ in
 				"window.zoomLevel"= -1;
 				"workbench.colorTheme"= "Tomorrow Night Blue";
 				"terminal.integrated.fontFamily" = "DroidSansM Nerd Font"; # fc-list to see all fonts
-				"terminal.integrated.rendererType"= "dom"; # allows us to use terminal dev tools
 			};
 			keybindings =  [
 				{
