@@ -188,7 +188,7 @@ in
 			veracrypt # encryption
 			x2goclient # remote desktop thru ssh
 			qbittorrent # torrent client
-			feh # image viewer
+			nomacs # image viewer
 			nodejs_21 # npm and node
 			# nodejs_18 # npm and node
 			yarn # package manager for node

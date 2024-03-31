@@ -4,7 +4,7 @@
   ...
 }: let
   browser = ["brave"];
-  imageViewer = ["feh"];
+  imageViewer = ["nomacs"];
   videoPlayer = ["vlc"];
   audioPlayer = ["vlc"];
   scriptViewer = ["code"];
