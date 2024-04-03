@@ -19,5 +19,14 @@ git clone git@github.com:AdamCiuris/nixos.git && cd nixos && bash link
 
 <h3>How to use (home-manager standalone):</h3>
 
-run `bash link-home` which clears everything in your nix home-manger config and relinks.
+Download the [multi-user nix](https://nixos.org/download/) if it doesn't already exist the grab home-manager. Match your nixpkgs version with the home-manager version:
+
+```bash
+nix-channel --add https://github.com/nix-community/home-manager/archive/release-{VERSION}.tar.gz home-manager && \
+nix-channel --add https://github.com/NixOS/nixpkgs/archive/refs/tags/{VERSION}.tar.gz nixpkgs && \
+nix-channel --update && \
+nix-shell '<home-manager>' -A install
+```
+
+Run `bash link-home` which clears everything in your nix home-manger config and relinks.
 
