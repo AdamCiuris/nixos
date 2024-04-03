@@ -134,6 +134,7 @@ in
 	};
 
 	# if not nixOS chsh to /usr/bin/zsh else change users.defaultShell
+	# reminder to add zsh to /etc/shells
 	# START PASTE SPACE
 		nixpkgs.config.allowUnfree=true;
 		
