@@ -1,8 +1,5 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
+{ config, pkgs, ...}: 
+let
   browser = ["brave"];
   imageViewer = ["nomacs"];
   videoPlayer = ["vlc"];
