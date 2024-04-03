@@ -28,5 +28,5 @@ nix-channel --update && \
 nix-shell '<home-manager>' -A install
 ```
 
-Run `bash link-home` which clears everything in your nix home-manger config and relinks.
+Run `bash link-standalone` which clears everything in your nix home-manger config and relinks.
 
