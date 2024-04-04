@@ -73,8 +73,10 @@ in
 			git # version control
 			geckodriver #firefox selenium
 			chromedriver # chrome selenium add this to driver_executable_path
-			python313 
-			python311Packages.pip 
+			(python3.withPackages (python-pkgs: [
+				python-pkgs.pandas
+				python-pkgs.numpy
+			]))
 			vscode # microsoft electron IDE
 			# does bootloader.grub.enable = true always have to be commented out for iso gen
 			nixos-generators # nixos-generate -f iso -c "/path/to/configuration.nix"
