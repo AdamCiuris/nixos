@@ -10,7 +10,7 @@
 		# ./system/nixos-generators.nix
 		./hardware-configuration.nix
 		./nix-alien.nix
-		./nix-index.nix
+		# ./nix-index.nix
 		# ./ghidra.nix # nsa decompiler
 		];
 	# Bootloader.
@@ -19,7 +19,11 @@
 	boot.loader.grub.useOSProber = true;
 	# Nix settings
 	nix.settings.experimental-features = ["nix-command" "flakes"]; # needed to try flakes from tutorial
-
+    #   programs.command-not-found.enable = false;
+    # # for home-manager, use programs.bash.initExtra instead
+    # programs.zsh.interactiveShellInit = ''
+    #   source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
+    # '';
 	networking.hostName = "nixos"; # Define your hostname.
 	# networking.wireless.enable = true;	# Enables wireless support via wpa_supplicant.
 

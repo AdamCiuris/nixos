@@ -85,7 +85,8 @@ in
 			ghidra # src code analysis and decompilation
 			gradle # for ghidra extensions
 			vlc # video player
-			blender # video editor, 3d modeling
+			# blender # video editor, 3d modeling
+			nix-index # for nix search
 			xdg-utils # xdg-open
 			veracrypt # encryption
 			qbittorrent # torrent client
