@@ -10,6 +10,7 @@
 		# ./system/nixos-generators.nix
 		./hardware-configuration.nix
 		./nix-alien.nix
+		./nix-index.nix
 		# ./ghidra.nix # nsa decompiler
 		];
 	# Bootloader.
