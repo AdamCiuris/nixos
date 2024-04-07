@@ -1,15 +1,14 @@
-{ ... }:
-
+{ pkgs, config, ... }:
 let
-	nix-alien-pkgs = import (
-		builtins.fetchTarball "https://github.com/nix-community/nix-index/tarball/master"
-	) { };
+  nix-index = import(pkgs.fetchFromGitHub {
+    owner = "nix-community";
+    repo = "nix-index";
+    rev= "b5fcd082f474d41b11e01aa8f8f3131ae40f8952";
+    sha256 = "sha256-UJenH6w80dGVDTA2aXbstj10x1i+fkEhJbamO0jotiE=";
+});
 in
 {
-	environment.systemPackages = with nix-index-pkgs; [
-		nix-index
-	];
-
-	# Optional, but this is needed for `nix-alien-ld` command
-	programs.nix-ld.enable = true;
+  environment = {
+    systemPackages = [ nix-index ];
+  };
 }
