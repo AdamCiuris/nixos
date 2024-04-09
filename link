@@ -6,7 +6,9 @@ hard-link-recursive() {
     local srcDir=$1
     local destDir=$2
     local nixFiles=$(find $srcDir -maxdepth 1 -type f -name "*.nix")
-    sudo mkdir ${destDir}
+    if [ !  -d ${destDir} ]; then
+        sudo mkdir ${destDir}
+    fi
     sudo ln -fn $nixFiles ${destDir}   
     local dirs=$(find $srcDir -maxdepth 1 -type d -not -path '*.*' -not -path $srcDir) # all directories except the current one and hidden ones
     for dir in $dirs; do
