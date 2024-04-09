@@ -1,5 +1,5 @@
 #!/usr/bin/bash
-BASEDIR=$(readlink -f $(dirname $0)) # pwd of shell script
+BASEDIR=$(readlink -f $(dirname $0))/home-manager # pwd of home-manager
 
 hard-link-recursive() {
     local srcDir=$1
@@ -15,8 +15,8 @@ hard-link-recursive() {
     done
 }
 # Clear everything in your nix home-manger config and remake.
-rm -rf /home/nyx/test/*
+rm -rf "${HOME}/.config/home-manager/*"
 echo "script parent dir: $BASEDIR"
 
-hard-link-recursive /home/nyx/GITHUB/nixos/home-manager /home/nyx/test
-# home-manager switch
+hard-link-recursive $BASEDIR  "${HOME}/.config/home-manager" && \
+home-manager switch
