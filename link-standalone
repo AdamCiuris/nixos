@@ -1,7 +1,19 @@
 #!/usr/bin/bash
+BASEDIR=$(dirname $0) # pwd of shell script
+
+hard-link-recursive() {
+    local srcDir=$1
+    local destDir=$2
+    local nixFiles=$(find $srcDir -maxdepth 1 -type f -name "*.nix")
+    mkdir ${destDir}
+    ln -fn $nixFiles ${destDir}   
+    local dirs=$(find $srcDir -maxdepth 1 -type d -not -path '*.*' -not -path $srcDir) # all directories except the current one and hidden ones
+    for dir in $dirs; do
+        hard-link-recursive $dir $destDir/$(basename $dir)
+    done
+}
 # Clear everything in your nix home-manger config and remake.
-rm -rf ~/.config/home-manager/* && \
-mkdir ~/.config/home-manager/configs && \
-ln -fn $(find home-manager/ -maxdepth 1 -type f -name "*.nix") ~/.config/home-manager && \
-ln -fn $(find home-manager/configs -maxdepth 1 -type f -name "*.nix") ~/.config/home-manager/configs \
-&& home-manager switch
+rm -rf ~/.config/home-manager/*
+
+hard-link-recursive $BASEDIR/home-manager ~/.config/home-manager/
+home-manager switch
