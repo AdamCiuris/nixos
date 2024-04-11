@@ -75,6 +75,8 @@ let
 		alias "cd.."="cd ..";
 		alias "cd..."="cd ../..";
 		alias "home manager"="home-manager";
+
+		alias crontab-reboot-test="sudo rm /var/run/crond.reboot && sudo service cron restart"
 		
 		# END ALIASES
 		'';
