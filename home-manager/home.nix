@@ -77,7 +77,7 @@ in
 				python-pkgs.pandas
 				python-pkgs.numpy
 			]))
-			vscode # microsoft electron IDE
+			# vscodium # open source electron IDE
 			# does bootloader.grub.enable = true always have to be commented out for iso gen
 			nixos-generators # nixos-generate -f iso -c "/path/to/configuration.nix"
 			wget # for downloading files

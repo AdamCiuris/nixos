@@ -6,6 +6,7 @@ let
 in
 {
 	programs.vscode = {
+		package=pkgs.vscodium;
 		enable=true;
 		userSettings  = {
 			"files.autoSave" = "afterDelay";

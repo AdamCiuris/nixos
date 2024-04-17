@@ -77,6 +77,7 @@ let
 		alias "home manager"="home-manager";
 
 		alias crontab-reboot-test="sudo rm /var/run/crond.reboot && sudo service cron restart"
+		alias code=codium
 		
 		# END ALIASES
 		'';
