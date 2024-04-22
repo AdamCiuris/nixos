@@ -23,7 +23,7 @@ Download the [multi-user nix](https://nixos.org/download/) if it doesn't already
 
 ```bash
 nix-channel --add https://github.com/nix-community/home-manager/archive/release-{VERSION}.tar.gz home-manager && \
-nix-channel --add https://github.com/NixOS/nixpkgs/archive/refs/tags/23.11.tar.gz nixpkgs && \
+nix-channel --add https://github.com/NixOS/nixpkgs/archive/refs/tags/{VERSION}.tar.gz nixpkgs && \
 nix-channel --update && \
 nix-shell '<home-manager>' -A install
 ```
