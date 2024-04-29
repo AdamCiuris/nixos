@@ -15,8 +15,11 @@
 		];
 	# Bootloader.
 	# boot.loader.grub.enable = true;
-	boot.loader.grub.device = "/dev/vda";
-	boot.loader.grub.useOSProber = true;
+	boot.loader.grub= {
+		device = "/dev/vda";
+		useOSProber = true;
+		splashImage = null;
+	};
 	# Nix settings
 	nix.settings.experimental-features = ["nix-command" "flakes"]; # needed to try flakes from tutorial
     #   programs.command-not-found.enable = false;
@@ -79,6 +82,14 @@
 	hardware.pulseaudio.enable = false;
 	security.rtkit.enable = true;
 	
+	# services.nextcloud = {
+	# 	enable = true;
+	# 	# package = pkgs.nextcloud;
+	# 	# extraConfig = ''
+	# 	#   # Add custom configuration options here
+	# 	# '';
+	# };
+	# $HOME/.background-image = "https://imgur.com/cxGI9Am";
 	services.pipewire = {
 		enable = true;
 		alsa.enable = true;
