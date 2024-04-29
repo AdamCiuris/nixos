@@ -18,7 +18,7 @@ hard-link-recursive() {
 echo "script parent dir: $BASEDIR"
 echo "deleting /etc/nixos/* ..."
 sudo rm -rf /etc/nixos/* # Clear everything in your nixos config and remake.
-hard-link-recursive /home/nyx/GITHUB/nixos /etc/nixos
+hard-link-recursive $BASEDIR /etc/nixos
 
 sudo rm /etc/nixos/hardware-configuration.nix # remove hardware config
 sudo nixos-generate-config # to get your hardware config back
