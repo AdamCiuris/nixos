@@ -14,8 +14,8 @@
 		# ./ghidra.nix # nsa decompiler
 		];
 	# Bootloader.
-	# boot.loader.grub.enable = true;
-	boot.loader.grub= {
+	boot.loader.grub = {'
+		enable = true;
 		device = "/dev/vda";
 		useOSProber = true;
 		splashImage = null;
