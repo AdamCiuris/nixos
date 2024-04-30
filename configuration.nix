@@ -10,8 +10,8 @@
 		# ./system/nixos-generators.nix
 		./hardware-configuration.nix
 		./nix-alien.nix
+		./default-specialisation.nix
 		# ./nix-index.nix
-		# ./ghidra.nix # nsa decompiler
 		];
 	# Bootloader.
 	boot.loader.grub = {
@@ -59,9 +59,36 @@
 	services.xserver.enable = true;
 	
 	services.spice-vdagentd.enable = true; # enables clipboard sharing
-	# Enable cinnamon desktop environment.
-	services.xserver.displayManager.lightdm.enable = true; # lightweight display manager, "greeters" for 
-	services.xserver.desktopManager.cinnamon.enable = true;
+
+	services.xserver.displayManager.autoLogin.user = null; # don't set
+	services.xserver.displayManager.autoLogin.enable = false;
+
+	specialisation = { # Let's you pick the desktop manager in grub
+		cinnaminmin = { configuration={
+			services.xserver.displayManager.lightdm.enable = true; 
+			services.xserver.desktopManager.cinnamon.enable = true;
+		};};
+		MATE = { configuration={
+			services.xserver.displayManager.lightdm.enable = true; 
+			services.xserver.desktopManager.mate.enable = true;
+		};};
+		common = { configuration={
+			services.xserver.displayManager.lightdm.enable = true; 
+			services.xserver.desktopManager.cde.enable = true;
+		};};
+		budgie = { configuration={
+			services.xserver.displayManager.lightdm.enable = true; 
+			services.xserver.desktopManager.budgie.enable = true;
+		};};
+		KDE = { configuration={
+			services.xserver.displayManager.sddm.enable = true;
+			services.xserver.desktopManager.plasma5.enable = true;
+		};};
+		GNOME = { configuration={
+			services.xserver.displayManager.gdm.enable = true;
+			services.xserver.desktopManager.gnome.enable = true;
+		};};
+	};
 
 	services.mysql = {
 		enable = true;
@@ -89,24 +116,17 @@
 	# 	#   # Add custom configuration options here
 	# 	# '';
 	# };
-	# $HOME/.background-image = "https://imgur.com/cxGI9Am";
 	services.pipewire = {
 		enable = true;
 		alsa.enable = true;
 		alsa.support32Bit = true;
 		pulse.enable = true;
-		# If you want to use JACK applications, uncomment this
-		#jack.enable = true;
-
-		# use the example session manager (no others are packaged yet so this is enabled by default,
-		# no need to redefine it in your config for now)
-		#media-session.enable = true;
 	};
 
 	# Enable touchpad support (enabled default in most desktopManager).
 	# services.xserver.libinput.enable = true;
 
-	# Define a user account. Don't forget to set a password with ‘passwd’.
+	#  set a password with ‘passwd’ $USER.
 	users.users.nyx = {
 		isNormalUser = true;
 		description = "nyx";
@@ -116,8 +136,6 @@
 			firefox
 			brave
 			zsh
-	
-		#	thunderbird
 		];
 	};
 
@@ -140,28 +158,13 @@
 
 
 
-	# Some programs need SUID wrappers, can be configured further or are
-	# started in user sessions.
-	# programs.mtr.enable = true;
-	# programs.gnupg.agent = {
-	#	 enable = true;
-	#	 enableSSHSupport = true;
-	# };
-
-	# List services that you want to enable:
-
-	# Enable the OpenSSH daemon.
-	# services.openssh.enable = true; # TODO maybe
 
 	networking.firewall = {
 		enable = true; # this is on by default but still declaring it.
 		allowedTCPPorts = [  ];
 		# allowedUDPPorts = [ ... ];
 	};
-	# Or disable the firewall altogether.
-	services.flatpak.enable = true; # need for postman as postman isn't updated as of 01/28/24
-
-
+	services.flatpak.enable = false; # need for postman as postman isn't updated as of 01/28/24
 	
 
 	# This value determines the NixOS release from which the default
