@@ -4,20 +4,17 @@
 
 { config, pkgs, ... }:
 {
+
 	imports =
 		[ # Include the results of the hardware scan.
 		# ./system/nixos-generators.nix
 		./hardware-configuration.nix
 		./default-specialisation.nix
-		# ./nix-index.nix
+		./system/.secret.nix
 		];
 	# Bootloader.
-	boot.loader.grub = {
-		enable = true;
-		device = "/dev/vda";
-		useOSProber = true;
-		splashImage = null;
-	};
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 	# Nix settings
 	nix.settings.experimental-features = ["nix-command" "flakes"]; # needed to try flakes from tutorial
     #   programs.command-not-found.enable = false;
@@ -146,6 +143,7 @@
 	
 	programs.zsh.enable = true;
 	environment.systemPackages = with pkgs; [
+		openvpn3
 		vim
 		nano # available by default but declare anyways
 	];

@@ -41,7 +41,6 @@ in
 			python-pkgs.pandas
 			python-pkgs.numpy
 		]))
-		# vscodium # open source electron IDE
 		# does bootloader.grub.enable = true always have to be commented out for iso gen
 		nixos-generators # nixos-generate -f iso -c "/path/to/configuration.nix"
 		wget # for downloading files
@@ -49,12 +48,12 @@ in
 		ghidra # src code analysis and decompilation
 		gradle # for ghidra extensions
 		vlc # video player
-		# blender # video editor, 3d modeling
 		nix-index # for nix search
 		xdg-utils # xdg-open
 		qbittorrent # torrent client
 		nomacs # image viewer
-
+		brave
+		firefox
 		(pkgs.nerdfonts.override { fonts=["DroidSansMono" ]; }) # for vscode
 		];
 
