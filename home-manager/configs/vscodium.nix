@@ -12,6 +12,7 @@ in
 			"files.autoSave" = "afterDelay";
 			"files.autoSaveDelay" = 0;
 			"window.zoomLevel"= -1;
+			"files.exclude" = ""; # stop excluding files please
 			"workbench.colorTheme"= "Tomorrow Night Blue";
 			"terminal.integrated.fontFamily" = "DroidSansM Nerd Font"; # fc-list to see all fonts
 		};
