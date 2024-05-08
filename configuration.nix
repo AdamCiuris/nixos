@@ -143,7 +143,6 @@
 	
 	programs.zsh.enable = true;
 	environment.systemPackages = with pkgs; [
-		openvpn3
 		vim
 		nano # available by default but declare anyways
 	];
@@ -160,7 +159,7 @@
 	networking.firewall = {
 		enable = true; # this is on by default but still declaring it.
 		allowedTCPPorts = [  ];
-		# allowedUDPPorts = [ ... ];
+		allowedUDPPorts = [  ];
 	};
 	services.flatpak.enable = false; # need for postman as postman isn't updated as of 01/28/24
 	
