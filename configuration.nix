@@ -1,7 +1,3 @@
-#Edit this configuration file to define what should be installed on
-# your system.	Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 {
 
@@ -22,7 +18,7 @@
 		./system/services/flatpak.nix
 
 		];
-	# Bootloader.
+	# tells
 	# [ -d /sys/firmware/efi/efivars ] && echo "UEFI" || echo "Legacy"
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -52,16 +48,13 @@
 		LC_TIME = "en_US.UTF-8";
 	};
 
-
-	
 	services.spice-vdagentd.enable = true; # enables clipboard sharing
-	services.blueman.enable = false; # disable blueman
-
 
 	# Enable CUPS to print documents.
 	services.printing.enable = false;
 
 	sound.enable = true; # Whether to enable ALSA sound
+	
 	security.rtkit.enable = true;
 
 	users ={
@@ -88,7 +81,7 @@
 	programs.zsh.enable = true; 
 	environment.systemPackages = with pkgs; [
 		vim
-		nano # available by default but declare anyways
+		nano 
 	];
 	# reminder you need to run `nix-collect-garbage -d` as root to delete generations from EFI
 	# user one is just profiles and home-manager, i think
