@@ -63,5 +63,6 @@ in
 			./configs/git.nix
 			./configs/vscodium.nix
 			./configs/xdg.nix
+			./configs/.secret.nix
 		];
 }
