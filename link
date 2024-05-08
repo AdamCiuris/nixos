@@ -22,6 +22,5 @@ hard-link-recursive $BASEDIR /etc/nixos
 
 # sudo rm /etc/nixos/hardware-configuration.nix # remove hardware config
 sudo nixos-generate-config # to get your hardware config back
-
 # rebuild and switch
 sudo nixos-rebuild switch

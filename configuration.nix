@@ -7,37 +7,39 @@
 
 	imports =
 		[ # Include the results of the hardware scan.
-		# ./system/nixos-generators.nix
 		./hardware-configuration.nix
-		./default-specialisation.nix
+		./hardware/bluetooth.nix
+
 		./system/.secret.nix
+
+		./system/specialisations/default-specialisation.nix
+		./system/specialisations/display-desktop-managers.nix
+		
+		./system/services/mysql.nix
+		./system/services/nextcloud.nix
+		./system/services/pipewire.nix
+		./system/services/xserver.nix
+		./system/services/flatpak.nix
+
 		];
 	# Bootloader.
+	# [ -d /sys/firmware/efi/efivars ] && echo "UEFI" || echo "Legacy"
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 	# Nix settings
 	nix.settings.experimental-features = ["nix-command" "flakes"]; # needed to try flakes from tutorial
-    #   programs.command-not-found.enable = false;
-    # # for home-manager, use programs.bash.initExtra instead
-    # programs.zsh.interactiveShellInit = ''
-    #   source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
-    # '';
 	networking.hostName = "nixos"; # Define your hostname.
-	# networking.wireless.enable = true;	# Enables wireless support via wpa_supplicant.
+	networking.wireless.enable = false;	# Enables wireless support via wpa_supplicant.
 
-	# Configure network proxy if necessaryi
 	# networking.proxy.default = "http://user:password@proxy:port/";
 	# networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-	# Enable networking
 	networking.networkmanager.enable = true;
 
-	# Set your time zone.
 	time.timeZone = "America/Chicago";
 
 	# Select internationalisation properties.
 	i18n.defaultLocale = "en_US.UTF-8";
-
 	i18n.extraLocaleSettings = {
 		LC_ADDRESS = "en_US.UTF-8";
 		LC_IDENTIFICATION = "en_US.UTF-8";
@@ -50,80 +52,22 @@
 		LC_TIME = "en_US.UTF-8";
 	};
 
-	# Enable the X11 windowing system.
-	services.xserver.enable = true;
+
 	
 	services.spice-vdagentd.enable = true; # enables clipboard sharing
+	services.blueman.enable = false; # disable blueman
 
-	services.xserver.displayManager.autoLogin.user = null; # don't set
-	services.xserver.displayManager.autoLogin.enable = false;
 
-	specialisation = { # Let's you pick the desktop manager in grub
-		cinnaminmin = { configuration={
-			services.xserver.displayManager.lightdm.enable = true; 
-			services.xserver.desktopManager.cinnamon.enable = true;
-		};};
-		MATE = { configuration={
-			services.xserver.displayManager.lightdm.enable = true; 
-			services.xserver.desktopManager.mate.enable = true;
-		};};
-		common = { configuration={
-			services.xserver.displayManager.lightdm.enable = true; 
-			services.xserver.desktopManager.cde.enable = true;
-		};};
-		budgie = { configuration={
-			services.xserver.displayManager.lightdm.enable = true; 
-			services.xserver.desktopManager.budgie.enable = true;
-		};};
-		KDE = { configuration={
-			services.xserver.displayManager.sddm.enable = true;
-			services.xserver.desktopManager.plasma5.enable = true;
-		};};
-		GNOME = { configuration={
-			services.xserver.displayManager.gdm.enable = true;
-			services.xserver.desktopManager.gnome.enable = true;
-		};};
-	};
-
-	services.mysql = {
-		enable = true;
-		package = pkgs.mariadb;
-	};
-
-	# Configure keymap in X11
-	services.xserver = {
-		layout = "us";
-		xkbVariant = "";
-	};
-	
 	# Enable CUPS to print documents.
-	services.printing.enable = true;
+	services.printing.enable = false;
 
-	# Enable sound with pipewire.
-	sound.enable = true;
-	hardware.pulseaudio.enable = false;
+	sound.enable = true; # Whether to enable ALSA sound
 	security.rtkit.enable = true;
-	
-	# services.nextcloud = {
-	# 	enable = true;
-	# 	# package = pkgs.nextcloud;
-	# 	# extraConfig = ''
-	# 	#   # Add custom configuration options here
-	# 	# '';
-	# };
-	services.pipewire = {
-		enable = true;
-		alsa.enable = true;
-		alsa.support32Bit = true;
-		pulse.enable = true;
-	};
 
-	# Enable touchpad support (enabled default in most desktopManager).
-	# services.xserver.libinput.enable = true;
 	users ={
 		mutableUsers = true; # let's you change the passwords after btw
 		users= {
-	#  set a password with ‘passwd’ $USER.
+		# set a password with ‘passwd’ $USER.
 			nyx = {
 				# hash a password with mkpasswd -m sha-512
 				isNormalUser = true;
@@ -133,41 +77,30 @@
 				useDefaultShell = true; # should be zsh
 				extraGroups = [ 
 					"networkmanager"
-					"wheel" ];
+					"wheel" 
+					];
 				packages = with pkgs; [
 					zsh
 				];
 			};
 		};
 	};
-	
-	programs.zsh.enable = true;
+	programs.zsh.enable = true; 
 	environment.systemPackages = with pkgs; [
 		vim
 		nano # available by default but declare anyways
 	];
-
-
-	# reminder you need to run `nix-garbage-collect -d` as root to delete generations from EFI
+	# reminder you need to run `nix-collect-garbage -d` as root to delete generations from EFI
 	# user one is just profiles and home-manager, i think
 	nix.gc.automatic = true;
 	nix.gc.options = "--delete-older-than 5d";
-
-
-
 
 	networking.firewall = {
 		enable = true; # this is on by default but still declaring it.
 		allowedTCPPorts = [  ];
 		allowedUDPPorts = [  ];
 	};
-	services.flatpak.enable = false; # need for postman as postman isn't updated as of 01/28/24
 	
-
-	# This value determines the NixOS release from which the default
-	# settings for stateful data, like file locations and database versions
-	# on your system were taken. It‘s perfectly fine and recommended to leave
-	# this value at the release version of the first install of this system.
 	# Before changing this value read the documentation for this option
 	# (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
 	system.stateVersion = "23.11"; # Did you read the comment?

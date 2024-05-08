@@ -13,7 +13,7 @@ let
       })
       list);
 
-  image = xdgAssociations "image" imageViewer ["png" "svg" "jpeg" "gif" "webp" "bmp" "tiff" "svg+xml"];
+  image = xdgAssociations "image" imageViewer ["png" "svg" "jpeg" "jpg" "gif" "webp" "bmp" "tiff" "svg+xml"];
   video = xdgAssociations "video" videoPlayer ["mpeg" "avi" "mkv" "quicktime" "webm"];
   scripts = xdgAssociations "text" scriptViewer ["sh" "bash" "zsh" "fish" "py" "pl" "rb" "lua" "js" "ts" "html" "css" "json" "yaml" "toml" "xml" "md" "markdown" "rst" "txt"];
   audio = xdgAssociations "audio" audioPlayer ["mpeg" "flac" "wav" "aac"];
@@ -40,7 +40,7 @@ let
       "text/html" = browser;
       "text/plain" = ["code.desktop"];
       "x-scheme-handler/chrome" = ["brave.desktop"];
-    #   "inode/directory" = ["yazi"];
+      "inode/directory" = ["nemo"];
     }
     // image
     // video

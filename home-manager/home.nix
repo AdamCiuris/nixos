@@ -52,8 +52,9 @@ in
 		xdg-utils # xdg-open
 		qbittorrent # torrent client
 		nomacs # image viewer
-		brave
-		firefox
+		brave # chromium based browser
+		firefox # open source browser
+		libreoffice # office suite
 		(pkgs.nerdfonts.override { fonts=["DroidSansMono" ]; }) # for vscode
 		];
 
