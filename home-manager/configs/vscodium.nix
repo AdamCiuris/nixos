@@ -43,10 +43,10 @@ in
 		# installing malware
 
 		extensions = (with pkgs.vscode-extensions; [
-			ms-vscode-remote.remote-containers # for when flakes are too annoying
+			ms-python.vscode-pylance
+			ms-vscode-remote.remote-containers
 			ms-azuretools.vscode-docker
 			batisteo.vscode-django
-			ms-python.vscode-pylance
 			ms-python.python
 			shd101wyy.markdown-preview-enhanced
 			ms-toolsai.jupyter

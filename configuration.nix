@@ -6,10 +6,8 @@
 {
 	imports =
 		[ # Include the results of the hardware scan.
-		./home-manager/home-manager-module.nix
 		# ./system/nixos-generators.nix
 		./hardware-configuration.nix
-		./nix-alien.nix
 		./default-specialisation.nix
 		# ./nix-index.nix
 		];
@@ -125,26 +123,28 @@
 
 	# Enable touchpad support (enabled default in most desktopManager).
 	# services.xserver.libinput.enable = true;
-
+	users ={
+		mutableUsers = true; # let's you change the passwords after btw
+		users= {
 	#  set a password with ‘passwd’ $USER.
-	users.users.nyx = {
-		isNormalUser = true;
-		description = "nyx";
-		extraGroups = [ "networkmanager" "wheel" ];
-		packages = with pkgs; [
-			google-chrome
-			firefox
-			brave
-			zsh
-		];
+			nyx = {
+				# hash a password with mkpasswd -m sha-512
+				isNormalUser = true;
+				description = "nyx";
+				initialHashedPassword = "$6$7ACOHeLr65U7C1Pb$oNIgMK/8iWH9AbLmhyqlJ.HyUQQst5H7jyV5IGsux4j9X7N/Fwm9Mo8u1ijOmqlGjN5ewEhPt.BsWBt518.Rw1";
+				shell=pkgs.zsh;
+				useDefaultShell = true; # should be zsh
+				extraGroups = [ 
+					"networkmanager"
+					"wheel" ];
+				packages = with pkgs; [
+					zsh
+				];
+			};
+		};
 	};
-
 	
 	programs.zsh.enable = true;
-	# needed for vscode in pkgs
-	nixpkgs.config.allowUnfree = true;
-	# List packages installed in system profile. To search, run:
-	# $ nix search wget
 	environment.systemPackages = with pkgs; [
 		vim
 		nano # available by default but declare anyways
