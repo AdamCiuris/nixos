@@ -12,17 +12,20 @@
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
-
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, hardware, home-manager, flake-utils, ... }@inputs:
+  outputs = { self, nixpkgs, hardware, home-manager, nixos-generators, flake-utils, ... }@inputs:
     let
       forAllSystems = nixpkgs.lib.genAttrs [
         "x86_64-linux"
       ];
     in
     rec {
+
 
       myPkgs = forAllSystems (system:
         import inputs.nixpkgs {
@@ -33,7 +36,20 @@
           config.allowUnfree = true;
         }
       );
+      # vimjoyer iso nonsense https://www.youtube.com/watch?v=-G8mN6HJSZE&
+
+
+
       nixosConfigurations = {
+        # https://github.com/nix-community/nixos-generators?tab=readme-ov-file#using-in-a-flake
+        formatConfigs.exampleCustomFormat = { config, modulesPath, ... }: {
+          imports = [ "${toString modulesPath}/installer/cd-dvd/installation-cd-base.nix" ];
+          formatAttr = "isoImage";
+          fileExtension = ".iso";
+          networking.wireless.networks = {
+            # ...
+          };
+
         "nixos" = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           pkgs = myPkgs.x86_64-linux;
@@ -43,6 +59,8 @@
             ./configuration.nix
             # home-manager junk
             home-manager.nixosModules.home-manager
+            nixos-generators.nixosModules.all-formats # nix build .\#nixosConfigurations.nixos.config.formats. and hit tab to see all
+            # nix build .\#nixosConfigurations.nixos.config.formats.install-iso -o ./result
             {
               home-manager.extraSpecialArgs = { inherit inputs; }; # Pass flake input to home-manager
               home-manager.users = {
