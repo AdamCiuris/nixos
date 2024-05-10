@@ -7,7 +7,7 @@ hard-link-recursive() {
     local destDir=$2
     local nixFiles=$(find $srcDir -maxdepth 1 -type f -name "*.nix" -o -name "*.conf")
     if [ !  -d ${destDir} ]; then
-        echo "creating $destDir"
+        echo "Creating directory: $destDir"
         sudo mkdir ${destDir}
     fi
     # echo "linking [ ${basename $nixFiles} ] to $destDir"
@@ -18,14 +18,14 @@ hard-link-recursive() {
     done
 }
 echo "This script's parent directory: $baseDir"
-echo "deleting $nixosConfigPath/* ..."
+echo "Deleting: $nixosConfigPath/* ..."
 sudo rm -rf $nixosConfigPath/* # Clear everything in your nixos config and remake.
 hard-link-recursive $baseDir $nixosConfigPath
-echo "nixos config linked to  $nixosConfigPath"
+echo "Finished config linking to $nixosConfigPath"
 
-echo "removing $nixosConfigPath/hardware-configuration.nix..."
+echo "Removing $nixosConfigPath/hardware-configuration.nix..."
 sudo rm /etc/nixos/hardware-configuration.nix # remove hardware config
 sudo nixos-generate-config # to get your hardware config back
 # rebuild and switch
-echo "rebuilding and switching to new config..."
+echo "Rebuilding and switching to new config..."
 sudo nixos-rebuild switch
