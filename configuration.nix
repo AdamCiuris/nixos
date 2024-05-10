@@ -15,6 +15,7 @@
 		
 		./system/programs/msmtp.nix
 
+		./system/services/openvpn.nix
 		./system/services/fail2ban.nix
 		./system/services/mysql.nix
 		./system/services/nextcloud.nix
