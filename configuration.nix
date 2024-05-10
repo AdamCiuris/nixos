@@ -22,35 +22,37 @@
 		./system/services/pipewire.nix
 		./system/services/xserver.nix
 		./system/services/flatpak.nix
-
 		];
-	# tells
 	# [ -d /sys/firmware/efi/efivars ] && echo "UEFI" || echo "Legacy"
   boot.loader = {
-		 systemd-boot.enable = true;
-		 efi.canTouchEfiVariables = true;
-		 efi.efiSysMountPoint = "/boot";
-#		grub = {
-#			enable = true;
-#			efiSupport = true;
-#			useOSProber = true;
-#			splashImage = null;
-#		};
+		systemd-boot.enable = true;
+		efi.canTouchEfiVariables = true;
+		efi.efiSysMountPoint = "/boot";
+		#grub = {
+		#	enable = true;
+		#	efiSupport = true;
+		#	useOSProber = true;
+		#	splashImage = null;
+		# devices = [ "nodev" ];
+		#};
 	};
-#	boot.loader.grub.devices = [ "nodev" ];
-#
 	# Nix settings
 	nix.settings.experimental-features = ["nix-command" "flakes"]; # needed to try flakes from tutorial
-	networking.hostName = "nixos"; # Define your hostname.
-	networking.wireless.enable = false;	# Enables wireless support via wpa_supplicant.
 
 	# networking.proxy.default = "http://user:password@proxy:port/";
 	# networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-	networking.networkmanager.enable = true;
+	networking = {
+		hostName = "nixos"; # Define your hostname.
+		wireless.enable = false;	# Enables wireless support via wpa_supplicant.
+		networkmanager.enable = true;
+			firewall = {
+			enable = true; # this is on by default but still declaring it.
+			allowedTCPPorts = [  ];
+			allowedUDPPorts = [  ];
+		};
+	};
 
 	time.timeZone = "America/Chicago";
-
 	# Select internationalisation properties.
 	i18n.defaultLocale = "en_US.UTF-8";
 	i18n.extraLocaleSettings = {
@@ -65,7 +67,7 @@
 		LC_TIME = "en_US.UTF-8";
 	};
 
-	services.spice-vdagentd.enable = true; # enables clipboard sharing
+	services.spice-vdagentd.enable = true; # enables clipboard sharing between vms
 
 	# Enable CUPS to print documents.
 	services.printing.enable = false;
@@ -96,8 +98,7 @@
 		};
 	};
 	programs.zsh.enable = true; 
-	environment.etc = {
-		# reminder this starts in /etc
+	environment.etc = { # reminder this starts in /etc
 		"/fail2ban/action.d/msmtp-whois.conf".source = /etc/nixos/environment/msmtp-whois.conf; # TODO figure out how to make relative
 	};
 	environment.systemPackages = with pkgs; [
@@ -108,15 +109,8 @@
 	# user one is just profiles and home-manager, i think
 	nix.gc.automatic = true;
 	nix.gc.options = "--delete-older-than 5d";
-
-	networking.firewall = {
-		enable = true; # this is on by default but still declaring it.
-		allowedTCPPorts = [  ];
-		allowedUDPPorts = [  ];
-	};
 	
 	# Before changing this value read the documentation for this option
 	# (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
 	system.stateVersion = "23.11"; # Did you read the comment?
-
 }

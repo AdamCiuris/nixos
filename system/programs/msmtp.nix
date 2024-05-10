@@ -16,6 +16,6 @@ user paperpl88s
 from paperpl88s@gmail.com
 passwordeval cat /etc/msmtp-password
 account default : gmail
-			''; # weird formatting so it looks right in conf
+''; # weird formatting so it looks right in conf
   };
 }

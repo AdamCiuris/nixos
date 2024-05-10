@@ -1,6 +1,5 @@
 {	config,lib, pkgs,... }:
 let
-
 	amIstandalone = if ./.  != /etc/nixos/home-manager then true else false; # :l <nixpkgs/nixos>
 in
 {
@@ -23,20 +22,14 @@ in
 	nixpkgs.config.allowUnfree = true;
 
 	home.file = {
-		# ".screenrc".source = dotfiles/screenrc;
-
-		# ".gradle/gradle.properties".text = ''
-		#   org.gradle.console=verbose
-		#   org.gradle.daemon.idletimeout=3600000
-		# '';
 	};
 
 	home.sessionVariables = {
 		EDITOR = "nano";
 	};
 
-		# if not nixOS chsh to /usr/bin/zsh else change users.defaultShell
-		# reminder to add zsh to /etc/shells
+	# if not nixOS chsh to /usr/bin/zsh else change users.defaultShell
+	# reminder to add zsh to /etc/shells
 	fonts.fontconfig.enable = true;
 
 	# programs.home-manager.enable=true;

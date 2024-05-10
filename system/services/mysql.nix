@@ -4,5 +4,4 @@
 		enable = true;
 		package = pkgs.mariadb;
 	};
-
 }
