@@ -13,6 +13,9 @@
 		./system/specialisations/default-specialisation.nix
 		./system/specialisations/display-desktop-managers.nix
 		
+		./system/programs/msmtp.nix
+
+		./system/services/fail2ban.nix
 		./system/services/mysql.nix
 		./system/services/nextcloud.nix
 		./system/services/pipewire.nix
@@ -92,7 +95,10 @@
 		};
 	};
 	programs.zsh.enable = true; 
-
+	environment.etc = {
+		# reminder this starts in /etc
+		"/fail2ban/action.d/msmtp-whois.conf".source = /etc/nixos/environment/msmtp-whois.conf; # TODO figure out how to make relative
+	};
 	environment.systemPackages = with pkgs; [
 		vim
 		nano 
