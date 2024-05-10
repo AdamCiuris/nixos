@@ -49,6 +49,7 @@
           networking.wireless.networks = {
             # ...
           };
+        };
 
         "nixos" = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
@@ -73,7 +74,5 @@
           ];
         };
       };
-
     };
-
 }
