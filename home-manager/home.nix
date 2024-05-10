@@ -4,6 +4,14 @@ let
 	amIstandalone = if ./.  != /etc/nixos/home-manager then true else false; # :l <nixpkgs/nixos>
 in
 {
+	imports = [
+		./configs/dconf.nix
+		./configs/shells.nix
+		./configs/git.nix
+		./configs/vscodium.nix
+		./configs/xdg.nix
+		./configs/.secret.nix
+	];
 	home ={
 		username = "nyx";
 		homeDirectory = "/home/nyx";
@@ -59,12 +67,4 @@ in
 		(pkgs.nerdfonts.override { fonts=["DroidSansMono" ]; }) # for vscode
 		];
 
-		# xdg-open is what gets called from open "file" in terminal
-		imports = [
-			./configs/shells.nix
-			./configs/git.nix
-			./configs/vscodium.nix
-			./configs/xdg.nix
-			./configs/.secret.nix
-		];
 }

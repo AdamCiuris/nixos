@@ -8,6 +8,8 @@
 
 		./system/.secret.nix
 
+		./system/virtualization/libvirtd.nix
+		
 		./system/specialisations/default-specialisation.nix
 		./system/specialisations/display-desktop-managers.nix
 		
@@ -90,6 +92,7 @@
 		};
 	};
 	programs.zsh.enable = true; 
+
 	environment.systemPackages = with pkgs; [
 		vim
 		nano 

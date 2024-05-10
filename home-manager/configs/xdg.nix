@@ -1,4 +1,4 @@
-{ config, pkgs, ...}: 
+{ config, pkgs, ...}: 		# xdg-open is what gets called from open "file" in terminal
 let
   browser = ["brave"];
   imageViewer = ["nomacs"];
