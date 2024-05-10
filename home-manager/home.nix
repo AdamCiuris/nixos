@@ -55,6 +55,7 @@ in
 		brave # chromium based browser
 		firefox # open source browser
 		libreoffice # office suite
+		xclip # cat into clipboard with xclip -sel clip < file
 		(pkgs.nerdfonts.override { fonts=["DroidSansMono" ]; }) # for vscode
 		];
 
