@@ -20,8 +20,19 @@
 		];
 	# tells
 	# [ -d /sys/firmware/efi/efivars ] && echo "UEFI" || echo "Legacy"
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+		 systemd-boot.enable = true;
+		 efi.canTouchEfiVariables = true;
+		 efi.efiSysMountPoint = "/boot";
+#		grub = {
+#			enable = true;
+#			efiSupport = true;
+#			useOSProber = true;
+#			splashImage = null;
+#		};
+	};
+#	boot.loader.grub.devices = [ "nodev" ];
+#
 	# Nix settings
 	nix.settings.experimental-features = ["nix-command" "flakes"]; # needed to try flakes from tutorial
 	networking.hostName = "nixos"; # Define your hostname.
