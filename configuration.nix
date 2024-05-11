@@ -43,9 +43,10 @@
 	# networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 	networking = {
 		hostName = "nixos"; # Define your hostname.
-		wireless.enable = false;	# Enables wireless support via wpa_supplicant.
+		enableIPv6 = false; # ipv4 only pls
+		# wireless.enable = true;	# Enables wireless support via wpa_supplicant.
 		networkmanager.enable = true;
-			firewall = {
+		firewall = {
 			enable = true; # this is on by default but still declaring it.
 			allowedTCPPorts = [  ];
 			allowedUDPPorts = [  ];
