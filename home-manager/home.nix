@@ -4,6 +4,7 @@ let
 in
 {
 	imports = [
+		./configs/fiyafox.nix
 		./configs/dconf.nix
 		./configs/shells.nix
 		./configs/git.nix
@@ -21,7 +22,7 @@ in
 	programs.home-manager.enable = amIstandalone; # only needed for standalone
 	nixpkgs.config.allowUnfree = true;
 
-	home.file = {
+	home.file = { # starts at ~/.config
 	};
 
 	home.sessionVariables = {
@@ -54,7 +55,7 @@ in
 		qbittorrent # torrent client
 		nomacs # image viewer
 		brave # chromium based browser
-		firefox # open source browser
+		# firefox # open source browser, enabled in fiyafox.nix
 		libreoffice # office suite
 		xclip # cat into clipboard with xclip -sel clip < file
 		(pkgs.nerdfonts.override { fonts=["DroidSansMono" ]; }) # for vscode

@@ -16,6 +16,10 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-user-repositories = {
+      url = "github:rycee/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, hardware, home-manager, nixos-generators, flake-utils, ... }@inputs:
@@ -56,7 +60,7 @@
           pkgs = myPkgs.x86_64-linux;
           specialArgs = { inherit inputs; }; # Pass flake inputs to our config
           modules =  [
-            # > Our main nixos configuration file <
+            # > Our main nixos configuration file <zzzzz
             ./configuration.nix
             # home-manager junk
             home-manager.nixosModules.home-manager
