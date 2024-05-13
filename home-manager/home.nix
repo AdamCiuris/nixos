@@ -4,6 +4,7 @@ let
 in
 {
 	imports = [
+		./configs/brave.nix
 		./configs/fiyafox.nix
 		./configs/dconf.nix
 		./configs/shells.nix
@@ -54,7 +55,7 @@ in
 		xdg-utils # xdg-open
 		qbittorrent # torrent client
 		nomacs # image viewer
-		brave # chromium based browser
+		# brave # chromium based browser, enabled in brave.nix
 		# firefox # open source browser, enabled in fiyafox.nix
 		libreoffice # office suite
 		xclip # cat into clipboard with xclip -sel clip < file
