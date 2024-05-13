@@ -4,9 +4,9 @@
       enable = true;
       profiles.nyx = {
         isDefault = true;
-        extensions =  {
-          "TamperMonkey"
-        };
+        # extensions =  {
+        #   "TamperMonkey"
+        # };
         search.force = true; # rm whatever config is already there
         search.default = "DuckDuckGo";
         search.engines = {
