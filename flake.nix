@@ -16,10 +16,10 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-user-repositories = {
-      url = "github:rycee/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nix-user-repositories = {
+    #   url = "github:rycee/home-manager";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
   outputs = { self, nixpkgs, hardware, home-manager, nixos-generators, flake-utils, ... }@inputs:
@@ -55,13 +55,35 @@
           };
         };
 
+        "lockdown" = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          pkgs = myPkgs.x86_64-linux;
+          specialArgs = { inherit inputs; }; # Pass flake inputs to our config
+          modules =  [
+            # > Our main nixos configuration file <zzzzz
+            ./top-level-configs/lockdown.nix
+            # home-manager junk
+            home-manager.nixosModules.home-manager
+            # nix build .\#nixosConfigurations.nixos.config.formats.install-iso -o ./result
+            {
+              home-manager.extraSpecialArgs = { inherit inputs; }; # Pass flake input to home-manager
+              home-manager.users = {
+                lock = {
+                  imports = [ ./home-manager/lock.nix ];
+                  home.stateVersion="23.11"; 
+                };
+              };
+            }
+          ];
+        };
+
         "nixos" = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           pkgs = myPkgs.x86_64-linux;
           specialArgs = { inherit inputs; }; # Pass flake inputs to our config
           modules =  [
             # > Our main nixos configuration file <zzzzz
-            ./configuration.nix
+            ./top-level-configs/configuration.nix
             # home-manager junk
             home-manager.nixosModules.home-manager
             nixos-generators.nixosModules.all-formats # nix build .\#nixosConfigurations.nixos.config.formats. and hit tab to see all

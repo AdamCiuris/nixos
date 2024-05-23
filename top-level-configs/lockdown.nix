@@ -9,7 +9,7 @@
 		../system/.secret.nix
 
 		../system/virtualization/libvirtd.nix
-		
+
 		../system/specialisations/default-specialisation.nix
 		../system/specialisations/display-desktop-managers.nix
 		
@@ -17,8 +17,6 @@
 
 		../system/services/openvpn.nix
 		../system/services/fail2ban.nix
-		../system/services/mysql.nix
-		../system/services/nextcloud.nix
 		../system/services/pipewire.nix
 		../system/services/xserver.nix
 		../system/services/flatpak.nix
@@ -40,7 +38,7 @@
 	nix.settings.experimental-features = ["nix-command" "flakes"]; # needed to try flakes from tutorial
 	nix.nixPath = [ # echo $NIX_PATH
 		"nixpkgs=/home/nyx/.nix-defexpr/channels/nixpkgs"
-		"nixos-config=/etc/nixos/top-level-config/configuration.nix"
+		"nixos-config=/etc/nixos/top-level-config/lockdown.nix"
 	];
 	# networking.proxy.default = "http://user:password@proxy:port/";
 	# networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -84,11 +82,11 @@
 		mutableUsers = true; # let's you change the passwords after btw
 		users= {
 		# set a password with ‘passwd’ $USER.
-			nyx = {
+			lock = {
 				# hash a password with mkpasswd -m sha-512
 				isNormalUser = true;
-				description = "nyx";
-				initialHashedPassword = "$6$7ACOHeLr65U7C1Pb$oNIgMK/8iWH9AbLmhyqlJ.HyUQQst5H7jyV5IGsux4j9X7N/Fwm9Mo8u1ijOmqlGjN5ewEhPt.BsWBt518.Rw1";
+				description = "my user";
+				initialHashedPassword = "$6$j9hlQWCtoprYIwUR$IzCDmM5HwWOC4GeAYoHWAZ4ABqY8kmvmeObxuKDxC3yKRhYLHns1r1WIgbJ7nGFPL1dmWh0TJlOSqn8zoK4RY0";
 				shell=pkgs.zsh;
 				useDefaultShell = true; # should be zsh
 				extraGroups = [ 
@@ -103,7 +101,7 @@
 	};
 	programs.zsh.enable = true; 
 	environment.etc = { # reminder this starts in /etc
-		"/fail2ban/action.d/msmtp-whois.conf".source = /etc/nixos/environment/msmtp-whois.conf; # TODO figure out how to make relative
+		"/fail2ban/action.d/msmtp-whois.conf".source = /etc/nixos/environment/msmtp-whois.conf; 
 	};
 	environment.systemPackages = with pkgs; [
 		vim
