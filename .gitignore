@@ -1,1 +1,3 @@
 *.secret.nix
+result
+rules.backup
