@@ -85,10 +85,10 @@
 		users= {
 		# set a password with ‘passwd’ $USER.
 			nyx = {
-				# hash a password with mkpasswd -m sha-512
+				# hash a password with mkpasswd -m sha-512, or with -s $SALT
 				isNormalUser = true;
 				description = "nyx";
-				initialHashedPassword = "$6$7ACOHeLr65U7C1Pb$oNIgMK/8iWH9AbLmhyqlJ.HyUQQst5H7jyV5IGsux4j9X7N/Fwm9Mo8u1ijOmqlGjN5ewEhPt.BsWBt518.Rw1";
+				initialHashedPassword = "$6$7mFX0wL.lFB9nhjR$PUMBogxDPqc5ZVGbUj9QHY.OasKbE7tuEYN.xFmY/G7zTzOCHD39VD3.aSQT6o1j4xtH4pDGYJyKrM2zKB8vG1";
 				shell=pkgs.zsh;
 				useDefaultShell = true; # should be zsh
 				extraGroups = [ 

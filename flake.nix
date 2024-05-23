@@ -69,7 +69,7 @@
               home-manager.extraSpecialArgs = { inherit inputs; }; # Pass flake input to home-manager
               home-manager.users = {
                 lock = {
-                  imports = [ ./home-manager/lock.nix ];
+                  imports = [ ./home-manager/users/lock.nix ];
                   home.stateVersion="23.11"; 
                 };
               };
@@ -92,7 +92,7 @@
               home-manager.extraSpecialArgs = { inherit inputs; }; # Pass flake input to home-manager
               home-manager.users = {
                 nyx = {
-                  imports = [ ./home-manager/home.nix ];
+                  imports = [ ./home-manager/users/nyx.nix ];
                   home.stateVersion="23.11"; 
                 };
               };

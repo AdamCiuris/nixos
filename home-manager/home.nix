@@ -3,21 +3,6 @@ let
 	amIstandalone = if ./.  != /etc/nixos/home-manager then true else false; # :l <nixpkgs/nixos>
 in
 {
-	imports = [
-		./configs/brave.nix
-		./configs/fiyafox.nix
-		./configs/dconf.nix
-		./configs/shells.nix
-		./configs/git.nix
-		./configs/vscodium.nix
-		./configs/xdg.nix
-		./configs/.secret.nix
-	];
-	home ={
-		username = "nyx";
-		homeDirectory = "/home/nyx";
-		stateVersion = "23.11";
-	};
 
 	# Let Home Manager install and manage itself.
 	programs.home-manager.enable = amIstandalone; # only needed for standalone
@@ -55,6 +40,7 @@ in
 		xdg-utils # xdg-open
 		qbittorrent # torrent client
 		nomacs # image viewer
+		discord # chat client
 		# brave # chromium based browser, enabled in brave.nix
 		# firefox # open source browser, enabled in fiyafox.nix
 		libreoffice # office suite

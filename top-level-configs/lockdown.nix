@@ -11,7 +11,6 @@
 		../system/virtualization/libvirtd.nix
 
 		../system/specialisations/default-specialisation.nix
-		../system/specialisations/display-desktop-managers.nix
 		
 		../system/programs/msmtp.nix
 
@@ -86,7 +85,7 @@
 				# hash a password with mkpasswd -m sha-512
 				isNormalUser = true;
 				description = "my user";
-				initialHashedPassword = "$6$j9hlQWCtoprYIwUR$IzCDmM5HwWOC4GeAYoHWAZ4ABqY8kmvmeObxuKDxC3yKRhYLHns1r1WIgbJ7nGFPL1dmWh0TJlOSqn8zoK4RY0";
+				initialHashedPassword = "$6$m9F21zmzjS6I0O5A$c2ULiXYPzwXW54uVKmakPgPUHC/qY9SnPihsbDoe.BP1wHk2v2Dw5oicK3GruyWEtoYZTyQHc2D3HtMt50DGT1";
 				shell=pkgs.zsh;
 				useDefaultShell = true; # should be zsh
 				extraGroups = [ 
