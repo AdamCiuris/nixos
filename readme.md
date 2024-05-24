@@ -11,7 +11,7 @@ Note that you may want to exclude linking my `hardware-configuration.nix` if it 
 Clone my repo.
 
 ```bash
-git clone git@github.com:AdamCiuris/nixos.git && cd nixos && bash link
+git clone git@github.com:AdamCiuris/nixos.git && cd nixos && bash link nixos
 ```
 
 `bash link` clears everything in your /etc/nixos and remakes. It will default to the last nixos system built.
