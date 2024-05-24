@@ -2,11 +2,15 @@
 {
   programs.firefox = {
       enable = true;
+
       profiles.nyx = {
         isDefault = true;
         # extensions =  {
         #   "TamperMonkey"
         # };
+        settings = {
+          "browser.startup.homepage" = "https://open.spotify.com/";
+        };
         search.force = true; # rm whatever config is already there
         search.default = "DuckDuckGo";
         search.engines = {

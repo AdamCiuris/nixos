@@ -11,6 +11,7 @@
 		../system/virtualization/libvirtd.nix
 
 		../system/specialisations/default-specialisation.nix
+		../system/specialisations/display-desktop-managers.nix
 		
 		../system/programs/msmtp.nix
 
@@ -36,7 +37,7 @@
 	# Nix settings
 	nix.settings.experimental-features = ["nix-command" "flakes"]; # needed to try flakes from tutorial
 	nix.nixPath = [ # echo $NIX_PATH
-		"nixpkgs=/home/nyx/.nix-defexpr/channels/nixpkgs"
+		"nixpkgs=/home/lock/.nix-defexpr/channels/nixpkgs"
 		"nixos-config=/etc/nixos/top-level-config/lockdown.nix"
 	];
 	# networking.proxy.default = "http://user:password@proxy:port/";
