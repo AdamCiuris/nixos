@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/run/current-system/sw/bin/bash
 baseDir=$(readlink -f $(dirname $0)) # pwd of shell script
 nixosConfigPath=/etc/nixos
 # local nixosPath = /etc/nixos

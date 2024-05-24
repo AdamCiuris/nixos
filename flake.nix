@@ -20,9 +20,16 @@
     #   url = "github:rycee/home-manager";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
+    plasma-manager ={
+      url = "github:pjones/plasma-manager";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+      };
+    };
   };
 
-  outputs = { self, nixpkgs, hardware, home-manager, nixos-generators, flake-utils, ... }@inputs:
+  outputs = { self, nixpkgs, hardware, home-manager, plasma-manager, nixos-generators, flake-utils, ... }@inputs:
     let
       forAllSystems = nixpkgs.lib.genAttrs [
         "x86_64-linux"
@@ -99,6 +106,38 @@
             }
           ];
         };
+
+        "compclub" = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          pkgs = myPkgs.x86_64-linux;
+          specialArgs = { inherit inputs; }; # Pass flake inputs to our config
+          modules =  [
+            # > Our main nixos configuration file <
+            ./top-level-configs/club.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.extraSpecialArgs = { inherit inputs; }; # Pass flake input to home-manager
+              home-manager.users = {
+                rdp = {
+                  imports = [ ./home-manager/users/rdp.nix ];
+                  home.stateVersion="23.11"; 
+                };
+                teach = {
+                  imports = [ ./home-manager/users/teach.nix ];
+                  home.stateVersion="23.11"; 
+                };
+                chi = {
+                  imports = [ ./home-manager/users/clubMember.nix ];
+                  home.stateVersion="23.11"; 
+                };
+              };
+              home-manager.useUserPackages = true;
+              home-manager.useGlobalPkgs = true;
+              home-manager.sharedModules = [ plasma-manager.homeManagerModules.plasma-manager ];
+            }
+          ];
+        };
+
       };
     };
 }

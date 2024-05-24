@@ -14,6 +14,7 @@ in
 			"window.zoomLevel"= -1;
 			"files.exclude" = ""; # stop excluding files please
 			"workbench.colorTheme"= "Tomorrow Night Blue";
+			"editor.multiCursorModifier" = "ctrlCmd"; # ctrl + click for multi cursor
 			"terminal.integrated.fontFamily" = "DroidSansM Nerd Font"; # fc-list to see all fonts
 		};
 		keybindings =  [
@@ -23,7 +24,7 @@ in
 			}
 			{
 				key="ctrl+shift+]";
-				command= "workbench.action.terminal.focus";
+				command= "workbench.action.termPinal.focus";
 			}
 			{
 				key = "alt+d";

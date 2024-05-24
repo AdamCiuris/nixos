@@ -43,7 +43,7 @@
 	# networking.proxy.default = "http://user:password@proxy:port/";
 	# networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 	networking = {
-		hostName = "nixos"; # Define your hostname.
+		hostName = "guest"; # Define your hostname.
 		enableIPv6 = false; # ipv4 only pls
 		# wireless.enable = true;	# Enables wireless support via wpa_supplicant.
 		networkmanager.enable = true;
