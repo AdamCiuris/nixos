@@ -69,7 +69,7 @@
 	nix.gc.automatic = true;
 	nix.gc.options = "--delete-older-than 1d";
 	environment.etc = { # sym links to /etc from =
-		"fail2ban/action.d/msmtp-whois.conf".source = /etc/nixos/environment/msmtp-whois.conf; # TODO figure out how to make relative
+		"fail2ban/action.d/msmtp-whois.conf".source = /etc/nixos/etc/msmtp-whois.conf; # TODO figure out how to make relative
 	};
 	services = {
 		# Enable the OpenSSH server.

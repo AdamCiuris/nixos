@@ -101,7 +101,7 @@
 	};
 	programs.zsh.enable = true; 
 	environment.etc = { # reminder this starts in /etc
-		"/fail2ban/action.d/msmtp-whois.conf".source = /etc/nixos/environment/msmtp-whois.conf; 
+		"/fail2ban/action.d/msmtp-whois.conf".source = /etc/nixos/etc/msmtp-whois.conf; 
 	};
 	environment.systemPackages = with pkgs; [
 		vim

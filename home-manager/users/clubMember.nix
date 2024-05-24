@@ -9,7 +9,6 @@
 		../configs/shells.nix
 		../configs/xdg.nix
     ../configs/plasma.nix
-		../configs/.secret.nix
 	];
 	home ={
 		username = "chi";
