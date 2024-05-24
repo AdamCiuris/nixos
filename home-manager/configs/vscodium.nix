@@ -40,6 +40,10 @@ in
 				command = "workbench.action.terminal.resizePaneDown";
 				when = "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported";
 			}
+			{
+				key = "ctrl+alt+m";
+				command = "markdown.showLockedPreviewToSide";
+			}
 		];
 		mutableExtensionsDir = false; # stops vscode from editing ~/.vscode/extensions/* which makes the following extensions actually install
 		# installing malware
