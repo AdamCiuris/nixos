@@ -14,7 +14,9 @@ Clone my repo.
 git clone git@github.com:AdamCiuris/nixos.git && cd nixos && bash link
 ```
 
-`bash link` clears everything in your /etc/nixos and remakes.
+`bash link` clears everything in your /etc/nixos and remakes. It will default to the last nixos system built.
+
+`link` also accepts nixpkgs.lib.nixosSystem names from flake.nix as an argument. Different options are nixos, lock, and compclub.
 
 
 <h3>How to use (home-manager standalone):</h3>
