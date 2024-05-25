@@ -4,7 +4,6 @@
 	imports =
 		[ # Include the results of the hardware scan.
 		./boot/bootloader.nix
-		./nix/nixOptions.nix
 
 		../hardware-configuration.nix
 

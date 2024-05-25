@@ -4,9 +4,19 @@
 		[ # Include the results of the hardware scan.
 		../configuration.nix
 
+
+
 		../../system/services/mysql.nix
 		../../system/services/nextcloud.nix
 		];
+
+	nix = import ../nix/nixOptions.nix { 
+		inherit config pkgs;
+		nixPath = [ # echo $NIX_PATH
+		"nixpkgs=/home/nyx/.nix-defexpr/channels/nixpkgs"
+		"nixos-config=/etc/nixos/top-level-config/variants/club.nix"
+		];
+	};
 
 	networking = {
 		hostName = "compclub"; # Define your hostname.
