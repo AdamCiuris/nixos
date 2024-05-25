@@ -68,7 +68,7 @@
           specialArgs = { inherit inputs; }; # Pass flake inputs to our config
           modules =  [
             # > Our main nixos configuration file <zzzzz
-            ./top-level-configs/lockdown.nix
+            ./top-level-configs/variants/lockdown.nix
             # home-manager junk
             home-manager.nixosModules.home-manager
             # nix build .\#nixosConfigurations.nixos.config.formats.install-iso -o ./result
@@ -89,8 +89,7 @@
           pkgs = myPkgs.x86_64-linux;
           specialArgs = { inherit inputs; }; # Pass flake inputs to our config
           modules =  [
-            # > Our main nixos configuration file <zzzzz
-            ./top-level-configs/configuration.nix
+            ./top-level-configs/variants/dailyDrive.nix
             # home-manager junk
             home-manager.nixosModules.home-manager
             nixos-generators.nixosModules.all-formats # nix build .\#nixosConfigurations.nixos.config.formats. and hit tab to see all
@@ -113,7 +112,7 @@
           specialArgs = { inherit inputs; }; # Pass flake inputs to our config
           modules =  [
             # > Our main nixos configuration file <
-            ./top-level-configs/club.nix
+            ./top-level-configs/variants/club.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.extraSpecialArgs = { inherit inputs; }; # Pass flake input to home-manager
