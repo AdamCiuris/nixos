@@ -88,7 +88,12 @@
 			xkbVariant = "";
 			# KDE
 			desktopManager.plasma5.enable = true;
+			displayManager.autoLogin = {
+				enable = true;
+				user = "chi";
+			};
 			displayManager.sddm ={
+				autoLogin.relogin = true;
 				enable = true; 
 			};
 		}; # END X11
@@ -170,7 +175,7 @@
 	security.pam.services.kwallet = {
 		name = "kwallet";
 		enableKwallet = false;
-};
+	};
 	# needed for vscode in pkgs
 	# nixpkgs.config.allowUnfree = true;
 	# List packages installed in system profile. To search, run:

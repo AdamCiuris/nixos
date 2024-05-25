@@ -19,6 +19,10 @@ in
 		};
 		keybindings =  [
 			{
+				key = "ctrl+f8";
+				command = "editor.action.marker.next";
+			}
+			{
 				key="ctrl+shift+[";
 				command= "workbench.debug.action.focusRepl";
 			}
