@@ -4,20 +4,8 @@
 		[ # Include the results of the hardware scan.
 		../configuration.nix
 
-		../../hardware-configuration.nix
-
-		../../system/.secret.nix
-
-		
-		../../system/programs/msmtp.nix
-
-		../../system/services/openvpn.nix
-		../../system/services/fail2ban.nix
 		../../system/services/mysql.nix
 		../../system/services/nextcloud.nix
-		../../system/services/pipewire.nix
-		../../system/services/xserver.nix
-		../../system/services/flatpak.nix
 		];
 
 	networking = {

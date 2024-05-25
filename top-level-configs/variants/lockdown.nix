@@ -5,23 +5,14 @@
 		[ # Include the results of the hardware scan.
 		../configuration.nix
 
-		../../hardware-configuration.nix
 		../../hardware/bluetooth.nix
-
-		../../system/.secret.nix
 
 		../../system/virtualization/libvirtd.nix
 
 		../../system/specialisations/default-specialisation.nix
 		../../system/specialisations/display-desktop-managers.nix
 		
-		../../system/programs/msmtp.nix
-
-		../../system/services/openvpn.nix
-		../../system/services/fail2ban.nix
-		../../system/services/pipewire.nix
 		../../system/services/xserver.nix
-		../../system/services/flatpak.nix
 		];
 	# networking.proxy.default = "http://user:password@proxy:port/";
 	# networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";

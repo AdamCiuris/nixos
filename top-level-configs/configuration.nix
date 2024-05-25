@@ -3,28 +3,26 @@
 
 	imports =
 		[ # Include the results of the hardware scan.
-			./boot/bootloader.nix
-			./nix/nixOptions.nix
+		./boot/bootloader.nix
+		./nix/nixOptions.nix
+
+		../hardware-configuration.nix
+
+		../system/.secret.nix
+
+		../system/services/openvpn.nix
+		../system/services/fail2ban.nix
+		../system/services/pipewire.nix
+
+		../system/programs/msmtp.nix
+		../system/services/flatpak.nix
+
+		../system/virtualization/docker.nix
+
+
 		];
-	# [ -d /sys/firmware/efi/efivars ] && echo "UEFI" || echo "Legacy"
-
-	# Nix settings
-	# reminder you need to run `nix-collect-garbage -d` as root to delete generations from EFI
-	# user one is just profiles and home-manager, i think
-
 	# networking.proxy.default = "http://user:password@proxy:port/";
 	# networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-	networking = {
-		hostName = "nixos"; # Define your hostname.
-		enableIPv6 = false; # ipv4 only pls
-		# wireless.enable = true;	# Enables wireless support via wpa_supplicant.
-		networkmanager.enable = true;
-		firewall = {
-			enable = true; # this is on by default but still declaring it.
-			allowedTCPPorts = [  ];
-			allowedUDPPorts = [  ];
-		};
-	};
 
 	time.timeZone = "America/Chicago";
 	# Select internationalisation properties.
