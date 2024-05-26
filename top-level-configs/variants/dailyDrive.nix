@@ -1,9 +1,4 @@
 { config, pkgs, lib, ... }:
-# let 
-#   network = import ../../system/networking/network.nix { inherit config pkgs; };
-#   allOff = import ../../system/networking/ports/allOff.nix { inherit config pkgs;};
-#   myNetwork = network // allOff;
-# in
 {
 
 	imports =

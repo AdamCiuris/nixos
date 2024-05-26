@@ -152,6 +152,10 @@
                   imports = [ ./home-manager/users/nyx.nix ];
                   home.stateVersion="23.11"; 
                 };
+                tunnelThruMe = {
+                  imports = [ ./home-manager/users/tunnelThruMe.nix ];
+                  home.stateVersion="23.11"; 
+                };
               };
               home-manager.sharedModules = [ plasma-manager.homeManagerModules.plasma-manager ];
             }

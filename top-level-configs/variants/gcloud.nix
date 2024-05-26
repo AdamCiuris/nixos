@@ -6,11 +6,11 @@
 let
   gcloudOrNot = false; # TODO figure out condition for this
   res = if gcloudOrNot 
-  then [ 
+  then [ # needs --impure
 		<nixpkgs/nixos/modules/virtualisation/google-compute-image.nix>
 		] 
   else [
-    ./hardware-configuration.nix
+    ../hardware-configuration.nix
 		./boot/bootloader.nix
 
   ];
@@ -20,8 +20,12 @@ in
 	imports =
 		[ # Include the results of the hardware scan.
 
-		./system/services/openvpn.nix
-		./system/programs/msmtp.nix
+		../../system/services/openvpn.nix
+		../../system/services/xrdp.nix
+		../../system/services/pipewire.nix
+		../../system/services/openssh.nix
+
+
 		# ./system/.secrets.nix
 		] ++ res;
 	# Nix settings
@@ -58,45 +62,7 @@ in
 
 
 
-	nix.gc.automatic = true;
-	nix.gc.options = "--delete-older-than 1d";
-	environment.etc = { # reminder this starts in /etc
-		"/fail2ban/action.d/msmtp-whois.conf".source = /etc/nixos/environment/msmtp-whois.conf; 
-	};
 	services = {
-		# Enable the OpenSSH server.
-		openssh = {
-			enable = true;
-			permitRootLogin = "no";
-			passwordAuthentication = false; # if false require pub key
-		};
-
-		# action = %(action_mw)s[ mailcmd="cat /home/nyx/GITHUB/vm-nixos/message.txt | /home/nyx/.nix-profile/bin/msmtp -t"]
-		fail2ban = { # puts bad ssh attempts in jail 
-			enable = true;
-			jails = pkgs.lib.mkForce { # mkForce is needed to override the default jails
-DEFAULT =
-''backend = systemd
-banaction = iptables-allports
-banaction_allports = iptables-allports
-mta = msmtp
-logtarget = FILE
-loglevel = DEBUG
-action = %(action_mw)s[from=paperpl88s@gmail.com, sender=paperpl88s@gmail.com, destination=adamciuris@gmail.com, sendername=Fail2Ban]
-bantime = 300m
-maxretry = 3'';
-sshd=''
-enabled = true
-port = 22
-banaction = iptables-allports
-maxretry  = 5
-findtime  = 1d
-bantime   = 2w'';
-				};
-			};
-
-
-		# Enable the X11 windowing system.
 		xserver = {
 			enable = true;
 			# Configure keymap in X11
@@ -108,31 +74,9 @@ bantime   = 2w'';
 				enable = true; 
 			};
 		}; # END X11
-		avahi = {
-			enable = true;
-			# Whether to run the Avahi daemon, which allows Avahi clients to use Avahi’s service discovery facilities and also allows the local machine to advertise its presence and services (through the mDNS responder implemented by avahi-daemon).
-			nssmdns = true;
-			openFirewall = true;
-		};
-
 		spice-vdagentd.enable = true; # enables clipboard sharing between host and guest
-		# remote desktop
-		xrdp = {
-				enable = true;
-				defaultWindowManager = "startplasma-x11";
-				confDir = /etc/xrdp;
-				port = 8181;
-				openFirewall=false; # https://c-nergy.be/blog/?p=14965/
-			};
-		pipewire = {
-			enable = true;
-			alsa.enable = true;
-			alsa.support32Bit = true;
-			pulse.enable = true;
-		};
+
 	}; # END SERVICES
-	sound.enable = true;
-	security.rtkit.enable = true;
 
 	# https://nixos.wiki/wiki/Bluetooth
 	hardware.bluetooth.enable = false;
@@ -165,9 +109,9 @@ bantime   = 2w'';
 						];
 				};
 			};
-				adamciuris = {
+				tunnelThruMe = {
 				isNormalUser = true;
-				description = "gcloud work pls";
+				description = "rdp through ssh tunnel tunnel";
 				initialHashedPassword = "$6$ImaOHGRpSLuFOUpF$cPhDbahxmy35ohvYwZIK5BX4o5gvVCeeiOCAaYDCvPPf9geikS.Agw2lCxqoZjHsHS6W/6ksxaplRh2evS1x8.";
 				shell=pkgs.zsh;
 				useDefaultShell = true; # should be zsh
@@ -205,10 +149,5 @@ bantime   = 2w'';
 	security.pam.services.kwallet = {
 		name = "kwallet";
 		enableKwallet = false;
-};
-	# needed for vscode in pkgs
-	# nixpkgs.config.allowUnfree = true;
-	# List packages installed in system profile. To search, run:
-	# $ nix search wget
-
+	};
 }

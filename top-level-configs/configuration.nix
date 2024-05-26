@@ -1,3 +1,6 @@
+#
+#	Common options across all system configurations.
+#
 { config, pkgs, ... }:
 {
 
@@ -12,9 +15,10 @@
 		../system/services/openvpn.nix
 		../system/services/fail2ban.nix
 		../system/services/pipewire.nix
+		../system/services/flatpak.nix
+		../system/services/spice-vdagentd.nix
 
 		../system/programs/msmtp.nix
-		../system/services/flatpak.nix
 
 		../system/virtualization/docker.nix
 
@@ -35,8 +39,6 @@
 		LC_TELEPHONE = "en_US.UTF-8";
 		LC_TIME = "en_US.UTF-8";
 	};
-
-	services.spice-vdagentd.enable = true; # enables clipboard sharing between vms
 
 	# Enable CUPS to print documents.
 	services.printing.enable = false;

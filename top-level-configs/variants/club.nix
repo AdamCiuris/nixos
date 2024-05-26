@@ -1,5 +1,4 @@
 { plasma-manager, config, nixpkgs, pkgs, ... }:
-
 {
 	imports =
 		[ # Include the results of the hardware scan.
@@ -59,13 +58,6 @@
 		spice-vdagentd.enable = true; # enables clipboard sharing between host and guest
 		# remote desktop
 		
-		xrdp = {
-				enable = true;
-				defaultWindowManager = "xfce4-session";
-				confDir = /etc/xrdp; # sudo mkdir /etc/xrdp
-				port = 8181;
-				openFirewall=false; # https://c-nergy.be/blog/?p=14965/
-			};
 		pipewire = {
 			enable = true;
 			alsa.enable = true;

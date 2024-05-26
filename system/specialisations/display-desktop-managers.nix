@@ -1,4 +1,5 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }: 
+{
   specialisation = { # Let's you pick the desktop manager in grub
 		cinnaminmin = { configuration={
 			services.xserver.displayManager.lightdm.enable = true; 
