@@ -6,6 +6,7 @@
 		../configuration.nix
 
 		../../hardware/bluetooth.nix
+		../../hardware/opengl.nix
 
 
 		../../system/virtualization/libvirtd.nix
@@ -20,6 +21,10 @@
 
 		../../system/networking/network.nix
 		../../system/networking/ports/allOff.nix
+
+		../../system/programs/gaming.nix
+
+		<nixos-hardware/system76>
 		];
 
 	nix = import ../nix/nixOptions.nix { 
@@ -30,7 +35,9 @@
 		];
 	};
 
-
+	environment.systemPackages = with pkgs; [
+		mangohud # fps monitor for games
+	];
 	users ={
 		mutableUsers = true; # let's you change the passwords after btw
 		users= {

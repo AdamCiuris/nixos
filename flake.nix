@@ -7,6 +7,9 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     hardware.url = "github:nixos/nixos-hardware";
 
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # https://github.com/NixOS/nixos-hardware
+    # <nixos-hardware/system76> add something like this to hardware-configuration.nix imports
+
     # Home manager
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
