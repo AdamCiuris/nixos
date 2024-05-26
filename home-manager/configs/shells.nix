@@ -1,6 +1,8 @@
 {  config, pkgs, ...}:
 let
-	shellExtra = ''
+  gcloudOrNot = false; # TODO figure out condition for this
+   
+	shellExtra =  ''
 		# BEGIN XDG_DATA_DIRS CHECK
 		# used to add .desktop files to xdg-mime from nix profile if dne
 		# TODO figure out why this gets entered every home-manager switch
@@ -86,6 +88,7 @@ let
 		
 		# END ALIASES
 		'';
+		
 
 in
 {
@@ -93,7 +96,18 @@ in
 	programs.bash ={
 		enable=true;
 		historyControl = ["ignoredups"];
-		initExtra = shellExtra;
+		initExtra =  if !gcloudOrNot then shellExtra 
+			# add this email thing for gcloud only
+			else shellExtra + ''
+			# BEGIN LOGIN NOTIF
+			echo "To: adamciuris@gmail.com    \n   
+			Hi,\n
+			$USER logging in at $(date) from $(who | awk '{print $5}')\n
+			Hopefully it's you!\n
+			" | msmtp -t
+
+			# END LOGIN NOTIF
+		'';
 	}; # END BASH
 	# BEGIN ZSH
 	programs.zsh = {
