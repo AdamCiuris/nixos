@@ -28,7 +28,7 @@ in
 			}
 			{
 				key="ctrl+shift+]";
-				command= "workbench.action.termPinal.focus";
+				command= "workbench.action.terminal.focus";
 			}
 			{
 				key = "alt+d";

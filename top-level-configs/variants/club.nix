@@ -1,4 +1,5 @@
 { plasma-manager, config, nixpkgs, pkgs, ... }:
+
 {
 	imports =
 		[ # Include the results of the hardware scan.

@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
+# let 
+#   network = import ../../system/networking/network.nix { inherit config pkgs; };
+#   allOff = import ../../system/networking/ports/allOff.nix { inherit config pkgs;};
+#   myNetwork = network // allOff;
+# in
 {
 
 	imports =
@@ -17,6 +22,9 @@
 		../../system/services/mysql.nix
 		../../system/services/nextcloud.nix
 		../../system/services/xserver.nix
+
+		../../system/networking/network.nix
+		../../system/networking/ports/allOff.nix
 		];
 
 	nix = import ../nix/nixOptions.nix { 
@@ -27,19 +35,7 @@
 		];
 	};
 
-	# networking.proxy.default = "http://user:password@proxy:port/";
-	# networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-	networking = {
-		hostName = "nixos"; # Define your hostname.
-		enableIPv6 = false; # ipv4 only pls
-		# wireless.enable = true;	# Enables wireless support via wpa_supplicant.
-		networkmanager.enable = true;
-		firewall = {
-			enable = true; # this is on by default but still declaring it.
-			allowedTCPPorts = [  ];
-			allowedUDPPorts = [  ];
-		};
-	};
+
 	users ={
 		mutableUsers = true; # let's you change the passwords after btw
 		users= {

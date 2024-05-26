@@ -26,16 +26,8 @@
 	};
 	# networking.proxy.default = "http://user:password@proxy:port/";
 	# networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-	networking = {
+	networking = import  ../../system/networking/networking.nix { inherit config pkgs; 
 		hostName = "guest"; # Define your hostname.
-		enableIPv6 = false; # ipv4 only pls
-		# wireless.enable = true;	# Enables wireless support via wpa_supplicant.
-		networkmanager.enable = true;
-		firewall = {
-			enable = true; # this is on by default but still declaring it.
-			allowedTCPPorts = [  ];
-			allowedUDPPorts = [  ];
-		};
 	};
 
 	users ={

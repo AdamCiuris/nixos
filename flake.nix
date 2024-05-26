@@ -57,9 +57,6 @@
           imports = [ "${toString modulesPath}/installer/cd-dvd/installation-cd-base.nix" ];
           formatAttr = "isoImage";
           fileExtension = ".iso";
-          networking.wireless.networks = {
-            # ...
-          };
         };
 
         "lockdown" = nixpkgs.lib.nixosSystem {
@@ -132,6 +129,30 @@
               };
               home-manager.useUserPackages = true;
               home-manager.useGlobalPkgs = true;
+              home-manager.sharedModules = [ plasma-manager.homeManagerModules.plasma-manager ];
+            }
+          ];
+        };
+        "gcloud" = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          pkgs = myPkgs.x86_64-linux;
+          specialArgs = { inherit inputs; }; # Pass flake inputs to our config
+          modules =  [
+            # > Our main nixos configuration file <
+            ./top-level-configs/variants/gcloud.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.extraSpecialArgs = { inherit inputs; }; # Pass flake input to home-manager
+              home-manager.users = {
+                rdp = {
+                  imports = [ ./home-manager/users/rdp.nix ];
+                  home.stateVersion="23.11"; 
+                };
+                nyx = {
+                  imports = [ ./home-manager/users/nyx.nix ];
+                  home.stateVersion="23.11"; 
+                };
+              };
               home-manager.sharedModules = [ plasma-manager.homeManagerModules.plasma-manager ];
             }
           ];
