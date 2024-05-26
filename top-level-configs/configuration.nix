@@ -8,6 +8,8 @@
 		[ # Include the results of the hardware scan.
 		./boot/bootloader.nix
 
+		../system/devices/swapDevices.nix
+
 		../hardware-configuration.nix
 
 		../system/.secret.nix
