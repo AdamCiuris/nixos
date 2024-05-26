@@ -19,6 +19,14 @@ in
 		};
 		keybindings =  [
 			{
+				key = "alt+a";
+				command = "editor.action.copyLinesDownAction";
+			}
+			{
+				key = "alt+z";
+				command = "editor.action.copyLinesUpAction";
+			}
+			{
 				key =  "ctrl+shift+tab";
 				command =  "workbench.action.previousEditor";
 			}
