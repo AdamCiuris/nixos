@@ -10,6 +10,7 @@
 		../configs/git.nix
 		../configs/vscodium.nix
 		../configs/xdg.nix
+		../configs/thunderbird.nix
     
 	];
 	home ={
