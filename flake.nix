@@ -58,6 +58,28 @@
           formatAttr = "isoImage";
           fileExtension = ".iso";
         };
+        
+        "nixos" = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          pkgs = myPkgs.x86_64-linux;
+          specialArgs = { inherit inputs; }; # Pass flake inputs to our config
+          modules =  [
+            ./top-level-configs/variants/dailyDrive.nix
+            # home-manager junk
+            home-manager.nixosModules.home-manager
+            nixos-generators.nixosModules.all-formats # nix build .\#nixosConfigurations.nixos.config.formats. and hit tab to see all
+            # nix build .\#nixosConfigurations.nixos.config.formats.install-iso -o ./result
+            {
+              home-manager.extraSpecialArgs = { inherit inputs; }; # Pass flake input to home-manager
+              home-manager.users = {
+                nyx = {
+                  imports = [ ./home-manager/users/nyx.nix ];
+                  home.stateVersion="23.11"; 
+                };
+              };
+            }
+          ];
+        };
 
         "lockdown" = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
@@ -81,27 +103,6 @@
           ];
         };
 
-        "nixos" = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          pkgs = myPkgs.x86_64-linux;
-          specialArgs = { inherit inputs; }; # Pass flake inputs to our config
-          modules =  [
-            ./top-level-configs/variants/dailyDrive.nix
-            # home-manager junk
-            home-manager.nixosModules.home-manager
-            nixos-generators.nixosModules.all-formats # nix build .\#nixosConfigurations.nixos.config.formats. and hit tab to see all
-            # nix build .\#nixosConfigurations.nixos.config.formats.install-iso -o ./result
-            {
-              home-manager.extraSpecialArgs = { inherit inputs; }; # Pass flake input to home-manager
-              home-manager.users = {
-                nyx = {
-                  imports = [ ./home-manager/users/nyx.nix ];
-                  home.stateVersion="23.11"; 
-                };
-              };
-            }
-          ];
-        };
 
         "compclub" = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
@@ -120,6 +121,10 @@
                 };
                 teach = {
                   imports = [ ./home-manager/users/teach.nix ];
+                  home.stateVersion="23.11"; 
+                };
+                tunnelThruMe = {
+                  imports = [ ./home-manager/users/tunnelThruMe.nix ];
                   home.stateVersion="23.11"; 
                 };
                 chi = {

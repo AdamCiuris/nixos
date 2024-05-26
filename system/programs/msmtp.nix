@@ -1,4 +1,5 @@
-{  config, pkgs, ...}:{
+{  config, pkgs, ...}:
+{
 	# msmtp --configure example@example.com
 	# 2 step verification required
 	# app password required
