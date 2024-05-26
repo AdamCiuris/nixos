@@ -8,8 +8,6 @@ in
 	programs.home-manager.enable = amIstandalone; # only needed for standalone
 	nixpkgs.config.allowUnfree = true;
 
-	home.file = { # starts at ~/.config
-	};
 
 	home.sessionVariables = {
 		EDITOR = "nano";
