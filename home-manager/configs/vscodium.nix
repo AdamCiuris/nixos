@@ -19,6 +19,14 @@ in
 		};
 		keybindings =  [
 			{
+				key =  "ctrl+shift+tab";
+				command =  "workbench.action.previousEditor";
+			}
+			{
+				key = "ctrl+tab";
+				command = "workbench.action.nextEditor";
+			}
+			{
 				key = "ctrl+f8";
 				command = "editor.action.marker.next";
 			}
