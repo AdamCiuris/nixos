@@ -18,6 +18,12 @@
 		homeDirectory = "/home/nyx";
 		stateVersion = "23.11";
 	};
+	home.file = { # starts at ~/.config
+
+		".config/autostart/brave-browser.desktop".source = "${pkgs.brave}/share/applications/brave-browser.desktop";
+		".config/autostart/firefox.desktop".source = "${pkgs.firefox}/share/applications/brave-browser.desktop";
+	};
+
 
 
 }
