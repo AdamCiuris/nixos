@@ -7,7 +7,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     hardware.url = "github:nixos/nixos-hardware";
 
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # https://github.com/NixOS/nixos-hardware
+    # nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # https://github.com/NixOS/nixos-hardware
     # <nixos-hardware/system76> add something like this to hardware-configuration.nix imports
 
     # Home manager
@@ -70,6 +70,7 @@
             ./top-level-configs/variants/dailyDrive.nix
             # home-manager junk
             home-manager.nixosModules.home-manager
+            hardware.nixosModules.system76
             nixos-generators.nixosModules.all-formats # nix build .\#nixosConfigurations.nixos.config.formats. and hit tab to see all
             # nix build .\#nixosConfigurations.nixos.config.formats.install-iso -o ./result
             {

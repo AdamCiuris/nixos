@@ -24,7 +24,6 @@
 
 		../../system/programs/gaming.nix
 
-		<nixos-hardware/system76>
 		];
 
 	nix = import ../nix/nixOptions.nix { 
