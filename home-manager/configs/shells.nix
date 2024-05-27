@@ -43,7 +43,7 @@ let
 					PATH="${"$PATH:"}$ARG"
 				fi
 			done
-		}	# END FUNCTIONS
+		}
 		pathprepend() {
 			for ARG in "$@"
 			do
@@ -80,6 +80,7 @@ let
 
 		alias "SUDO"="sudo";
 		alias "SUDO!"="sudo !!";
+
 		
 
 
