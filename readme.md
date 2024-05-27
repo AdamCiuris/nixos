@@ -32,12 +32,19 @@ nix-shell '<home-manager>' -A install
 
 Run `bash link-standalone` which clears everything in your nix home-manger config and relinks.
 
+---
 
-<h3>Inspection</h3>
+<h3>Inspection:</h3>
 
 With nix installed enter `nix repl`:
 
 ```bash
 nix repl>:lf /etc/nixos
 nix repl>nixosConfigurations.<hostname>
+```
+
+To generally inspect nixos and nixpkgs:
+
+```bash
+nix-repl>:l <nixos/nixpkgs>
 ```
