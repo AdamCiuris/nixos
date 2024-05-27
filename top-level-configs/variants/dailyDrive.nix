@@ -36,6 +36,7 @@
 
 	environment.systemPackages = with pkgs; [
 		mangohud # fps monitor for games
+		docker-client
 	];
 	users ={
 		mutableUsers = true; # let's you change the passwords after btw

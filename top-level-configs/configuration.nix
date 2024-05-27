@@ -10,6 +10,8 @@
 
 		../system/devices/swapDevices.nix
 
+		../system/systemd/timers.nix
+
 		../hardware-configuration.nix
 
 		../system/.secret.nix
