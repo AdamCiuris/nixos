@@ -12,7 +12,7 @@
     '';
     serviceConfig = {
       # Type = "oneshot";
-      User = "root";
+      User = "${config.users.users.root.name}";
     };
   };
   systemd.timers."repair" = {
@@ -29,11 +29,11 @@
       ${pkgs.python3.withPackages (python-pkgs: [
 			python-pkgs.pandas
 			python-pkgs.numpy
-		])}/bin/python /home/nyx/Downloads/randumb/randomize.py
+		])}/bin/python ${config.users.users.nyx.home}/Downloads/randumb/randomize.py
     '';
     serviceConfig = {
       # Type = "oneshot";
-      User = "nyx";
+      User = "${config.users.users.nyx.name}";
     };
   };
   systemd.timers."randomize" = {
