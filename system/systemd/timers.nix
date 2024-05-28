@@ -1,6 +1,6 @@
 # systemd alternative to crontab
 # https://wiki.archlinux.org/title/Systemd/Timers
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 # systemctl list-timers --all
 
 {
@@ -26,10 +26,10 @@
     # test with sudo systemctl status randomize.service
   systemd.services."randomize" = {
     script = ''
-      ${pkgs.python3.withPackages (python-pkgs: [
+      ${lib.getExe (pkgs.python3.withPackages (python-pkgs: [
 			python-pkgs.pandas
 			python-pkgs.numpy
-		])}/bin/python ${config.users.users.nyx.home}/Downloads/randumb/randomize.py
+		]))} ${config.users.users.nyx.home}/Downloads/randumb/randomize.py
     '';
     serviceConfig = {
       # Type = "oneshot";
