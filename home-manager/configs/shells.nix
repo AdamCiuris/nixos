@@ -1,8 +1,14 @@
 {  config, pkgs, ...}:
 let
   gcloudOrNot = false; # TODO figure out condition for this
-   
+  bashExtra = ''
+	eval "$(direnv hook bash)"
+	'';
+	zshExtra = ''
+	eval "$(direnv hook zsh)"
+	'';
 	shellExtra =  ''
+	
 		# BEGIN XDG_DATA_DIRS CHECK
 		# used to add .desktop files to xdg-mime from nix profile if dne
 		# TODO figure out why this gets entered every home-manager switch
@@ -124,6 +130,6 @@ in
 			plugins = [ "git" "sudo" "systemd" "python"];  # a bunch of aliases and a few functions
 			theme = "agnoster";  # https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 			};
-		initExtra = shellExtra;
+		initExtra = zshExtra + shellExtra;
 	}; # END ZSH
 }

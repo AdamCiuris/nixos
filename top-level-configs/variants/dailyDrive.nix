@@ -9,6 +9,7 @@
 		../../hardware/opengl.nix
 
 
+
 		../../system/virtualization/libvirtd.nix
 		
 		../../system/specialisations/default-specialisation.nix
@@ -23,6 +24,7 @@
 		../../system/networking/ports/allOff.nix
 
 		../../system/programs/gaming.nix
+		../../system/programs/direnv.nix
 
 		];
 
