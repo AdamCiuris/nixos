@@ -74,6 +74,7 @@ in
 			ms-azuretools.vscode-docker
 			batisteo.vscode-django
 			ms-python.python
+			mkhl.direnv
 			shd101wyy.markdown-preview-enhanced
 			ms-toolsai.jupyter
 			
