@@ -39,7 +39,7 @@
   systemd.timers."randomize" = {
     wantedBy = [ "timers.target" ]; 
     timerConfig = {
-      OnBootSec = "0";
+      OnCalendar = "daily";
       Persistent = true;
     };
   };
