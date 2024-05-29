@@ -15,6 +15,8 @@
 		../../system/specialisations/default-specialisation.nix
 		../../system/specialisations/display-desktop-managers.nix
 		
+		../../system/systemd/gunicorn.nix
+		../../system/services/nginx.nix
 
 		../../system/services/mysql.nix
 		../../system/services/nextcloud.nix
