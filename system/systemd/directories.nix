@@ -15,6 +15,8 @@
             mode = "0700"; # root only rwx
             user = "root";
             group = "root";
+          };
     };
+  };
   };
 }
