@@ -17,6 +17,7 @@
 		
 		../../system/systemd/gunicorn.nix
 		../../system/services/nginx.nix
+		../../system/systemd/directories.nix
 
 		../../system/services/mysql.nix
 		../../system/services/nextcloud.nix

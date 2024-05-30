@@ -19,6 +19,14 @@ in
 		};
 		keybindings =  [
 			{
+			key= "alt+p";
+			command = "workbench.action.terminal.focusNext";
+			}
+			{
+			key= "alt+o";
+			command = "workbench.action.terminal.focusPrevious";
+			}
+			{
 				key = "alt+a";
 				command = "editor.action.copyLinesDownAction";
 			}
