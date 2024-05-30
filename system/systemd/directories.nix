@@ -10,6 +10,11 @@
             group = "root";
         };
       };
+      "/etc/msmtp" = {
+          d = {
+            mode = "0700"; # root only rwx
+            user = "root";
+            group = "root";
     };
   };
 }
