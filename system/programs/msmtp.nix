@@ -15,7 +15,7 @@ tls_starttls on
 auth on
 user paperpl88s
 from paperpl88s@gmail.com
-passwordeval cat /etc/msmtp-password
+passwordeval cat /etc/msmtp/msmtp-password
 account default : gmail
 ''; # weird formatting so it looks right in conf
   };
