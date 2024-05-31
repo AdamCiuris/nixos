@@ -5,7 +5,7 @@ in
 {
 
 	# Let Home Manager install and manage itself.
-	programs.home-manager.enable = amIstandalone; # only needed for standalone
+	programs.home-manager.enable = false; # only needed for standalone
 	nixpkgs.config.allowUnfree = true;
 
 
