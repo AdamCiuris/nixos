@@ -1,5 +1,6 @@
 #!/usr/bin/bash
 BASEDIR=$(readlink -f $(dirname $0))/home-manager # pwd of home-manager
+hmsConfigPath=$HOME/.config/home-manager
 
 hard-link-recursive() {
     local srcDir=$1
@@ -18,10 +19,10 @@ hard-link-recursive() {
 }
 # Clear everything in your nix home-manger config and remake.
 echo "Clearing old config..."
-rm -rf "${HOME}/.config/home-manager/*"
+rm -rf "${hmsConfigPath}/*"
 echo "Script parent dir: $BASEDIR"
 echo "Updating nix-channel..."
 nix-channel --update
-hard-link-recursive $BASEDIR  "${HOME}/.config/home-manager" && \
+hard-link-recursive $BASEDIR  "${hmsConfigPath}/" && \
 echo "Linking done. Switching to new config."
-home-manager switch
+home-manager switch -f "${hmsConfigPath}/users/$(whoami).nix"
