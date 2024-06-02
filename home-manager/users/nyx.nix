@@ -20,6 +20,7 @@
 		stateVersion = "23.11";
 	};
 	home.file = { # starts at ~/.config
+		".config/autostart/virt-manager.desktop".source = "${pkgs.virt-manager}/share/applications/virt-manager.desktop";
 		# horrible startup javascript apps
 		".config/autostart/brave-browser.desktop".source = "${pkgs.brave}/share/applications/brave-browser.desktop";
 		".config/autostart/firefox.desktop".source = "${pkgs.firefox}/share/applications/firefox.desktop";
