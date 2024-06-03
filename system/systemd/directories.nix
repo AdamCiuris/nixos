@@ -17,6 +17,13 @@
             group = "root";
           };
     };
+      "${config.users.users.nyx.home}/share" = {
+          d = {
+            mode = "0755"; 
+            user = "nyx";
+            group = "users";
+          };
+    };
   };
   };
 }
