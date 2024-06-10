@@ -11,12 +11,12 @@ Note that you may want to exclude linking my `hardware-configuration.nix` if it 
 Clone my repo.
 
 ```bash
-git clone git@github.com:AdamCiuris/nixos.git && cd nixos && bash link nixos
+git clone git@github.com:AdamCiuris/nixos.git && cd nixos && bash apply nixos
 ```
 
-`bash link` clears everything in your /etc/nixos and remakes. It will default to the last nixos system built.
+`bash apply` clears everything in your /etc/nixos and remakes. It will default to the last nixos system built.
 
-`link` also accepts nixpkgs.lib.nixosSystem names from flake.nix as an argument. Different options are nixos, lock, and compclub.
+`apply` also accepts nixpkgs.lib.nixosSystem names from flake.nix as an argument. Different options are nixos, lock, and compclub.
 
 
 <h3>How to use (home-manager standalone):</h3>
@@ -30,7 +30,7 @@ nix-channel --update && \
 nix-shell '<home-manager>' -A install
 ```
 
-Run `bash link-standalone` which clears everything in your nix home-manger config and relinks.
+Run `bash apply-standalone` which clears everything in your nix home-manger config and relinks.
 
 ---
 
