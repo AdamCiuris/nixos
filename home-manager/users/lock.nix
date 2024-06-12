@@ -3,13 +3,10 @@
 	imports = [
 		../home.nix
 
-		../configs/brave.nix
-		../configs/fiyafox.nix
+		../configs/opera.nix
 		../configs/dconf.nix
 		../configs/shells.nix
-		../configs/git.nix
 		../configs/vscodium.nix
-		../configs/xdg.nix
 		../configs/.secret.nix
 	];
 	home ={
@@ -17,6 +14,10 @@
 		homeDirectory = "/home/lock";
 		stateVersion = "23.11";
 	};
-
+	home.file = { # starts at ~/.config
+		# horrible startup javascript apps
+		".config/autostart/opera.desktop".source = "${pkgs.opera}/share/applications/opera.desktop";
+		".config/autostart/thunderbird.desktop".source = "${pkgs.thunderbird}/share/applications/thunderbird.desktop";
+	};
 
 }
