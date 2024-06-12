@@ -20,7 +20,7 @@
 	nix = import ../nix/nixOptions.nix { 
 		inherit config pkgs;
 		nixPath = [ # echo $NIX_PATH
-		"nixpkgs=/home/nyx/.nix-defexpr/channels/nixpkgs"
+		"nixpkgs=/home/lock/.nix-defexpr/channels/nixpkgs"
 		"nixos-config=/etc/nixos/top-level-config/variants/lockdown.nix"
 		];
 	};
