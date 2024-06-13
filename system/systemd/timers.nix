@@ -43,4 +43,26 @@
       Persistent = true;
     };
   };
+
+  # test with sudo systemctl status nyx_backup.service
+  # https://help.ubuntu.com/community/BackupYourSystem/TAR
+  systemd.services."nyx_backup" = {
+    path= [ pkgs.gnutar 
+      pkgs.gzip
+    ];
+    script = ''
+      ${lib.getExe  pkgs.gnutar} -cvpzf nyx_home_backup.tar.gz --exclude=/nyx_home_backup.tar.gz --one-file-system ${config.users.users.nyx.home} 
+    '';
+    serviceConfig = {
+      # Type = "oneshot";
+      User = "${config.users.users.root.name}";
+    };
+  };
+  systemd.timers."nyx_backup" = {
+    wantedBy = [ "timers.target" ]; 
+    timerConfig = {
+      OnCalendar = "weekly";
+      Persistent = true;
+    };
+  };
 }

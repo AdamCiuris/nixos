@@ -17,13 +17,20 @@
             group = "root";
           };
     };
-      "${config.users.users.nyx.home}/share" = {
-          d = {
+      "${config.users.users.nyx.home}/share" = { # sudo mount -t 9p -o trans=virtio share /mnt/    
+          d = { 
             mode = "0755"; 
             user = "nyx";
             group = "users";
           };
     };
+# <filesystem type="mount" accessmode="passthrough">
+#   <source dir="/home/nyx/share"/>
+#   <target dir="share"/>
+#   <alias name="fs0"/>
+#   <address type="pci" domain="0x0000" bus="0x07" slot="0x00" function="0x0"/>
+# </filesystem>
+
   };
   };
 }
