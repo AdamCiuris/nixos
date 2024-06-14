@@ -62,6 +62,7 @@
 		vim
 		nano 
 		nginx
+		baobab
 	];
 	
 	# Before changing this value read the documentation for this option
