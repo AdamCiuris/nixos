@@ -36,7 +36,13 @@
 		STEAM_EXTRA_COMPAT_TOOLS_PATHS = 
 			"\${HOME}/.steam/root/compatibilitytools.d";
 	};
-
+	programs.ssh = { 
+		enable = true;
+		matchBlocks."github.com" = {
+					hostname = "github.com";
+					identityFile = "~/.ssh/id_ed25519_github";
+		};
+	};
 
 
 }
