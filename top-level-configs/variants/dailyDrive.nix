@@ -30,7 +30,9 @@
 		../../system/programs/direnv.nix
 
 		];
-	hardware.system76.enableAll = true;
+	# hardware.system76.enableAll = true;
+	services.system76-scheduler.enable = true;
+	hardware.system76.firmware-daemon.enable = true;
 	nix = import ../nix/nixOptions.nix { 
 		inherit config pkgs;
 		nixPath = [ # echo $NIX_PATH

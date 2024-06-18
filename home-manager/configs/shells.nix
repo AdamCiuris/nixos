@@ -82,12 +82,12 @@ let
 		alias CD="cd";
 		alias "cd.."="cd ..";
 		alias "cd..."="cd ../..";
-		alias "home manager"="home-manager";
 
 		alias "SUDO"="sudo";
 		alias "SUDO!"="sudo !!";
 
-		
+		aliase shut="shutdown now ; systemd-inhibit --list"
+		aliase shutr="shutdown -r now ; systemd-inhibit --list"
 
 
 		alias crontab-reboot-test="sudo rm /var/run/crond.reboot && sudo service cron restart"
