@@ -86,8 +86,8 @@ let
 		alias "SUDO"="sudo";
 		alias "SUDO!"="sudo !!";
 
-		aliase shut="shutdown now ; systemd-inhibit --list"
-		aliase shutr="shutdown -r now ; systemd-inhibit --list"
+		alias shutr="shutdown -r now ; systemd-inhibit --list"
+		alias shut="shutdown now ; systemd-inhibit --list"
 
 
 		alias crontab-reboot-test="sudo rm /var/run/crond.reboot && sudo service cron restart"
