@@ -31,7 +31,7 @@
   };
   systemd.sockets."gunicorn" = {
     description = "gunicorn socket";
-    wantedBy =  ["sockets.target"]; # don't need to sysctl enable with this, https://search.nixos.org/options?channel=23.11&show=systemd.sockets.%3Cname%3E.wantedBy&from=0&size=50&sort=relevance&type=packages&query=systemd.sockets.%3Cname%3E.
+    wantedBy =  ["sockets.target"]; # don't need to sysctl enable with this, https://search.nixos.org/options?channel=24.05&show=systemd.sockets.%3Cname%3E.wantedBy&from=0&size=50&sort=relevance&type=packages&query=systemd.sockets.%3Cname%3E.
     socketConfig = {
       # ListenStream = "${config.services.gunicorn.socket}";
       ListenStream = "/run/gunicorn.sock";

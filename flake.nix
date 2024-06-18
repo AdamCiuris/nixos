@@ -19,6 +19,10 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.4.1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # nix-user-repositories = {
     #   url = "github:rycee/home-manager";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -32,7 +36,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, hardware, home-manager, plasma-manager, nixos-generators, flake-utils, ... }@inputs:
+  outputs = { self, nixpkgs, hardware, lanzaboote, home-manager, plasma-manager, nixos-generators, flake-utils, ... }@inputs:
     let
       forAllSystems = nixpkgs.lib.genAttrs [
         "x86_64-linux"
@@ -67,6 +71,18 @@
           pkgs = myPkgs.x86_64-linux;
           specialArgs = { inherit inputs; }; # Pass flake inputs to our config
           modules =  [
+            lanzaboote.nixosModules.lanzaboote # SECURE BOOT FOR NIXOS
+            ({ pkgs, lib, ... }: { # wtf ????
+              environment.systemPackages = [
+                pkgs.sbctl # secure boot control
+              ];
+              boot.loader.systemd-boot.enable = lib.mkForce false; # highest prio
+              boot.lanzaboote = {
+                enable = true;
+                pkiBundle = "/etc/secureboot";
+              };
+            })
+
             ./top-level-configs/variants/dailyDrive.nix
             # home-manager junk
             home-manager.nixosModules.home-manager
@@ -78,7 +94,7 @@
               home-manager.users = {
                 nyx = {
                   imports = [ ./home-manager/users/nyx.nix ];
-                  home.stateVersion="23.11"; 
+                  home.stateVersion="24.05"; 
                 };
               };
             }
@@ -100,7 +116,7 @@
               home-manager.users = {
                 lock = {
                   imports = [ ./home-manager/users/lock.nix ];
-                  home.stateVersion="23.11"; 
+                  home.stateVersion="24.05"; 
                 };
               };
             }
@@ -121,19 +137,19 @@
               home-manager.users = {
                 rdp = {
                   imports = [ ./home-manager/users/rdp.nix ];
-                  home.stateVersion="23.11"; 
+                  home.stateVersion="24.05"; 
                 };
                 teach = {
                   imports = [ ./home-manager/users/teach.nix ];
-                  home.stateVersion="23.11"; 
+                  home.stateVersion="24.05"; 
                 };
                 tunnelThruMe = {
                   imports = [ ./home-manager/users/tunnelThruMe.nix ];
-                  home.stateVersion="23.11"; 
+                  home.stateVersion="24.05"; 
                 };
                 chi = {
                   imports = [ ./home-manager/users/clubMember.nix ];
-                  home.stateVersion="23.11"; 
+                  home.stateVersion="24.05"; 
                 };
               };
               home-manager.useUserPackages = true;
@@ -155,15 +171,15 @@
               home-manager.users = {
                 rdp = {
                   imports = [ ./home-manager/users/rdp.nix ];
-                  home.stateVersion="23.11"; 
+                  home.stateVersion="24.05"; 
                 };
                 nyx = {
                   imports = [ ./home-manager/users/nyx.nix ];
-                  home.stateVersion="23.11"; 
+                  home.stateVersion="24.05"; 
                 };
                 tunnelThruMe = {
                   imports = [ ./home-manager/users/tunnelThruMe.nix ];
-                  home.stateVersion="23.11"; 
+                  home.stateVersion="24.05"; 
                 };
               };
               home-manager.sharedModules = [ plasma-manager.homeManagerModules.plasma-manager ];

@@ -1,5 +1,5 @@
 # https://phoenixnap.com/kb/linux-swap-file
-# https://search.nixos.org/options?channel=23.11&show=swapDevices&from=0&size=50&sort=relevance&type=packages&query=swap
+# https://search.nixos.org/options?channel=24.05&show=swapDevices&from=0&size=50&sort=relevance&type=packages&query=swap
 { config, pkgs, ... }:
 {
   swapDevices = [

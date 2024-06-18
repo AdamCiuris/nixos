@@ -17,7 +17,7 @@
 	home ={
 		username = "nyx";
 		homeDirectory = "/home/nyx";
-		stateVersion = "23.11";
+		stateVersion = "24.05";
 	};
 	home.file = { # starts at ~/.config
 		".config/autostart/virt-manager.desktop".source = "${pkgs.virt-manager}/share/applications/virt-manager.desktop";
@@ -29,6 +29,8 @@
 	};
 	home.packages = with pkgs; [
 		protonup # steam compatibility tools, must be run imperatively with `protonup` in cmd prompt
+		wireshark # packet sniffer
+		gnupg # gpg
 	];
 	home.sessionVariables = {
 		STEAM_EXTRA_COMPAT_TOOLS_PATHS = 
