@@ -6,7 +6,7 @@
 		# You should not change this value, even if you update Home Manager. If you do
 		# want to update the value, then make sure to first check the Home Manager
 		# release notes.
-		stateVersion = "23.1";
+		stateVersion = "24.05";
 		
 	};
 
@@ -37,12 +37,12 @@
 
 
   imports = [
-		./configs/git.nix
-		./configs/xdg.nix
-		./configs/vscodium.nix
-		./configs/shells.nix
-		./configs/plasma.nix
-		../system/programs/msmtp.nix
+		../configs/git.nix
+		../configs/xdg.nix
+		../configs/vscodium.nix
+		../configs/shells.nix
+		../configs/plasma.nix
+		../../system/programs/msmtp.nix
   ];
 
 

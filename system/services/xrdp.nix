@@ -1,6 +1,6 @@
 { config, pkgs, ... }: 
 {
-  xrdp = {
+  services.xrdp = {
       enable = true;
       defaultWindowManager = "startplasma-x11";
       confDir = /etc/xrdp;

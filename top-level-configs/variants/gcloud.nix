@@ -7,7 +7,7 @@ let
 		] 
   else [
 		../../hardware-configuration.nix
-		./boot/bootloader.nix
+		../boot/bootloader.nix
 
   ];
 
@@ -20,6 +20,8 @@ in
 		../../system/services/xrdp.nix
 		../../system/services/pipewire.nix
 		../../system/services/openssh.nix
+				# ../../system/networking/network.nix
+		../../system/networking/ports/ssh.nix
 
 
 		# ./system/.secrets.nix
@@ -32,7 +34,12 @@ in
 		"nixos-config=/etc/nixos/top-level-config/variants/gcloud.nix"
 		];
 	};
-
+  	networking = 
+        {   
+            # bind hostname in import
+            enableIPv6 = false; # ipv4 only pls
+            # logRefusedConnections =true;# logs are in dmesg or journalctl -k
+        };
 	networking.hostName = "gcloud"; # Define your hostname.
 	# networking.wireless.enable = true;	# Enables wireless support via wpa_supplicant.
 	# Enable networking
