@@ -31,6 +31,7 @@
 		protonup # steam compatibility tools, must be run imperatively with `protonup` in cmd prompt
 		wireshark # packet sniffer
 		gnupg # gpg
+		yt-dlp # youtube-dl fork
 	];
 	home.sessionVariables = {
 		STEAM_EXTRA_COMPAT_TOOLS_PATHS = 
