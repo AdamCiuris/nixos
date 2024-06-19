@@ -23,8 +23,8 @@
 		../../system/services/nextcloud.nix
 		../../system/services/xserver.nix
 
-		# ../../system/networking/network.nix
-		# ../../system/networking/ports/allOff.nix
+		../../system/networking/network.nix
+		../../system/networking/ports/allOff.nix
 
 		../../system/programs/gaming.nix
 		../../system/programs/direnv.nix
