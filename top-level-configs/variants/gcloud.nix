@@ -6,7 +6,7 @@ let
 		<nixpkgs/nixos/modules/virtualisation/google-compute-image.nix>
 		] 
   else [
-    ../hardware-configuration.nix
+		../../hardware-configuration.nix
 		./boot/bootloader.nix
 
   ];

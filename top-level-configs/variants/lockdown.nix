@@ -13,6 +13,9 @@
 		../../system/specialisations/display-desktop-managers.nix
 		
 		../../system/services/xserver.nix
+
+		../../hardware-configuration.nix
+
 		];
 
 

@@ -8,6 +8,10 @@
 
 		../../system/services/mysql.nix
 		../../system/services/nextcloud.nix
+
+		
+		../../hardware-configuration.nix
+
 		];
 
 	nix = import ../nix/nixOptions.nix { 

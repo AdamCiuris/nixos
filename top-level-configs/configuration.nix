@@ -12,7 +12,6 @@
 
 		../system/systemd/timers.nix
 
-		../hardware-configuration.nix
 
 		../system/.secret.nix
 

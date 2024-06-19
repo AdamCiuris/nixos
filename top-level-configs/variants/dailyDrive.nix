@@ -8,7 +8,7 @@
 		../../hardware/bluetooth.nix
 		../../hardware/opengl.nix
 
-
+		../../hardware-configuration.nix
 
 		../../system/virtualization/libvirtd.nix
 		
