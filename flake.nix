@@ -101,6 +101,37 @@
           ];
         };
 
+        "vm" = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          pkgs = myPkgs.x86_64-linux;
+          specialArgs = { inherit inputs; }; # Pass flake inputs to our config
+          modules =  [
+            ({ pkgs, lib, ... }: { # wtf ????
+              boot.grub =  lib.mkForce {
+                enable = true;
+		            devices = [ "/dev/vda" ];
+              };
+
+              services.system76-scheduler.enable = lib.mkForce false;
+              hardware.system76.firmware-daemon.enable = lib.mkForce false;
+            })
+            ./top-level-configs/variants/dailyDrive.nix
+            # home-manager junk
+            home-manager.nixosModules.home-manager
+            nixos-generators.nixosModules.all-formats # nix build .\#nixosConfigurations.nixos.config.formats. and hit tab to see all
+            # nix build .\#nixosConfigurations.nixos.config.formats.install-iso -o ./result
+            {
+              home-manager.extraSpecialArgs = { inherit inputs; }; # Pass flake input to home-manager
+              home-manager.users = {
+                nyx = {
+                  imports = [ ./home-manager/users/nyx.nix ];
+                  home.stateVersion="24.05"; 
+                };
+              };
+            }
+          ];
+        };
+
         "lockdown" = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           pkgs = myPkgs.x86_64-linux;
