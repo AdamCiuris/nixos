@@ -21,6 +21,7 @@
 
 		../../system/services/mysql.nix
 		../../system/services/nextcloud.nix
+		../../system/services/tor.nix
 		../../system/services/xserver.nix
 
 		../../system/networking/network.nix
