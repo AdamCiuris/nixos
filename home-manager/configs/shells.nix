@@ -89,6 +89,17 @@ let
 		alias shutr="shutdown -r now ; systemd-inhibit --list"
 		alias shut="shutdown now ; systemd-inhibit --list"
 
+		alias ipy="type ipy && \
+		nix-shell -p 'python3.withPackages (python-pkgs: [
+						python-pkgs.ipython
+						python-pkgs.matplotlib
+						python-pkgs.scipy
+						python-pkgs.scikit-learn
+            python-pkgs.pandas
+            python-pkgs.numpy
+        ])' --run ipython"
+
+
 
 		alias crontab-reboot-test="sudo rm /var/run/crond.reboot && sudo service cron restart"
 		alias code=codium
