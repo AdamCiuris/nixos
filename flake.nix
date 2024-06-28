@@ -109,9 +109,9 @@
             ({ pkgs, lib, ... }: { # wtf ????
               boot.loader.grub =  lib.mkForce {
                 enable = true;
-		            devices = [ "/dev/vda" ];
+		            device =  "/dev/vda" ;
               };
-
+              swapDevices = lib.mkForce false;
               services.system76-scheduler.enable = lib.mkForce false;
               hardware.system76.firmware-daemon.enable = lib.mkForce false;
             })
