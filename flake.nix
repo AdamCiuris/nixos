@@ -109,7 +109,7 @@
             ({ pkgs, lib, ... }: { # wtf ????
               boot.loader  = lib.mkForce {
                 grub.enable = true;
-		            devices =  ["/dev/vda"] ;
+		            grub.devices =  ["/dev/vda"] ;
               };
               swapDevices = lib.mkForce [ ];
               services.system76-scheduler.enable = lib.mkForce false;
