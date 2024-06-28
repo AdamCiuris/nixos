@@ -90,13 +90,15 @@ let
 		alias shut="shutdown now ; systemd-inhibit --list"
 
 		alias ipy="type ipy && \
-		nix-shell -p 'python3.withPackages (python-pkgs: [
-						python-pkgs.ipython
-						python-pkgs.matplotlib
-						python-pkgs.scipy
-						python-pkgs.scikit-learn
-            python-pkgs.pandas
-            python-pkgs.numpy
+		nix-shell -p 'python3.withPackages (python-pkgs: with python-pkgs; [
+						ipython
+						matplotlib
+						scipy
+						scikit-learn
+            pandas
+            numpy
+						requests
+						pysocks
         ])' --run ipython"
 
 
