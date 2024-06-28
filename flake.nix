@@ -107,8 +107,8 @@
           specialArgs = { inherit inputs; }; # Pass flake inputs to our config
           modules =  [
             ({ pkgs, lib, ... }: { # wtf ????
-              boot.loader.grub =  lib.mkForce {
-                enable = true;
+              boot.loader  = lib.mkForce {
+                grub.enable = true;
 		            devices =  ["/dev/vda"] ;
               };
               swapDevices = lib.mkForce [ ];
