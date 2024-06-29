@@ -101,13 +101,14 @@
           ];
         };
 
-        "vm" = nixpkgs.lib.nixosSystem {
+        "vm" = nixpkgs.lib.nixosSystem { # slightly modifying stuff for qemu/kvm vms
           system = "x86_64-linux";
           pkgs = myPkgs.x86_64-linux;
           specialArgs = { inherit inputs; }; # Pass flake inputs to our config
           modules =  [
             ({ pkgs, lib, ... }: { # wtf ????
               boot.loader  = lib.mkForce {
+                systemd-boot.enable = false;
                 grub.enable = true;
 		            grub.devices =  ["/dev/vda"] ;
               };
@@ -125,7 +126,8 @@
               home-manager.users = {
                 nyx = {
                   imports = [ ./home-manager/users/nyx.nix ];
-                  home.stateVersion="24.05"; 
+                  home.stateVersion="24.05";
+                  home.file = lib.mkForce {}; # no autostarts
                 };
               };
             }
