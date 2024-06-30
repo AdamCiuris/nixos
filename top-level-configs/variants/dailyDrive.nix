@@ -20,6 +20,7 @@
 		../../system/systemd/directories.nix
 
 		../../system/services/mysql.nix
+		../../system/services/iphone.nix
 		../../system/services/nextcloud.nix
 		../../system/services/tor.nix
 		../../system/services/xserver.nix
@@ -45,6 +46,7 @@
 	environment.systemPackages = with pkgs; [
 		mangohud # fps monitor for games
 		docker-client
+		libimobiledevice
 	];
 	users ={
 		mutableUsers = true; # let's you change the passwords after btw

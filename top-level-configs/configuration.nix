@@ -20,7 +20,7 @@
 		../system/services/pipewire.nix
 		../system/services/flatpak.nix
 		../system/services/spice-vdagentd.nix
-		# ../system/services/clamav.nix
+		../system/services/clamav.nix
 
 		../system/programs/msmtp.nix
 

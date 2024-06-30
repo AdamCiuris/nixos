@@ -42,6 +42,12 @@ let
 			echo "searching for $firstArg in /usr/share/applications/..."
 			ls /usr/share/applications | grep "$firstArg"
 		} 
+		countFiles() {
+			local firstArg="$1"
+			local A=$(ls -a |  wc -l)
+			local B=$($A-2)
+			echo $B
+		}
 		pathappend() {
 			for ARG in "$@"
 			do

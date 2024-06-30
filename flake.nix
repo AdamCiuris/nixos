@@ -113,6 +113,7 @@
 		            grub.devices =  ["/dev/vda"] ;
               };
               swapDevices = lib.mkForce [ ];
+              home-manager.users.nyx.home.file = lib.mkForce {}; # no autostarts
               services.system76-scheduler.enable = lib.mkForce false;
               hardware.system76.firmware-daemon.enable = lib.mkForce false;
             })
@@ -127,7 +128,6 @@
                 nyx = {
                   imports = [ ./home-manager/users/nyx.nix ];
                   home.stateVersion="24.05";
-                  home.file = lib.mkForce {}; # no autostarts
                 };
               };
             }
