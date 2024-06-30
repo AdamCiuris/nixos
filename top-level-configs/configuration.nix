@@ -59,13 +59,14 @@
 		};
 	};
 	environment.systemPackages = with pkgs; [
-		vim
-		nano 
-		nginx
-		baobab
+		vim # text editor, worse
+		nano # text editor
+		nginx # web server
+		baobab # disk usage analyzer
+		psensor # fan speed and temperature monitor
 	];
 	
 	# Before changing this value read the documentation for this option
-	# (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+	# (e.g. man configuration.ngix or on https://nixos.org/nixos/options.html).
 	system.stateVersion = "24.05"; # Did you read the comment?
 }
