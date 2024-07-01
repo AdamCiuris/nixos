@@ -29,7 +29,7 @@ sudo nixos-generate-config # to get your hardware config back
 # rebuild and switch
 echo "Rebuilding and switching to new config..."
 if [ -z $1 ]; then # -z true if len of str is 0
-    sudo nixos-rebuild switch
+    sudo nixos-rebuild switch --flake $nixosConfigPath/#$NIXOS_FLAKE_CONFIGURATION
     exit 0
 fi
 sudo nixos-rebuild switch --flake $nixosConfigPath/#$1

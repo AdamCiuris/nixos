@@ -81,6 +81,7 @@
                 enable = true;
                 pkiBundle = "/etc/secureboot";
               };
+              environment.variables.NIXOS_FLAKE_CONFIGURATION = "nixos";
             })
 
             ./top-level-configs/variants/dailyDrive.nix
@@ -116,6 +117,10 @@
               home-manager.users.nyx.home.file = lib.mkForce {}; # no autostarts
               services.system76-scheduler.enable = lib.mkForce false;
               hardware.system76.firmware-daemon.enable = lib.mkForce false;
+
+              environment.variables.NIXOS_FLAKE_CONFIGURATION = "vm";
+                  
+
             })
             ./top-level-configs/variants/dailyDrive.nix
             # home-manager junk
@@ -143,8 +148,8 @@
             ./top-level-configs/variants/lockdown.nix
             # home-manager junk
             home-manager.nixosModules.home-manager
-            # nix build .\#nixosConfigurations.nixos.config.formats.install-iso -o ./result
             {
+              environment.variables.NIXOS_FLAKE_CONFIGURATION = "lockdown";
               home-manager.extraSpecialArgs = { inherit inputs; }; # Pass flake input to home-manager
               home-manager.users = {
                 lock = {
@@ -166,6 +171,7 @@
             ./top-level-configs/variants/club.nix
             home-manager.nixosModules.home-manager
             {
+              environment.variables.NIXOS_FLAKE_CONFIGURATION = "compclub";
               home-manager.extraSpecialArgs = { inherit inputs; }; # Pass flake input to home-manager
               home-manager.users = {
                 rdp = {
@@ -200,6 +206,7 @@
             ./top-level-configs/variants/gcloud.nix
             home-manager.nixosModules.home-manager
             {
+              environment.variables.NIXOS_FLAKE_CONFIGURATION = "gcloud";
               home-manager.extraSpecialArgs = { inherit inputs; }; # Pass flake input to home-manager
               home-manager.users = {
                 rdp = {
