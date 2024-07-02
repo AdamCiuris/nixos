@@ -52,7 +52,7 @@
     ];
     script = ''
 
-      ${lib.getExe  pkgs.gnutar} -cvpzf nyx_home_backup.tar.gz --exclude=${config.users.users.nyx.home}/.local --exclude=${config.users.users.nyx.home}/share --exclude=${config.users.users.nyx.home}/GITHUB --one-file-system ${config.users.users.nyx.home} 
+      ${lib.getExe  pkgs.gnutar} -cvpzf nyx_home_backup.tar.gz --exclude=${config.users.users.nyx.home}/.local --exclude=${config.users.users.nyx.home}/share --exclude=${config.users.users.nyx.home}/Private --exclude=${config.users.users.nyx.home}/GITHUB --one-file-system ${config.users.users.nyx.home} 
     '';
     serviceConfig = {
       # Type = "oneshot";
