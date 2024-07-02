@@ -24,7 +24,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    vscode-server.url = "github:nix-community/nixos-vscode-server";
+    vscode-server = {
+      url = "github:nix-community/nixos-vscode-server";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     
     # nix-user-repositories = {
     #   url = "github:rycee/home-manager";
@@ -208,6 +211,7 @@
             # > Our main nixos configuration file <
             ./top-level-configs/variants/gcloud.nix
             home-manager.nixosModules.home-manager
+            vscode-server.nixosModules.default
             ({ pkgs, lib, ... }: { 
                 services.vscode-server.enable = true;
               }
