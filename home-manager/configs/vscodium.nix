@@ -79,6 +79,7 @@ in
 		extensions = (with pkgs.vscode-extensions; [
 			ms-python.vscode-pylance
 			ms-vscode-remote.remote-containers
+			ms-vscode-remote.remote-ssh
 			ms-azuretools.vscode-docker
 			batisteo.vscode-django
 			ms-python.python
@@ -86,9 +87,12 @@ in
 			shd101wyy.markdown-preview-enhanced
 			ms-toolsai.jupyter
 			
-		]) ++ [
+		]) ++ [ #  "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
 			(ext "Nix" "bbenoist" "1.0.1" "sha256-qwxqOGublQeVP2qrLF94ndX/Be9oZOn+ZMCFX1yyoH0=") # https://marketplace.visualstudio.com/items?itemName=bbenoist.Nix
-			(ext "copilot" "GitHub"  "1.197.0" "sha256-8Wm3thBmgGe+ax+Yw3i3vEBJtObmNLNzX1x7FLSEoF4=") # https://marketplace.visualstudio.com/items?itemName=GitHub.copilot
+			(ext "copilot" "GitHub"  "1.208.963" "sha256-KK+jscoH/tByYw5BL2c5xEbqErnJE30enTqHWJzhIQk=") # https://marketplace.visualstudio.com/items?itemName=GitHub.copilot
+			(ext "remote-server" "ms-vscode"  "1.6.2024061709" "sha256-OaLCYdAqPRppxu4bNOig87bwi0brhAW91I22IBUWjhA=") # https://marketplace.visualstudio.com/items?itemName=GitHub.copilot
+			# (ext "copilot" "GitHub"  "1.197.0" "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=") # https://marketplace.visualstudio.com/items?itemName=GitHub.copilot
+			# (ext "copilot" "GitHub"  "1.197.0" "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=") # https://marketplace.visualstudio.com/items?itemName=GitHub.copilot
 			(ext  "bash-debug" "rogalmic" "0.3.9" "sha256-f8FUZCvz/PonqQP9RCNbyQLZPnN5Oce0Eezm/hD19Fg=") # https://marketplace.visualstudio.com/items?itemName=rogalmic.bash-debug
 			(ext "nix-ide" "jnoortheen" "0.3.1" "sha256-jwOM+6LnHyCkvhOTVSTUZvgx77jAg6hFCCpBqY8AxIg=" ) # https://marketplace.visualstudio.com/items?itemName=jnoortheen.nix-ide
 		];
