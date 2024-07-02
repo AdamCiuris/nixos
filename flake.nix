@@ -39,7 +39,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, hardware, lanzaboote, home-manager, plasma-manager, nixos-generators, flake-utils, ... }@inputs:
+  outputs = { self, nixpkgs, hardware, lanzaboote, vscode-server, home-manager, plasma-manager, nixos-generators, flake-utils, ... }@inputs:
     let
       forAllSystems = nixpkgs.lib.genAttrs [
         "x86_64-linux"
