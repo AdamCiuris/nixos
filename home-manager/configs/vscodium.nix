@@ -72,6 +72,37 @@ in
 				key = "ctrl+alt+m";
 				command = "markdown.showLockedPreviewToSide";
 			}
+			# BEGIN COPILOT SHORTCUTS
+			{
+				key = "ctrl+/";
+				command = "github.copilot.acceptCursorPanelSolution";
+				when = "github.copilot.activated && github.copilot.panelVisible && activeWebviewPanelId == 'GitHub Copilot Suggestions'";
+			}
+			{
+				
+				key = "alt+]";
+				command = "github.copilot.nextPanelSolution";
+				when = "github.copilot.activated && github.copilot.panelVisible && activeWebviewPanelId == 'GitHub Copilot Suggestions'";
+			}
+			{
+				key = "alt+[";
+				command = "github.copilot.previousPanelSolution";
+				when = "github.copilot.activated && github.copilot.panelVisible && activeWebviewPanelId == 'GitHub Copilot Suggestions'";
+			}
+			{
+				key = "ctrl+enter";
+				command = "github.copilot.generate";
+				when = "editorTextFocus && github.copilot.activated && !commentEditorFocused && !inInteractiveInput && !interactiveEditorFocused";
+			}
+			{
+				key = "alt+c";
+				command = "editor.action.inlineSuggest.trigger";
+				when = "config.github.copilot.inlineSuggest.enable && editorTextFocus && !editorHasSelection && !inlineSuggestionsVisible";
+			}
+			{
+			key =  "ctrl+alt+i";
+			command =  "workbench.action.chat.open";
+			}
 		];
 		mutableExtensionsDir = false; # stops vscode from editing ~/.vscode/extensions/* which makes the following extensions actually install
 		# installing malware
@@ -79,7 +110,7 @@ in
 		extensions = (with pkgs.vscode-extensions; [
 			ms-python.vscode-pylance
 			ms-vscode-remote.remote-containers
-			ms-vscode-remote.remote-ssh
+			# ms-vscode-remote.remote-ssh
 			ms-azuretools.vscode-docker
 			batisteo.vscode-django
 			ms-python.python
@@ -90,8 +121,8 @@ in
 		]) ++ [ #  "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
 			(ext "Nix" "bbenoist" "1.0.1" "sha256-qwxqOGublQeVP2qrLF94ndX/Be9oZOn+ZMCFX1yyoH0=") # https://marketplace.visualstudio.com/items?itemName=bbenoist.Nix
 			(ext "copilot" "GitHub"  "1.208.963" "sha256-KK+jscoH/tByYw5BL2c5xEbqErnJE30enTqHWJzhIQk=") # https://marketplace.visualstudio.com/items?itemName=GitHub.copilot
-			(ext "remote-server" "ms-vscode"  "1.6.2024061709" "sha256-OaLCYdAqPRppxu4bNOig87bwi0brhAW91I22IBUWjhA=") # https://marketplace.visualstudio.com/items?itemName=GitHub.copilot
-			# (ext "copilot" "GitHub"  "1.197.0" "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=") # https://marketplace.visualstudio.com/items?itemName=GitHub.copilot
+			(ext "remote-server" "ms-vscode"  "1.6.2024061709" "sha256-OaLCYdAqPRppxu4bNOig87bwi0brhAW91I22IBUWjhA=") # https://marketplace.visualstudio.com/items?itemName=ms-vscode.remote-server
+			(ext "remote-ssh" "ms-vscode-remote"  "0.110.1" "sha256-cp1VKQA/m0T7uQb5jY2i8PK8EuBMd1LxoJFCn42EVNo=") # https://https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh
 			# (ext "copilot" "GitHub"  "1.197.0" "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=") # https://marketplace.visualstudio.com/items?itemName=GitHub.copilot
 			(ext  "bash-debug" "rogalmic" "0.3.9" "sha256-f8FUZCvz/PonqQP9RCNbyQLZPnN5Oce0Eezm/hD19Fg=") # https://marketplace.visualstudio.com/items?itemName=rogalmic.bash-debug
 			(ext "nix-ide" "jnoortheen" "0.3.1" "sha256-jwOM+6LnHyCkvhOTVSTUZvgx77jAg6hFCCpBqY8AxIg=" ) # https://marketplace.visualstudio.com/items?itemName=jnoortheen.nix-ide

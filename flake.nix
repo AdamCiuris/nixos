@@ -23,6 +23,9 @@
       url = "github:nix-community/lanzaboote/v0.4.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    vscode-server.url = "github:nix-community/nixos-vscode-server";
+    
     # nix-user-repositories = {
     #   url = "github:rycee/home-manager";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -205,6 +208,10 @@
             # > Our main nixos configuration file <
             ./top-level-configs/variants/gcloud.nix
             home-manager.nixosModules.home-manager
+            ({ pkgs, lib, ... }: { 
+                services.vscode-server.enable = true;
+              }
+            )
             {
               environment.variables.NIXOS_FLAKE_CONFIGURATION = "gcloud";
               home-manager.extraSpecialArgs = { inherit inputs; }; # Pass flake input to home-manager
