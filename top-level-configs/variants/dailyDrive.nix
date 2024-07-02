@@ -17,6 +17,7 @@
 		
 		../../system/systemd/gunicorn.nix
 		../../system/services/nginx.nix
+		../../system/services/ollama.nix
 		../../system/systemd/directories.nix
 
 		../../system/services/mysql.nix
