@@ -3,7 +3,7 @@
 	imports = [
     ../home.nix
 
-		../
+		../configs/brave.nix
 		../configs/dconf.nix
 		../configs/shells.nix
 		../configs/git.nix
