@@ -68,6 +68,20 @@
 					zsh
 				];
 			};
+			bael = {
+				# hash a password with mkpasswd -m sha-512, or with -s $SALT
+				isNormalUser = true;
+				description = "bael: no sudo, vscode.";
+				initialHashedPassword = "$6$iTFD.aCs0URORQdw$WHydkMWviBZhIQMoB2Dn2a.e5fwL/BQuBm7Fi5/Ftw0kPmsicvZfvo2ni8WJl94G11k1CDW9bHLCK3hZvgiV91";
+				shell=pkgs.zsh;
+				useDefaultShell = true; # should be zsh
+				extraGroups = [ # no sudoers?
+					"networkmanager"
+					];
+				packages = with pkgs; [
+					zsh
+				];
+			};
 		};
 	};
 	

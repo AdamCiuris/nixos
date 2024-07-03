@@ -121,8 +121,6 @@ in
 		]) ++ [ #  "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
 			(ext "Nix" "bbenoist" "1.0.1" "sha256-qwxqOGublQeVP2qrLF94ndX/Be9oZOn+ZMCFX1yyoH0=") # https://marketplace.visualstudio.com/items?itemName=bbenoist.Nix
 			(ext "copilot" "GitHub"  "1.208.963" "sha256-KK+jscoH/tByYw5BL2c5xEbqErnJE30enTqHWJzhIQk=") # https://marketplace.visualstudio.com/items?itemName=GitHub.copilot
-			(ext "remote-server" "ms-vscode"  "1.6.2024061709" "sha256-OaLCYdAqPRppxu4bNOig87bwi0brhAW91I22IBUWjhA=") # https://marketplace.visualstudio.com/items?itemName=ms-vscode.remote-server
-			(ext "remote-ssh" "ms-vscode-remote"  "0.110.1" "sha256-cp1VKQA/m0T7uQb5jY2i8PK8EuBMd1LxoJFCn42EVNo=") # https://https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh
 			# (ext "copilot" "GitHub"  "1.197.0" "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=") # https://marketplace.visualstudio.com/items?itemName=GitHub.copilot
 			(ext  "bash-debug" "rogalmic" "0.3.9" "sha256-f8FUZCvz/PonqQP9RCNbyQLZPnN5Oce0Eezm/hD19Fg=") # https://marketplace.visualstudio.com/items?itemName=rogalmic.bash-debug
 			(ext "nix-ide" "jnoortheen" "0.3.1" "sha256-jwOM+6LnHyCkvhOTVSTUZvgx77jAg6hFCCpBqY8AxIg=" ) # https://marketplace.visualstudio.com/items?itemName=jnoortheen.nix-ide

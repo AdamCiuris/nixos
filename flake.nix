@@ -103,6 +103,10 @@
                   imports = [ ./home-manager/users/nyx.nix ];
                   home.stateVersion="24.05"; 
                 };
+                bael = {
+                  imports = [ ./home-manager/users/bael.nix ];
+                  home.stateVersion="24.05"; 
+                };
               };
             }
           ];
