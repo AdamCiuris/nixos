@@ -4,6 +4,7 @@
     ../home.nix
 
 		../configs/brave.nix
+		../configs/firefox.nix
 		../configs/dconf.nix
 		../configs/shells.nix
 		../configs/git.nix
@@ -17,6 +18,8 @@
 		stateVersion = "24.05";
 	};
 	home.file = { # starts at ~/.config
+		".config/autostart/brave-browser.desktop".source = "${pkgs.brave}/share/applications/brave-browser.desktop";
+		".config/autostart/firefox.desktop".source = "${pkgs.firefox}/share/applications/firefox.desktop";
 	};
 	home.packages = with pkgs; [
 		gnupg # gpg
