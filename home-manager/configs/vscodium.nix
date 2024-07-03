@@ -27,6 +27,11 @@ in
 			command = "workbench.action.terminal.focusPrevious";
 			}
 			{
+				key = "alt+q";
+				command = "workbench.action.terminal.kill";
+				when = "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported";
+			}
+			{
 				key = "alt+a";
 				command = "editor.action.copyLinesDownAction";
 			}
