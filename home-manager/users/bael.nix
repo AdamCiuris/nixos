@@ -4,7 +4,7 @@
     ../home.nix
 
 		../configs/brave.nix
-		../configs/firefox.nix
+		../configs/fiyafox.nix
 		../configs/dconf.nix
 		../configs/shells.nix
 		../configs/git.nix
