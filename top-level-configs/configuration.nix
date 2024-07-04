@@ -2,17 +2,7 @@
 #	Common options across all system configurations.
 #
 { config, pkgs, lib, ... }:
-let 
-	 filterAttrSet = attrSet: pattern:
-    lib.attrsets.filterAttrs (name: value: builtins.match pattern value != null ) attrSet;
-	grimoire =  map (a: "./spells/"+a ) 
-		(builtins.filter
-			(a: builtins.match  ".*\\.nix" a != null) 
-				(builtins.attrNames 
-					(filterAttrSet (builtins.readDir ./spells)  "regular")
-				)
-		);
-in 
+
 {
 
 	imports =
@@ -38,7 +28,7 @@ in
 		../system/virtualization/docker.nix
 
 
-		] ++ grimoire ;
+		]  ;
 
 	time.timeZone = "America/Chicago";
 	# Select internationalisation properties.

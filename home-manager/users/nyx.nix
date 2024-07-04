@@ -1,4 +1,15 @@
 {	config,lib, pkgs,... }:
+let 
+	 filterAttrSet = attrSet: pattern:
+    lib.attrsets.filterAttrs (name: value: builtins.match pattern value != null ) attrSet;
+	grimoire =  map (a: "../../spells/"+a ) 
+		(builtins.filter
+			(a: builtins.match  ".*\\.thoron.nix" a != null) 
+				(builtins.attrNames 
+					(filterAttrSet (builtins.readDir ../../spells)  "regular")
+				)
+		);
+in 
 {
 	imports = [
     ../home.nix
