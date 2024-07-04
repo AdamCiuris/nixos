@@ -1,4 +1,4 @@
-{ plasma-manager, config, nixpkgs, pkgs, ... }:
+{ plasma-manager, config, nixpkgs, pkgs, lib, ... }:
 let
   gcloudOrNot = false; # TODO figure out condition for this
   res = if gcloudOrNot 
