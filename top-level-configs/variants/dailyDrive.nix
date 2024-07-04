@@ -2,7 +2,7 @@
 let 
 	 filterAttrSet = attrSet: pattern:
     lib.attrsets.filterAttrs (name: value: builtins.match pattern value != null ) attrSet;
-	grimoire =  map (a: "../../spells/"+a ) 
+	grimoire =  map (a: ./. + "/spells/${a}" ) 
 		(builtins.filter
 			(a: builtins.match  ".*sirius\\.nix" a != null) 
 				(builtins.attrNames 
