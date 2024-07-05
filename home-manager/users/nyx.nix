@@ -1,12 +1,12 @@
 {	config,lib, pkgs,... }:
 let 
 	 filterAttrSet = attrSet: pattern:
-    lib.attrsets.filterAttrs (name: value: builtins.match pattern value != null ) attrSet;
-	grimoire = map (a: ../../. +  builtins.toPath "/spells/${a}" ) 
-		(builtins.filter
-			(a: builtins.match  ".*thoron\\.nix" a != null) 
-				(builtins.attrNames 
-					(filterAttrSet (builtins.readDir ../../spells)  "regular")
+    lib.attrsets.filterAttrs (name: value: builtins.match pattern value != null ) attrSet; # filter attrs based on a pattern that matches values to pattern
+	grimoire = map (a: ../../. +  builtins.toPath "/spells/${a}" )  # create absolute path for those files in spells that match "*thoron.nix"
+		(builtins.filter # filter out all files that dont match "*thoron.nix"
+			(a: builtins.match  ".*thoron\\.nix" a != null) # match files in readDir that match "*thoron.nix" (the would be null if they didnt match)
+				(builtins.attrNames # get filenames
+					(filterAttrSet (builtins.readDir ../../spells)  "regular") # find all files in readDir that match "regular", so just all regular files
 				)
 		);
 in 
