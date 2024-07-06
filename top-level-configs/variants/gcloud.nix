@@ -12,11 +12,11 @@ let
   ];
 	 filterAttrSet = attrSet: pattern:
     lib.attrsets.filterAttrs (name: value: builtins.match pattern value != null ) attrSet;
-	grimoire =  map (a: ../../. +  builtins.toPath "/spells/${a}" ) 
+	grimoire =  map (a: ../../. +  builtins.toPath "/grimoire/${a}" ) 
 		(builtins.filter
 			(a: builtins.match  ".*sirius\\.nix" a != null) 
 				(builtins.attrNames 
-					(filterAttrSet (builtins.readDir ../../spells)  "regular")
+					(filterAttrSet (builtins.readDir ../../grimoire)  "regular")
 				)
 		);
 in 
