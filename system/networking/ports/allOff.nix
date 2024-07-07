@@ -1,9 +1,9 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 {
   	networking.firewall =  {
         enable = true; # this is on by default but still declaring it.
-        allowedTCPPorts = [  ];
-        allowedUDPPorts = [  ];
+        allowedTCPPorts = lib.mkForce [  ];
+        allowedUDPPorts = lib.mkForce [  ];
         logRefusedConnections = true; 
 	};
 }
