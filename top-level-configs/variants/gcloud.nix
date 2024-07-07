@@ -7,7 +7,6 @@ let
 		] 
   else [
 		../../hardware-configuration.nix
-		../boot/bootloader.nix
 
   ];
 	 filterAttrSet = attrSet: pattern:
@@ -23,8 +22,8 @@ in
 {
 	imports =
 		[ # Include the results of the hardware scan.
+		../configuration.nix
 
-		../../system/services/openvpn.nix
 		../../system/services/xrdp.nix
 		../../system/services/pipewire.nix
 		../../system/services/openssh.nix
