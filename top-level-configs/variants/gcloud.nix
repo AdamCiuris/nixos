@@ -28,8 +28,11 @@ in
 		../../system/services/xrdp.nix
 		../../system/services/pipewire.nix
 		../../system/services/openssh.nix
-				# ../../system/networking/network.nix
+				# ../../system/networking/network.nix # overridden in flake
 		../../system/networking/ports/ssh.nix
+
+
+		../../system/services/ollama.nix
 
 
 		# ./system/.secrets.nix
