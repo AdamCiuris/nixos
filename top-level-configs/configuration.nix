@@ -22,11 +22,11 @@
 		../system/services/flatpak.nix
 		../system/services/spice-vdagentd.nix
 		# ../system/services/clamav.nix
+		../system/networking/network.nix
 
 		../system/programs/msmtp.nix
 
 		../system/virtualization/docker.nix
-
 
 		]  ;
 
@@ -65,6 +65,7 @@
 		nginx # web server
 		baobab # disk usage analyzer
 		psensor # fan speed and temperature monitor
+		nmap # network scanner
 	];
 	
 	# Before changing this value read the documentation for this option
