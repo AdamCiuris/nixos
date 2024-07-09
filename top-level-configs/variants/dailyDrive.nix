@@ -30,13 +30,11 @@ in
 		../../system/services/nginx.nix
 		../../system/systemd/directories.nix
 
-		../../system/services/mysql.nix
 		../../system/services/iphone.nix
 		../../system/services/nextcloud.nix
 		../../system/services/tor.nix
 		../../system/services/xserver.nix
 
-		../../system/networking/network.nix
 		../../system/networking/ports/allOff.nix
 
 		../../system/programs/gaming.nix

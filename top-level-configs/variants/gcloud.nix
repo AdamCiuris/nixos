@@ -27,11 +27,11 @@ in
 		../../system/services/xrdp.nix
 		../../system/services/pipewire.nix
 		../../system/services/openssh.nix
-				# ../../system/networking/network.nix # overridden in flake
 		../../system/networking/ports/ssh.nix
 
 
 		../../system/services/ollama.nix
+		../../system/virtualization/open-webui.nix
 
 
 		# ./system/.secrets.nix
@@ -44,23 +44,14 @@ in
 		"nixos-config=/etc/nixos/top-level-config/variants/gcloud.nix"
 		];
 	};
-  	networking = 
-        {   
-            # bind hostname in import
-            enableIPv6 = false; # ipv4 only pls
-            # logRefusedConnections =true;# logs are in dmesg or journalctl -k
-        };
-	networking.hostName = "gcloud"; # Define your hostname.
-	# networking.wireless.enable = true;	# Enables wireless support via wpa_supplicant.
-	# Enable networking
-	networking.networkmanager.enable = true;
-
+	networking = 
+		{   
+				networking.hostName = lib.mkForce "gcloud"; # Define your hostname.
+		};
 	# Set your time zone.
 	time.timeZone = "America/Chicago";
-
 	# Select internationalisation properties.
 	i18n.defaultLocale = "en_US.UTF-8";
-
 	i18n.extraLocaleSettings = {
 		LC_ADDRESS = "en_US.UTF-8";
 		LC_IDENTIFICATION = "en_US.UTF-8";
@@ -72,15 +63,11 @@ in
 		LC_TELEPHONE = "en_US.UTF-8";
 		LC_TIME = "en_US.UTF-8";
 	};
- #nixpkgs review ???? TODO
- # nixpkgs-review pr 234241
 
 	programs = {
 		dconf.enable = true;
 		zsh.enable = true;
 		};
-
-
 
 	services = {
 		xserver = {
