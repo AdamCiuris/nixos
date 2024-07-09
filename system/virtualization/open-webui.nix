@@ -7,7 +7,7 @@ in
     backend = "docker"; # Use Docker as the backend
     containers.open-webui = {
       image = "ghcr.io/open-webui/open-webui:main";
-      ports = [ "${webPort}:8080" ];
+      ports = [ "${builtins.toString webPort}:8080" ];
       volumes = [ "open-webui:/app/backend/data" ];
       extraOptions = [ "--add-host=host.docker.internal:host-gateway"
                         "OLLAMA_BASE_URL=http://127.0.0.1:65020"
