@@ -9,7 +9,7 @@ let
 	'';
 	shellExtra =  ''
 		# scan local network for open ports
-	  nix-shell -p --command 'nmap -p 1-65535 localhost'
+	  nmap -p 1-65535 localhost
 		echo "\"nix-shell -p 'lsof -i :<port> -S'\" to see what's using it"
 		# BEGIN XDG_DATA_DIRS CHECK
 		# used to add .desktop files to xdg-mime from nix profile if dne
