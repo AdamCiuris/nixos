@@ -46,7 +46,7 @@ in
 	};
 	networking = 
 		{   
-				networking.hostName = lib.mkForce "gcloud"; # Define your hostname.
+				hostName = lib.mkForce "gcloud"; # Define your hostname.
 		};
 	# Set your time zone.
 	time.timeZone = "America/Chicago";
