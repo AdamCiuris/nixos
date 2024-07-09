@@ -8,7 +8,8 @@ let
 	eval "$(direnv hook zsh)"
 	'';
 	shellExtra =  ''
-	
+		# scan local network for open ports
+	  nmap -p 1-65535 localhost
 		# BEGIN XDG_DATA_DIRS CHECK
 		# used to add .desktop files to xdg-mime from nix profile if dne
 		# TODO figure out why this gets entered every home-manager switch
