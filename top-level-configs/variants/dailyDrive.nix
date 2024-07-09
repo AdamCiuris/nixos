@@ -26,12 +26,12 @@ in
 		../../system/specialisations/default-specialisation.nix
 		../../system/specialisations/display-desktop-managers.nix
 		
-		../../system/systemd/gunicorn.nix
-		../../system/services/nginx.nix
+		# ../../system/systemd/gunicorn.nix
+		# ../../system/services/nginx.nix
 		../../system/systemd/directories.nix
 
-		../../system/services/iphone.nix
-		../../system/services/nextcloud.nix
+		# ../../system/services/iphone.nix
+		# ../../system/services/nextcloud.nix
 		../../system/services/tor.nix
 		../../system/services/xserver.nix
 
