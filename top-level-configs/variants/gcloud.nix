@@ -85,7 +85,7 @@ in
 
 	}; # END SERVICES
 
-	# https://nixos.wiki/wiki/Bluetooth
+	# https://wiki.nixos.org/wiki/Bluetooth
 	hardware.bluetooth.enable = false;
 
 	users ={
