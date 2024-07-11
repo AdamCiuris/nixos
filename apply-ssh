@@ -1,0 +1,11 @@
+set -e # exit script on error
+baseDir=$(readlink -f $(dirname $0)) # pwd of shell script
+curDate=$(date +%Y-%m-%d_Hour_%H_Minute_%M_Second_%S)
+destDir=/home/nyx/GITHUB/nixos-ssh-$curDate
+if [ -z $1 ]; then # -z true if len of str is 0
+    exit 0
+fi
+ssh $1 "mkdir -p $destDir"
+scp -r $baseDir $1:$destDir
+ssh -tv $1 "cd $destDir/nixos; bash $destDir/nixos/apply; zsh --login"
+exit 0
