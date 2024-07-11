@@ -2,7 +2,8 @@
 {
   services.ollama = {
       enable = true;
-      listenAddress = "127.0.0.1:65020";
+      listenAddress = "0.0.0.0:11434";
+      # openFirewall = true;
   };
   # networking.firewall.allowedTCPPorts = [ 65020 ]; # should be closed if alloff imported
 }

@@ -29,8 +29,8 @@ in
 		../../system/services/openssh.nix
 		../../system/networking/ports/ssh.nix
 
-		../../system/systemd/gunicorn.nix
-		../../system/services/nginx.nix
+		# ../../system/systemd/gunicorn.nix
+		# ../../system/services/nginx.nix
 		../../system/services/ollama.nix
 		../../system/virtualization/open-webui.nix
 

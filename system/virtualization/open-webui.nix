@@ -9,8 +9,9 @@ in
       image = "ghcr.io/open-webui/open-webui:main";
       ports = [ "${builtins.toString webPort}:8080" ];
       volumes = [ "open-webui:/app/backend/data" ];
-      extraOptions = [ "--add-host=host.docker.internal:host-gateway"
-                        "OLLAMA_BASE_URL=http://127.0.0.1:65020"
+      extraOptions = [ 
+        "--add-host=host.docker.internal:host-gateway"
+        "--env=OLLAMA_BASE_URL=http://10.0.0.187:11434"
        ];
       # restartPolicy = "always";
     };
