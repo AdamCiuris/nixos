@@ -52,6 +52,10 @@
 	
 	security.rtkit.enable = true;
 
+	boot.kernel.sysctl = {
+		"vm.swappiness" = "0"; # https://www.kernel.org/doc/Documentation/sysctl/vm.txt , only swap if needed
+	};
+	
 	programs.zsh.enable = true; 
 	environment.etc = { # reminder this starts in /etc
 		"/fail2ban/action.d/msmtp-whois.conf".source = /etc/nixos/etc/msmtp-whois.conf; # TODO figure out how to make relative
