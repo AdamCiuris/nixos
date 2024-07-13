@@ -50,7 +50,17 @@ in
 		"nixpkgs=/home/nyx/.nix-defexpr/channels/nixpkgs"
 		"nixos-config=/etc/nixos/top-level-config/variants/dailyDrive.nix"
 		];
+		settings = {
+			substituters = [
+				"cache.sirius.com"
+			];
+			trusted-public-keys = [
+				"cache.sirius.com:aHUH6urBnqoXpmTdAUMT5nwt38iaIn8tdXKW6NH6xUo=%"
+			];
+		};
 	};
+
+
 
 	environment.systemPackages = with pkgs; [
 		mangohud # fps monitor for games
