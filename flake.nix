@@ -124,7 +124,6 @@
 		            grub.devices =  ["/dev/vda"] ;
               };
               swapDevices = lib.mkForce [ ];
-              home-manager.users.nyx.home.file = lib.mkForce {}; # no autostarts
               services.system76-scheduler.enable = lib.mkForce false;
               hardware.system76.firmware-daemon.enable = lib.mkForce false;
 
@@ -155,7 +154,7 @@
           specialArgs = { inherit inputs; }; # Pass flake inputs to our config
           modules =  [
             # > Our main nixos configuration file <zzzzz
-            ./top-level-configs/variants/lockdown.nix
+            ./top-level-configs/lockdown.nix
             # home-manager junk
             home-manager.nixosModules.home-manager
             {
@@ -178,7 +177,7 @@
           specialArgs = { inherit inputs; }; # Pass flake inputs to our config
           modules =  [
             # > Our main nixos configuration file <
-            ./top-level-configs/variants/club.nix
+            ./top-level-configs/club.nix
             home-manager.nixosModules.home-manager
             {
               environment.variables.NIXOS_FLAKE_CONFIGURATION = "compclub";
