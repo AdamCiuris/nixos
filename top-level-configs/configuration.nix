@@ -55,7 +55,7 @@
 	security.rtkit.enable = true;
 
 	boot.kernel.sysctl = {
-		"vm.swappiness" = "0"; # https://www.kernel.org/doc/Documentation/sysctl/vm.txt , only swap if needed
+		"vm.swappiness" = "10"; # https://www.kernel.org/doc/Documentation/sysctl/vm.txt , only swap if needed
 	};
 	
 	programs.zsh.enable = true; 
