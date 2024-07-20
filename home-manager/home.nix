@@ -21,26 +21,18 @@ in
 	home.packages = with pkgs; [
 		htop # system monitor
 		git # version control
-		geckodriver #firefox selenium
-		chromedriver # chrome selenium add this to driver_executable_path
+
 		(python3.withPackages (python-pkgs: [
 			python-pkgs.pandas
 			python-pkgs.numpy
 		]))
 		# does bootloader.grub.enable = true always have to be commented out for iso gen
-		nixos-generators # nixos-generate -f iso -c "/path/to/configuration.nix"
 		wget # for downloading files
 		gimp # image editing
-		ghidra # src code analysis and decompilation
-		gradle # for ghidra extensions
 		vlc # video player
 		nix-index # for nix search
 		xdg-utils # xdg-open
 		qbittorrent # torrent client
-		nomacs # image viewer
-		discord # chat client
-		# brave # chromium based browser, enabled in brave.nix
-		# firefox # open source browser, enabled in fiyafox.nix
 		libreoffice # office suite
 		xclip # cat into clipboard with xclip -sel clip < file
 		(pkgs.nerdfonts.override { fonts=["DroidSansMono" ]; }) # for vscode

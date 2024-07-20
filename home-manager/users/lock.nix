@@ -7,7 +7,7 @@
 		../configs/dconf.nix
 		../configs/shells.nix
 		../configs/vscodium.nix
-		../configs/.secret.nix
+		# ../configs/.secret.nix
 	];
 	home ={
 		username = "lock";
