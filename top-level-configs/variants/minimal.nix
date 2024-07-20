@@ -8,6 +8,7 @@
 		../../system/services/openssh.nix
 		../../system/networking/ports/ssh.nix
 
+    ../../hardware-configuration.nix
 
 
 		# ./system/.secrets.nix
