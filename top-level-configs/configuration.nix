@@ -14,12 +14,11 @@
 		../system/systemd/timers.nix
 
 
-		../system/.secret.nix
+		# ../system/.secret.nix
 
 		../system/services/openvpn.nix
 		../system/services/fail2ban.nix
 		../system/services/pipewire.nix
-		../system/services/flatpak.nix
 		../system/services/spice-vdagentd.nix
 		# ../system/services/clamav.nix
 		../system/networking/network.nix
@@ -48,7 +47,6 @@
 	};
 
 	# Enable CUPS to print documents.
-	services.printing.enable = false;
 
 	sound.enable = true; # Whether to enable ALSA sound
 	
@@ -65,6 +63,8 @@
 			source = "${pkgs.nginx}";
 		};
 	};
+
+
 	environment.systemPackages = with pkgs; [
 		vim # text editor, worse
 		nano # text editor

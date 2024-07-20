@@ -33,7 +33,9 @@ in
 		../../system/services/nginx.nix
 		../../system/services/binary-cache.nix
 		../../system/services/ollama.nix
+
 		../../system/virtualization/open-webui.nix
+		../../system/virtualization/portfolio-website.nix
 
 
 		# ./system/.secrets.nix
