@@ -147,32 +147,21 @@
             }
           ];
         };
-
-        "minimal" = nixpkgs.lib.nixosSystem { # slightly modifying stuff for qemu/kvm vms
+        "ssh" = nixpkgs.lib.nixosSystem { # slightly modifying stuff for qemu/kvm vms
           system = "x86_64-linux";
           pkgs = myPkgs.x86_64-linux;
           specialArgs = { inherit inputs; }; # Pass flake inputs to our config
           modules =  [
             ({ pkgs, lib, ... }: { # wtf ????
-              boot.loader  = lib.mkForce {
-                systemd-boot.enable = false;
-                grub.enable = true;
-		            grub.devices =  ["/dev/vda"] ;
-              };
               swapDevices = lib.mkForce [ ];
-              home-manager.users.nyx.home.file = lib.mkForce {}; # no autostarts
-              services.system76-scheduler.enable = lib.mkForce false;
-              hardware.system76.firmware-daemon.enable = lib.mkForce false;
 
-              environment.variables.NIXOS_FLAKE_CONFIGURATION = "minimal";
+              environment.variables.NIXOS_FLAKE_CONFIGURATION = "ssh";
                   
 
             })
-            ./top-level-configs/variants/dailyDrive.nix
+            ./top-level-configs/variants/minimal.nix
             # home-manager junk
             home-manager.nixosModules.home-manager
-            nixos-generators.nixosModules.all-formats # nix build .\#nixosConfigurations.nixos.config.formats. and hit tab to see all
-            # nix build .\#nixosConfigurations.nixos.config.formats.install-iso -o ./result
             {
               home-manager.extraSpecialArgs = { inherit inputs; }; # Pass flake input to home-manager
               home-manager.users = {
