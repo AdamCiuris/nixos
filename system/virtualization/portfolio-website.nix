@@ -1,14 +1,15 @@
 { config, pkgs, ... }:
 let 
   webPort = 8081;
+  serverPort = 8082;
 in
 {
   virtualisation.oci-containers = {
     backend = "docker"; # Use Docker as the backend
     containers.port-website = {
-      image = "nginx";
-      ports = [ "${builtins.toString webPort}:8081" "8082:8082"];
-      volumes = [ "/home/nyx/GITHUB/nixos/system/virtualization/configs/portfolio-website/:/portfolio-website/" ];
+      image = "ubuntu/nginx";
+      ports = [ "${builtins.toString webPort}:8081" "${builtins.toString serverPort}:8082"];
+      volumes = [ "/etc/nixos/system/virtualization/configs/portfolio-website/:/portfolio-website/" ];
       # entrypoint = "/usr/sbin/nginx";
       cmd = ["nginx" "-c" "/portfolio-website/nginx.conf" "-p" "/portfolio-website"];
       extraOptions = [ 
@@ -17,7 +18,10 @@ in
       # restartPolicy = "always";
     };
   };
-  networking.firewall.allowedTCPPorts = [ webPort 8082 ];
+  networking.firewall.allowedTCPPorts = [ 
+    webPort
+    serverPort
+    ];
   # services.nginx.virtualHosts."ciuris.xyz" = {
   #   listen= [
   #     {
