@@ -29,7 +29,7 @@
 
 		]  ;
 
-
+	systemd.enableEmergencyMode = false;
 	home-manager.backupFileExtension = "hmBackup";
 	time.timeZone = "America/Chicago";
 	# Select internationalisation properties.
