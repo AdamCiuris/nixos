@@ -5,7 +5,7 @@ nixosConfigPath=/etc/nixos
 hard-link-recursive() {
     local srcDir=$1
     local destDir=$2
-    local nixFiles=$(find $srcDir -maxdepth 1 -type f -name "*.nix" -o -name "*.conf")
+    local nixFiles=$(find $srcDir -maxdepth 1 -type f -not -name "*.md" -a -not -name ".*" -a  -name "*\.*")
     if [ !  -d ${destDir} ]; then
         echo "Creating directory: $destDir"
         sudo mkdir ${destDir}
@@ -32,4 +32,8 @@ if [ -z $1 ]; then # -z true if len of str is 0
     sudo nixos-rebuild --show-trace switch --flake $nixosConfigPath/#$NIXOS_FLAKE_CONFIGURATION
     exit 0
 fi
+sudo systemctl stop docker-port-website.service 
+sudo docker stop $(sudo docker ps -a -q)
+sudo docker system prune --all
+# sudo docker volumes rm $(sudo docker ps -a -q)
 sudo nixos-rebuild --show-trace switch --flake $nixosConfigPath/#$1
