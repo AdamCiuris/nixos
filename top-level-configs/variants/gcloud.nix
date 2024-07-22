@@ -79,8 +79,8 @@ in
 			# Configure keymap in X11
 			layout = "us";
 			xkbVariant = "";
-			# KDE
-			desktopManager.plasma5.enable = true;
+			# xfce 
+			desktopManager.xfce.enable = lib.mkDefault true;
 			displayManager.sddm ={
 				enable = true; 
 			};
