@@ -23,8 +23,8 @@ in
 
 		../../system/virtualization/libvirtd.nix
 		
-		../../system/specialisations/default-specialisation.nix
-		../../system/specialisations/display-desktop-managers.nix
+		# ../../system/specialisations/default-specialisation.nix
+		# ../../system/specialisations/display-desktop-managers.nix
 
 		../../system/virtualization/portfolio-website.nix
 		# ../../system/systemd/gunicorn.nix
@@ -38,10 +38,12 @@ in
 
 		../../system/networking/ports/allOff.nix
 
-		../../system/programs/gaming.nix
+#		../../system/programs/gaming.nix
 		../../system/programs/direnv.nix
 
 		] ++ grimoire;
+	services.xserver.desktopManager.plasma6.enable = true;
+	services.xserver.displayManager.lightdm.enable = true;
 	# hardware.system76.enableAll = true;
 	services.system76-scheduler.enable = true;
 	hardware.system76.firmware-daemon.enable = true;
