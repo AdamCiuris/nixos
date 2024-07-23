@@ -15,7 +15,7 @@
 				# 	# bind.port = 22;
 				# 	}
 				# ];
-				identityFile = "~/.ssh/server_ided.pub ";		
+				identityFile = "~/.ssh/server_ided ";		
 		};
 	};
 }
