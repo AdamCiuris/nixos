@@ -42,7 +42,7 @@ in
 		../../system/programs/direnv.nix
 
 		] ++ grimoire;
-	services.xserver.desktopManager.plasma6.enable = true;
+	services.xserver.desktopManager.cinnamon.enable = true;
 	services.xserver.displayManager.lightdm.enable = true;
 	# hardware.system76.enableAll = true;
 	services.system76-scheduler.enable = true;

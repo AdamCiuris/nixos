@@ -122,6 +122,20 @@
                 systemd-boot.enable = false;
                 grub.enable = true;
 		            grub.devices =  ["/dev/vda"] ;
+
+              users ={
+                mutableUsers = true; # let's you change the passwords after btw
+                users= {
+                  nyx = {
+                  openssh = lib.mkForce  {
+                      authorizedKeys.keys = [ 
+                      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILEGYDZwVL7yY5U8idqOJ7laCmr2V/I+QSbvTFkVLSxN nyx@nixos"
+                      ];
+                    };
+                  };
+                };
+              };
+
               };
               swapDevices = lib.mkForce [ ];
               services.system76-scheduler.enable = lib.mkForce false;
