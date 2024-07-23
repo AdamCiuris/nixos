@@ -122,7 +122,7 @@
                 systemd-boot.enable = false;
                 grub.enable = true;
 		            grub.devices =  ["/dev/vda"] ;
-
+              };
               users ={
                 mutableUsers = true; # let's you change the passwords after btw
                 users= {
@@ -133,8 +133,7 @@
                       ];
                     };
                   };
-                };
-              };
+              }; # end users
 
               };
               swapDevices = lib.mkForce [ ];
