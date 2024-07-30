@@ -8,6 +8,8 @@
 		../../system/services/openssh.nix
 		../../system/networking/ports/ssh.nix
 
+		../../system/services/openvpn.nix
+
     ../../hardware-configuration.nix
 
 

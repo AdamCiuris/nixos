@@ -37,6 +37,8 @@ in
 		../../system/virtualization/open-webui.nix
 		../../system/virtualization/portfolio-website.nix
 
+		../../system/services/openvpn.nix
+
 
 		# ./system/.secrets.nix
 		] ++ res ++ grimoire;

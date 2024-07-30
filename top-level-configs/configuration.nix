@@ -16,7 +16,6 @@
 
 		# ../system/.secret.nix
 
-		../system/services/openvpn.nix
 		../system/services/fail2ban.nix
 		../system/services/pipewire.nix
 		../system/services/spice-vdagentd.nix

@@ -30,6 +30,7 @@ in
 		# ../../system/systemd/gunicorn.nix
 		# ../../system/services/nginx.nix
 		../../system/systemd/directories.nix
+		../../system/services/printers.nix
 
 		# ../../system/services/iphone.nix
 		# ../../system/services/nextcloud.nix
@@ -39,28 +40,33 @@ in
 		../../system/networking/ports/allOff.nix
 
 #		../../system/programs/gaming.nix
+		../../system/services/openvpn.nix
+
 		../../system/programs/direnv.nix
 
 		] ++ grimoire;
 	services.xserver.desktopManager.cinnamon.enable = true;
 	services.xserver.displayManager.lightdm.enable = true;
-	# hardware.system76.enableAll = true;
+	hardware.system76.enableAll = true;
 	services.system76-scheduler.enable = true;
 	hardware.system76.firmware-daemon.enable = true;
+
+	networking.enableIPv6 = lib.mkForce false; # ipv4 only pls
+
 	nix = import ../nix/nixOptions.nix { 
 		inherit config pkgs;
 		nixPath = [ # echo $NIX_PATH
 		"nixpkgs=/home/nyx/.nix-defexpr/channels/nixpkgs"
 		"nixos-config=/etc/nixos/top-level-config/variants/dailyDrive.nix"
 		];
-		settings = {
-			substituters = [
-				"cache.sirius.com"
-			];
-			trusted-public-keys = [
-				"cache.sirius.com:aHUH6urBnqoXpmTdAUMT5nwt38iaIn8tdXKW6NH6xUo=%"
-			];
-		};
+		# settings = {
+		# 	substituters = [
+		# 		"cache.sirius.com"
+		# 	];
+		# 	trusted-public-keys = [
+		# 		"cache.sirius.com:aHUH6urBnqoXpmTdAUMT5nwt38iaIn8tdXKW6NH6xUo=%"
+		# 	];
+		# };
 	};
 
 
