@@ -2,14 +2,15 @@
 let 
   webPort = 8081;
   serverPort = 8082;
+  sslPort = 65202;
 in
 {
   virtualisation.oci-containers = {
     backend = "docker"; # Use Docker as the backend
     containers.port-website = {
       image = "ubuntu/nginx";
-      ports = [ "${builtins.toString webPort}:8081" "${builtins.toString serverPort}:8082"];
-      volumes = [ "/etc/nixos/system/virtualization/configs/portfolio-website/:/portfolio-website/" ];
+      ports = [ "${builtins.toString webPort}:${builtins.toString webPort}" "${builtins.toString serverPort}:${builtins.toString serverPort}" "${builtins.toString sslPort}:${builtins.toString sslPort}"];
+      volumes = [ "/home/nyx/portfolio-website:/portfolio-website" ];
       # entrypoint = "/usr/sbin/nginx";
       cmd = ["nginx" "-c" "/portfolio-website/nginx.conf" "-p" "/portfolio-website"];
       extraOptions = [ 
@@ -19,8 +20,9 @@ in
     };
   };
   networking.firewall.allowedTCPPorts = [ 
-    webPort
-    serverPort
+    # webPort
+    # serverPort
+    sslPort
     ];
   # services.nginx.virtualHosts."ciuris.xyz" = {
   #   listen= [
