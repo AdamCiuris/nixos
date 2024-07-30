@@ -10,7 +10,16 @@
   };
 };
 services.printing = {
-  listenAddresses = [ "*:631" ];
+  enable = true;
+  listenAddresses = [ "0.0.0.0:631" ];
+  drivers = with pkgs; [ 
+    gutenprint
+    hplip
+    splix
+    cnijfilter2
+    gutenprint
+    gutenprintBin
+  ];
   allowFrom = [ "all" ];
   browsing = true;
   defaultShared = true;
