@@ -1,3 +1,4 @@
 *.secret.nix
 result
 rules.backup
+flake.lock
