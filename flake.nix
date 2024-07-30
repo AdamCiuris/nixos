@@ -187,6 +187,20 @@
           ];
         };
 
+        "slim" = nixpkgs.lib.nixosSystem { # slightly modifying stuff for qemu/kvm vms
+          system = "x86_64-linux";
+          pkgs = myPkgs.x86_64-linux;
+          specialArgs = { inherit inputs; }; # Pass flake inputs to our config
+          modules =  [
+            ({ pkgs, lib, ... }: { # wtf ????
+              swapDevices = lib.mkForce [ ];
+              environment.variables.NIXOS_FLAKE_CONFIGURATION = "slim";
+            })
+            ./top-level-configs/variants/nothing.nix
+            # home-manager junk
+          ];
+        };
+
 
         "lockdown" = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
