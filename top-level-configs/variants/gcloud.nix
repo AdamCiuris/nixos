@@ -33,7 +33,7 @@ in
 
 
 		# ./system/.secrets.nix
-		] ++ res ++ grimoire;
+		] ++ grimoire;
 
 	nix = import ../nix/nixOptions.nix { 
 		inherit config pkgs;
