@@ -202,29 +202,6 @@
         };
 
 
-        "lockdown" = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          pkgs = myPkgs.x86_64-linux;
-          specialArgs = { inherit inputs; }; # Pass flake inputs to our config
-          modules =  [
-            # > Our main nixos configuration file <zzzzz
-            ./top-level-configs/lockdown.nix
-            # home-manager junk
-            home-manager.nixosModules.home-manager
-            {
-              environment.variables.NIXOS_FLAKE_CONFIGURATION = "lockdown";
-              home-manager.extraSpecialArgs = { inherit inputs; }; # Pass flake input to home-manager
-              home-manager.users = {
-                lock = {
-                  imports = [ ./home-manager/users/lock.nix ];
-                  home.stateVersion="24.05"; 
-                };
-              };
-            }
-          ];
-        };
-
-
         "compclub" = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           pkgs = myPkgs.x86_64-linux;
@@ -260,6 +237,43 @@
             }
           ];
         };
+
+        "gcloud_local" = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          pkgs = myPkgs.x86_64-linux;
+          specialArgs = { inherit inputs; }; # Pass flake inputs to our config
+          modules =  [
+            # > Our main nixos configuration file <
+            ./top-level-configs/variants/gcloud.nix
+        		./hardware-configuration.nix
+            home-manager.nixosModules.home-manager
+            vscode-server.nixosModules.default
+            ({ pkgs, lib, ... }: { 
+                services.vscode-server.enable = true;
+              }
+            )
+            {
+              environment.variables.NIXOS_FLAKE_CONFIGURATION = "gcloud_local";
+              home-manager.extraSpecialArgs = { inherit inputs; }; # Pass flake input to home-manager
+              home-manager.users = {
+                rdp = {
+                  imports = [ ./home-manager/users/rdp.nix ];
+                  home.stateVersion="24.05"; 
+                };
+                nyx = {
+                  imports = [ ./home-manager/users/nyx.nix ];
+                  home.stateVersion="24.05"; 
+                };
+                tunnelThruMe = {
+                  imports = [ ./home-manager/users/tunnelThruMe.nix ];
+                  home.stateVersion="24.05"; 
+                };
+              };
+              home-manager.sharedModules = [ plasma-manager.homeManagerModules.plasma-manager ];
+            }
+          ];
+        };
+
         "gcloud" = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           pkgs = myPkgs.x86_64-linux;
@@ -267,6 +281,7 @@
           modules =  [
             # > Our main nixos configuration file <
             ./top-level-configs/variants/gcloud.nix
+		        <nixpkgs/nixos/modules/virtualisation/google-compute-image.nix>
             home-manager.nixosModules.home-manager
             vscode-server.nixosModules.default
             ({ pkgs, lib, ... }: { 

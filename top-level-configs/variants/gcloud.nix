@@ -1,14 +1,6 @@
 { plasma-manager, config, nixpkgs, pkgs, lib, ... }:
 let
-  gcloudOrNot = false; # TODO figure out condition for this
-  res = if gcloudOrNot 
-  then [ # needs --impure
-		<nixpkgs/nixos/modules/virtualisation/google-compute-image.nix>
-		] 
-  else [
-		../../hardware-configuration.nix
 
-  ];
 	 filterAttrSet = attrSet: pattern:
     lib.attrsets.filterAttrs (name: value: builtins.match pattern value != null ) attrSet;
 	grimoire =  map (a: ../../. +  builtins.toPath "/grimoire/${a}" ) 
@@ -93,7 +85,7 @@ in
 
 	# https://nixos.wiki/wiki/Bluetooth
 	hardware.bluetooth.enable = false;
-
+	
 	users ={
 		mutableUsers = true; # let's you change the passwords after btw
 		users= {
