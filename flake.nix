@@ -91,6 +91,7 @@
             })
 
             ./top-level-configs/variants/dailyDrive.nix
+            ./top-level-configs/boot/bootloader.nix
             # home-manager junk
             home-manager.nixosModules.home-manager
             hardware.nixosModules.system76
@@ -172,6 +173,7 @@
                   
 
             })
+            ./top-level-configs/boot/bootloader.nix
             ./top-level-configs/variants/minimal.nix
             # home-manager junk
             home-manager.nixosModules.home-manager
@@ -196,6 +198,7 @@
               swapDevices = lib.mkForce [ ];
               environment.variables.NIXOS_FLAKE_CONFIGURATION = "slim";
             })
+            ./top-level-configs/boot/bootloader.nix
             ./top-level-configs/variants/nothing.nix
             # home-manager junk
           ];
@@ -208,6 +211,7 @@
           specialArgs = { inherit inputs; }; # Pass flake inputs to our config
           modules =  [
             # > Our main nixos configuration file <
+            ./top-level-configs/boot/bootloader.nix
             ./top-level-configs/club.nix
             home-manager.nixosModules.home-manager
             {
@@ -245,6 +249,7 @@
           modules =  [
             # > Our main nixos configuration file <
             ./top-level-configs/variants/gcloud.nix
+            ./top-level-configs/boot/bootloader.nix
         		./hardware-configuration.nix
             home-manager.nixosModules.home-manager
             vscode-server.nixosModules.default
@@ -281,11 +286,37 @@
           modules =  [
             # > Our main nixos configuration file <
             ./top-level-configs/variants/gcloud.nix
-		        <nixpkgs/nixos/modules/virtualisation/google-compute-image.nix>
+		        <nixpkgs/nixos/modules/virtualisation/google-compute-image.nix> # handles bootloader btw
             home-manager.nixosModules.home-manager
             vscode-server.nixosModules.default
             ({ pkgs, lib, ... }: { 
                 services.vscode-server.enable = true;
+
+
+                users ={
+                    adamciuris = {
+                      isNormalUser = true;
+                      description = "temp user for the gcloud keys";
+                      initialHashedPassword = "$6$7ACOHeLr65U7C1Pb$oNIgMK/8iWH9AbLmhyqlJ.HyUQQst5H7jyV5IGsux4j9X7N/Fwm9Mo8u1ijOmqlGjN5ewEhPt.BsWBt518.Rw1";
+                      shell=pkgs.zsh;
+                      useDefaultShell = true; # should be zsh
+                      extraGroups = [ 
+                        "wheel"
+                        "networkmanager"
+                        
+                         ];
+                      packages = with pkgs; [
+                        zsh
+                      ];
+                      openssh= {
+                        authorizedKeys.keys = [ # dXAgdG8gbm8gZ29vZA==
+                              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDxvzqLskwk2epl9z7P6ai+IVm5TBOWzf/RfZ7afYDq1 nyx@nixos" # ADD THE GCLOUD KEYS HERE
+                          ];
+                      };
+                    };
+                  };
+
+                
               }
             )
             {

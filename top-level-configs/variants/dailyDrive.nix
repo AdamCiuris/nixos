@@ -30,7 +30,7 @@ in
 		# ../../system/systemd/gunicorn.nix
 		# ../../system/services/nginx.nix
 		../../system/systemd/directories.nix
-		../../system/services/printers.nix
+		# ../../system/services/printers.nix
 
 		# ../../system/services/iphone.nix
 		# ../../system/services/nextcloud.nix
