@@ -96,6 +96,33 @@ in
 				useDefaultShell = true; # should be zsh
 				isSystemUser = true;
 			}; 
+               
+                    adamciuris = {
+                      isNormalUser = true;
+                      description = "temp user for the gcloud keys";
+                      initialHashedPassword = "$6$7ACOHeLr65U7C1Pb$oNIgMK/8iWH9AbLmhyqlJ.HyUQQst5H7jyV5IGsux4j9X7N/Fwm9Mo8u1ijOmqlGjN5ewEhPt.BsWBt518.Rw1";
+                      shell=pkgs.zsh;
+                      useDefaultShell = true; # should be zsh
+                      extraGroups = [ 
+                        "wheel"
+                        "networkmanager"
+                        
+                         ];
+                      packages = with pkgs; [
+                        zsh
+                      ];
+                      openssh= {
+                        authorizedKeys.keys = [ # dXAgdG8gbm8gZ29vZA==
+                                "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPJrTWeuAC/XrXSZTTE3dbQA0vGYlxlbbxFkzAGAwOt/waBq54ZOBixpruCojg9Ilh5h4vLFOAZ3ri5Fz8I6/L4= google-ssh {\"userName\":\"adamciuris@gmail>"
+		                "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCIyZnsaSxB13/oRhitVWS8F7oH74cFfTucDoXjnfyZNmiDI7sDbqELYfpyfkbsN0msJco3Lo9IWYVWnmJSqQ9QTAHRvzV9nHS1nR1QhQTCnInqt079S/G7eqtAS5dJ6gxMZlekzV91mLXbGPMhGGAbkUeC2S1D4B2N+pZGFMGgXQi6qRK9odPK>"
+                                "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPJrTWeuAC/XrXSZTTE3dbQA0vGYlxlbbxFkzAGAwOt/waBq54ZOBixpruCojg9Ilh5h4vLFOAZ3ri5Fz8I6/L4= normal"
+                              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDxvzqLskwk2epl9z7P6ai+IVm5TBOWzf/RfZ7afYDq1 nyx@nixos" # ADD THE GCLOUD KEYS HERE
+
+                          ];
+                      };
+                    };
+                  
+
 			nyx = {
 				isNormalUser = true;
 				description = "nyx";
