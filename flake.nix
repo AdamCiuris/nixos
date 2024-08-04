@@ -292,35 +292,9 @@
             ({ pkgs, lib, ... }: { 
                 services.vscode-server.enable = true;
 
-
-                users ={
-                    adamciuris = {
-                      isNormalUser = true;
-                      description = "temp user for the gcloud keys";
-                      initialHashedPassword = "$6$7ACOHeLr65U7C1Pb$oNIgMK/8iWH9AbLmhyqlJ.HyUQQst5H7jyV5IGsux4j9X7N/Fwm9Mo8u1ijOmqlGjN5ewEhPt.BsWBt518.Rw1";
-                      shell=pkgs.zsh;
-                      useDefaultShell = true; # should be zsh
-                      extraGroups = [ 
-                        "wheel"
-                        "networkmanager"
-                        
-                         ];
-                      packages = with pkgs; [
-                        zsh
-                      ];
-                      openssh= {
-                        authorizedKeys.keys = [ # dXAgdG8gbm8gZ29vZA==
-                              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDxvzqLskwk2epl9z7P6ai+IVm5TBOWzf/RfZ7afYDq1 nyx@nixos" # ADD THE GCLOUD KEYS HERE
-                          ];
-                      };
-                    };
-                  };
-
-                
-              }
-            )
-            {
-              environment.variables.NIXOS_FLAKE_CONFIGURATION = "gcloud";
+		})
+{
+	environment.variables.NIXOS_FLAKE_CONFIGURATION = "gcloud";
               home-manager.extraSpecialArgs = { inherit inputs; }; # Pass flake input to home-manager
               home-manager.users = {
                 rdp = {
