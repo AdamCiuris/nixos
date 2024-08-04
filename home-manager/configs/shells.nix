@@ -114,6 +114,10 @@ let
 
 		alias crontab-reboot-test="sudo rm /var/run/crond.reboot && sudo service cron restart"
 		alias code=codium
+		# click kill thing
+		alias xkill="nix-shell -p xorg.xkill --run xkill"
+		alias mkill="nix-shell -p xorg.xkill --run xkill"
+		alias mousekill="nix-shell -p xorg.xkill --run xkill"
 		
 		# END ALIASES
 		'';
