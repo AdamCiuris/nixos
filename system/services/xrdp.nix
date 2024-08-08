@@ -13,8 +13,7 @@
       port = "tcp://:8181";
       # openFirewall=true; # https://c-nergy.be/blog/?p=14965/
     };
-    networking.enableIPv6 = lib.mkForce false; # ipv4 only pls
-
+    networking.enableIPv6 = lib.mkForce true; # ipv4 only pls
     environment.systemPackages = [
       pkgs.xrdp
     ];

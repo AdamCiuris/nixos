@@ -136,14 +136,16 @@ in
 				openssh= {
 					authorizedKeys.keys = [ # dXAgdG8gbm8gZ29vZA==
 					"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCyH6H6NaDVdtc1HIiY0dkpeS9J4PBWYkFbxJF7D7rbT3+Xb0x0ho8clgHWhUb7ohA6dYrniRAx0oB71kN8k+14v/9Q2VR0+QUEpV3VTRVGf/b4BeuS5o+JdkbStEb871yW3JPa4vwTQwmImI590QE1lOPO7CEgsTF9OV8wJjGZXoZizWLmx118sZRMN/fDh6RRfLIzEa/ZyIc+UnV+iH5IBvs4Pi4pQ6HXyCs749iIEiF3S0CT/N7R+70nJ96QZ6SBJFAT6vFinMZsBA0STls1kMRhROo3GHdGf7Uu9RdSNp5nsrDqcMhAHxymmfjZuiyy7Es3rmpLHYh2fCox43zwhC8B6P9Q3NxUm0IIbBowe4E0Ql+Ph8s6f1h6vDtjN69ZK5n+0TvSJaYmKEVhV1kAf30IMSH9gIFsvdUFg/krZbv6AAuk7h07LKlHr+wPzQjoeuTakFW/maLgP/zjvMiyWaujlB11EIcR7NhgtBu8VCJ0ZRglf0Vhz5E8FAYygiE= user@programming-ssh"
-								"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBXPRdUZHO30s+fiHC4HQjVFF2ok3Vh/l4S2SXBdbnXE nyx@nixos"
+					"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBXPRdUZHO30s+fiHC4HQjVFF2ok3Vh/l4S2SXBdbnXE nyx@nixos"
+					"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCqSK7xVD6izqG57PqKJkfeijKzyrptcQ1rbIB4LsMThDZ28DHo2BAW2LSytpJ5insPe9GmqSNAYYCCELOm9XBF4Kg0bnic7eYpCk+Rx7erZ6fHaL+wP+z5Ma9sQnY6u1E0+paNkVIzxbPWF89vuVjCUDyvJkuW86ce7JWbjJVqdCegvFlBAVn4U4y29WTHMTdltejKfTCeiDg2Lov62g6CwJP2IL7a8Ft5C69v3PBVZ9+qQV1BHmCpdU1NJcy1shoMMBh6j0HwynIx1WvmFptx9g7FEi24bb7VyN2f2zK3kAPdbdsLdWJK7FCWPkhFDaJNBbQdto5WlVnwY48UwIq3WnnpWO5I9cAKuA93bs9RirxtmOf+ZW9XHVCqLX3vzy2YTxtAs8i0iCtTRhn95u4C7cgXZXO90CMKZUieYkz0wuP3rQpsCjFIaL1UvwpyfJWulligVPx5vxu0QBRU/y/5wZ+Rb5wvPGlN24mquun6enil3RWH9P7VZrKsWOCPTzc= user@microsoft-vscode"
+
 						];
 				};
 			};
 				tunnelThruMe = {
 				isNormalUser = true;
 				description = "rdp through ssh tunnel tunnel";
-				initialHashedPassword = "$6$ImaOHGRpSLuFOUpF$cPhDbahxmy35ohvYwZIK5BX4o5gvVCeeiOCAaYDCvPPf9geikS.Agw2lCxqoZjHsHS6W/6ksxaplRh2evS1x8.";
+				initialHashedPassword = "$6$CgZ.OzBqrEBHF7gq$XljHcAHZr8kNV85oFy.6/qJ/Kqly9SOOqrqrWe2EnPkYXwQ6wf4tALbSTzDEuWzEJPhuhWheI3f7mCJJNI5Zg.";
 				shell=pkgs.zsh;
 				useDefaultShell = true; # should be zsh
 				extraGroups = [ "wheel" ];
@@ -152,6 +154,8 @@ in
 				];
 				openssh= {
 					authorizedKeys.keys = [ 
+''ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC250vb0xEojVmw9Z7MENQqBp8yn2VosnYxx/K6kuC0dWIB40cyOtLdS0FON+pbgcZ556RsA6H07p1MKNNu7OZj9ecLk7xAp6a5jj5cU4YDBR8UZu3zoaWZWByKC8KH6HSi4a+FMnyARVJRVTvFHCKD/HgQzBlMVsO4OxuoDV49XbdyuqHy6M8WL//Cl5LeJnAz444SX66uy78w/ZtyEdJz3+23G8ROE9dcochBUpASixNZH5Db0cVk7WdMJUheWGE1rIBwMG7bQPJhySDI7ezj5L874Aw4XTkAyMGKpq1kWSZEy2+EfBl7uL3wrgCVX5j6r2SevtxnkAah6qp0nC4JkmHFDejYWL8sEJqwpXLofAXVQbPn9eStyrZOCp0t2iNVzD+nCCboYB99FA7aBRwbCyF8DmOAXV/x/ih6lBNjfekYB7OhNoW9X/1pEZK3tGtbCLmjmEpx7F6vfjMoX36yn93ZJb3mOvJ+W4EX+ZsYXMpW33EmkYZgmBX/VP0rFlk= user@programming-ssh''
+
 						"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP46ikaAUHSjoEB2j/Q0ayebAYgAl5GLkOU3fiKXZsPT nyx@nixos"
 						];
 				};
@@ -159,7 +163,7 @@ in
 			rdp = {
 				isNormalUser = true;
 				description = "rdp";
-				initialHashedPassword = "$6$/uc.82fRtaRDvGGn$n7jEQHRys.AnSha6WJQpu68JkN7JV7ODrQoMT/IX8uaZjf3oa8izOA8MFQl2jGouBxBUpbJpMqPWfM9j6YBHi/";
+				initialHashedPassword = "$6$dTbGWscJfVsamD2q$RsfcFV/eElGmaqh3LYbyH21Un1ni4Zl/BfrIThEt1do9V5idylN300zGtP8m.NY4pDhhy2MF45Xta3SCIw4g9.";
 				shell=pkgs.zsh;
 				useDefaultShell = true; # should be zsh
 				extraGroups = [ "wheel" ];
