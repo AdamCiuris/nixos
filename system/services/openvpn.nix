@@ -19,17 +19,17 @@ in
 # fi
 # '';
 
-      down= ''
-iptables-save > /tmp/iptablesbkup  
-iptables -F
-ip6tables -F
-iptables -A INPUT -j REJECT
-iptables -A OUTPUT -j REJECT
-iptables -A FORWARD -j REJECT
-ip6tables -A INPUT -j REJECT
-ip6tables -A OUTPUT -j REJECT
-ip6tables -A FORWARD -j REJECT
-'';
+#       down= ''
+# iptables-save > /tmp/iptablesbkup  
+# iptables -F
+# ip6tables -F
+# iptables -A INPUT -j REJECT
+# iptables -A OUTPUT -j REJECT
+# iptables -A FORWARD -j REJECT
+# ip6tables -A INPUT -j REJECT
+# ip6tables -A OUTPUT -j REJECT
+# ip6tables -A FORWARD -j REJECT
+# '';
     };
 
   };
