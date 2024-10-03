@@ -21,16 +21,17 @@ in
 		../../system/services/openssh.nix
 		../../system/networking/ports/ssh.nix
 
-		../../system/systemd/gunicorn.nix
-		../../system/services/nginx.nix
-		../../system/services/binary-cache.nix
-		../../system/services/ollama.nix
+		# ../../system/systemd/gunicorn.nix
+		# ../../system/services/nginx.nix
+		# ../../system/services/binary-cache.nix
+		# ../../system/services/ollama.nix
 
-		../../system/virtualization/open-webui.nix
-		../../system/virtualization/portfolio-website.nix
+		# ../../system/virtualization/open-webui.nix
+		# ../../system/virtualization/portfolio-website.nix
 
 		../../system/services/openvpn.nix
 
+		../../grimoire/special.nix
 
 		# ./system/.secrets.nix
 		] ++ grimoire;
