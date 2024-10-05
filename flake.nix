@@ -5,6 +5,7 @@
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     hardware.url = "github:nixos/nixos-hardware";
 
     # nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # https://github.com/NixOS/nixos-hardware
@@ -42,7 +43,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, hardware, lanzaboote, vscode-server, home-manager, plasma-manager, nixos-generators, flake-utils, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, hardware, lanzaboote, vscode-server, home-manager, plasma-manager, nixos-generators, flake-utils, ... }@inputs:
     let
       forAllSystems = nixpkgs.lib.genAttrs [
         "x86_64-linux"
@@ -57,6 +58,12 @@
           # NOTE: Using `nixpkgs.config` in your NixOS config won't work
           # Instead, you should set nixpkgs configs here
           # (https://nixos.org/manual/nixpkgs/stable/#idm140737322551056)
+          config.allowUnfree = true;
+        }
+      );
+      myPkgsUnstable = forAllSystems (system:
+        import inputs.nixpkgs-unstable {
+          inherit system;
           config.allowUnfree = true;
         }
       );
@@ -245,7 +252,10 @@
         "gcloud_local" = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           pkgs = myPkgs.x86_64-linux;
-          specialArgs = { inherit inputs; }; # Pass flake inputs to our config
+          specialArgs = { 
+            pkgs-unstable = myPkgsUnstable.x86_64-linux;
+            inherit inputs;
+            }; # Pass flake inputs to our config
           modules =  [
             # > Our main nixos configuration file <
             ./top-level-configs/variants/gcloud.nix
