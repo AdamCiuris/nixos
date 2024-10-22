@@ -101,7 +101,7 @@ in
                     adamciuris = {
                       isNormalUser = true;
                       description = "temp user for the gcloud keys";
-                      initialHashedPassword = "$6$7ACOHeLr65U7C1Pb$oNIgMK/8iWH9AbLmhyqlJ.HyUQQst5H7jyV5IGsux4j9X7N/Fwm9Mo8u1ijOmqlGjN5ewEhPt.BsWBt518.Rw1";
+                      initialHashedPassword = "$6$y6FJ9Vy/omqOO2JC$wSx5femKQR1tMWNJ39b8R4sqMwKNNpoYp8lJ/8sRRziOHSOkGM8IC6KJSIjFDTDlRFXOSnLxan8xmAFxK05cv.";
                       shell=pkgs.zsh;
                       useDefaultShell = true; # should be zsh
                       extraGroups = [ 
