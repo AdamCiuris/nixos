@@ -97,7 +97,7 @@ in
 				useDefaultShell = true; # should be zsh
 				isSystemUser = true;
 			}; 
-               
+               # git clone -c "core.sshCommand=ssh -i ~/.ssh/id_rsa_work" git@github.com:corporateA/webapp.git
                     adamciuris = {
                       isNormalUser = true;
                       description = "temp user for the gcloud keys";
@@ -118,6 +118,8 @@ in
 		                "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCIyZnsaSxB13/oRhitVWS8F7oH74cFfTucDoXjnfyZNmiDI7sDbqELYfpyfkbsN0msJco3Lo9IWYVWnmJSqQ9QTAHRvzV9nHS1nR1QhQTCnInqt079S/G7eqtAS5dJ6gxMZlekzV91mLXbGPMhGGAbkUeC2S1D4B2N+pZGFMGgXQi6qRK9odPK>"
                                 "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPJrTWeuAC/XrXSZTTE3dbQA0vGYlxlbbxFkzAGAwOt/waBq54ZOBixpruCojg9Ilh5h4vLFOAZ3ri5Fz8I6/L4= normal"
                               "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDxvzqLskwk2epl9z7P6ai+IVm5TBOWzf/RfZ7afYDq1 nyx@nixos" # ADD THE GCLOUD KEYS HERE
+							  "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBIJBohNozBVSdLj+7dbIKEYwaOpgOHoCT3hVgw8VjA18qT0TO2JbDTcShMm8yQ+9nnvwk30iss+6t44NKDz/BSo= google-ssh {\"userName\":\"adamciuris@gmail.com\",\"expireOn\":\"2024-10-22T17:15:05+0000\"}"
+							  "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCEAOijppRyMT0dyfQtyG692RzI4mcbV9bE5U7pzSCPq6ZzG2oJC4f7MibR7Soqu4olr2sIbgYQlCuIHKYG/wen/s4Hv7ckuxJGwZ2oO84D5cnTpFq4YUYr5uy3GuIx+iV0KVdCpKoxsbE++v8zSZfdxiToV/J8FEeLH+doVCuJbR5jNIU7jsmfC+uiu/SlFrhhcPXJ0hmmMwm1FSYXlymd3oA1rKwKbfvmyFjdDUBZ+vmeZE9EQrsku0hh5OKGgJ/5gR0BpCzUb94oAXDVSsjPLLEsW6QBv2iI+mN2gdom3UAVRfiU6wloAhLeA7bnWa2hWaNm8zUgqLApA/3BNypV google-ssh {\"userName\":\"adamciuris@gmail.com\",\"expireOn\":\"2024-10-22T17:15:11+0000\"}"
 
                           ];
                       };
