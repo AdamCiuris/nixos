@@ -34,7 +34,7 @@ in
 		../../grimoire/special.nix
 
 		# ./system/.secrets.nix
-		] ++ grimoire;
+		] ;
 
 	nix = import ../nix/nixOptions.nix { 
 		inherit config pkgs;
@@ -114,13 +114,11 @@ in
                       ];
                       openssh= {
                         authorizedKeys.keys = [ # dXAgdG8gbm8gZ29vZA==
-                                "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPJrTWeuAC/XrXSZTTE3dbQA0vGYlxlbbxFkzAGAwOt/waBq54ZOBixpruCojg9Ilh5h4vLFOAZ3ri5Fz8I6/L4= google-ssh {\"userName\":\"adamciuris@gmail>"
-		                "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCIyZnsaSxB13/oRhitVWS8F7oH74cFfTucDoXjnfyZNmiDI7sDbqELYfpyfkbsN0msJco3Lo9IWYVWnmJSqQ9QTAHRvzV9nHS1nR1QhQTCnInqt079S/G7eqtAS5dJ6gxMZlekzV91mLXbGPMhGGAbkUeC2S1D4B2N+pZGFMGgXQi6qRK9odPK>"
-                                "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPJrTWeuAC/XrXSZTTE3dbQA0vGYlxlbbxFkzAGAwOt/waBq54ZOBixpruCojg9Ilh5h4vLFOAZ3ri5Fz8I6/L4= normal"
-                              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDxvzqLskwk2epl9z7P6ai+IVm5TBOWzf/RfZ7afYDq1 nyx@nixos" # ADD THE GCLOUD KEYS HERE
-							  "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBIJBohNozBVSdLj+7dbIKEYwaOpgOHoCT3hVgw8VjA18qT0TO2JbDTcShMm8yQ+9nnvwk30iss+6t44NKDz/BSo= google-ssh {\"userName\":\"adamciuris@gmail.com\",\"expireOn\":\"2024-10-22T17:15:05+0000\"}"
-							  "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCEAOijppRyMT0dyfQtyG692RzI4mcbV9bE5U7pzSCPq6ZzG2oJC4f7MibR7Soqu4olr2sIbgYQlCuIHKYG/wen/s4Hv7ckuxJGwZ2oO84D5cnTpFq4YUYr5uy3GuIx+iV0KVdCpKoxsbE++v8zSZfdxiToV/J8FEeLH+doVCuJbR5jNIU7jsmfC+uiu/SlFrhhcPXJ0hmmMwm1FSYXlymd3oA1rKwKbfvmyFjdDUBZ+vmeZE9EQrsku0hh5OKGgJ/5gR0BpCzUb94oAXDVSsjPLLEsW6QBv2iI+mN2gdom3UAVRfiU6wloAhLeA7bnWa2hWaNm8zUgqLApA/3BNypV google-ssh {\"userName\":\"adamciuris@gmail.com\",\"expireOn\":\"2024-10-22T17:15:11+0000\"}"
-
+							"ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBGB5yep7uuNJHD+dzQvO9HvTO8lklNCYO9KR0sQRGlXiRoyn+NCSCy9Nv2881iteb9ZVAGLt62YkVu/wcy1yIu8= google-ssh {\"userName\":\"adamciuris@gmail.com\",\"expireOn\":\"2024-10-22T19:29:16+0000\"}"
+							"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCfWMu/mh0IpHrQcirTqKssse3l9aBVGbbBamIlmlxz1jgbfMQ9Z28azFj9XMmfZ7nLv5qMSnAQFiJLzcjD0rLayNPq/ATEzb12ZQBxE6/bGTP4CV2gYO+myKLNl1g8aL983gR6yS0ird22fKIHlhugbOIq6RSCnny7kHLHkcKW1R5UIR94tPLVPu1i1ptG26ceIwMQaTOjemZYb31VIhUFo+1xwKFjO4//f873WZiypJc/Ba3g5ublymLLkPNLnscaAJLS7ecK9ED3BHkGEpfb8glRWNvMV+3OV84BtOP569zJxIecBh1zF2xUBqW48kS9jvzCKkY84avHnG1D4FuL google-ssh {\"userName\":\"adamciuris@gmail.com\",\"expireOn\":\"2024-10-22T19:29:21+0000\"}"
+							"ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBIxmlethQhvy9oRyWDlGPEYO2phtlCDzFaJlwstX239e4D5GeNE+lqqx4BIgmbhKwCGd3Q76iz6ZohrRZTCbz88= google-ssh {\"userName\":\"adamciuris@gmail.com\",\"expireOn\":\"2024-10-22T19:32:07+0000\"}"
+							"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC8wZJ1X+p80bqugSY9Pe2fZ/eZWgA7G/gU1ZUX24WYcTqSak58U5vv+0Q4+medzQLCbgu79opuWJwZJnr+vncH4K8okTsoVJhEhDb8X89iiI0auLWc3LXF+HFx0f/jSZV3Rl+BRHmsmX9kebs5gDOO8T+nqoYiD1x/hmb5MBCaUz3E7cGN4vrpa3D8MOG2LBC4etCeCzKq6Yy1+8JslAUT1bG3h+JWAGWgjCaXweMVVY1jvk6GGm28XyOdxOjHFKJqMa4LFrqBkqYaBrGT9W28KGZ1Yh1rT/L4222jXsbAQ5ao5Ax2UX0xcXtWSJhI+9YkRfCNiacKU7iiGGzlpVBb google-ssh {\"userName\":\"adamciuris@gmail.com\",\"expireOn\":\"2024-10-22T19:32:12+0000\"}"
+							
                           ];
                       };
                     };
@@ -138,10 +136,8 @@ in
 				];
 				openssh= {
 					authorizedKeys.keys = [ # dXAgdG8gbm8gZ29vZA==
-					"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCyH6H6NaDVdtc1HIiY0dkpeS9J4PBWYkFbxJF7D7rbT3+Xb0x0ho8clgHWhUb7ohA6dYrniRAx0oB71kN8k+14v/9Q2VR0+QUEpV3VTRVGf/b4BeuS5o+JdkbStEb871yW3JPa4vwTQwmImI590QE1lOPO7CEgsTF9OV8wJjGZXoZizWLmx118sZRMN/fDh6RRfLIzEa/ZyIc+UnV+iH5IBvs4Pi4pQ6HXyCs749iIEiF3S0CT/N7R+70nJ96QZ6SBJFAT6vFinMZsBA0STls1kMRhROo3GHdGf7Uu9RdSNp5nsrDqcMhAHxymmfjZuiyy7Es3rmpLHYh2fCox43zwhC8B6P9Q3NxUm0IIbBowe4E0Ql+Ph8s6f1h6vDtjN69ZK5n+0TvSJaYmKEVhV1kAf30IMSH9gIFsvdUFg/krZbv6AAuk7h07LKlHr+wPzQjoeuTakFW/maLgP/zjvMiyWaujlB11EIcR7NhgtBu8VCJ0ZRglf0Vhz5E8FAYygiE= user@programming-ssh"
-					"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBXPRdUZHO30s+fiHC4HQjVFF2ok3Vh/l4S2SXBdbnXE nyx@nixos"
 					"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCqSK7xVD6izqG57PqKJkfeijKzyrptcQ1rbIB4LsMThDZ28DHo2BAW2LSytpJ5insPe9GmqSNAYYCCELOm9XBF4Kg0bnic7eYpCk+Rx7erZ6fHaL+wP+z5Ma9sQnY6u1E0+paNkVIzxbPWF89vuVjCUDyvJkuW86ce7JWbjJVqdCegvFlBAVn4U4y29WTHMTdltejKfTCeiDg2Lov62g6CwJP2IL7a8Ft5C69v3PBVZ9+qQV1BHmCpdU1NJcy1shoMMBh6j0HwynIx1WvmFptx9g7FEi24bb7VyN2f2zK3kAPdbdsLdWJK7FCWPkhFDaJNBbQdto5WlVnwY48UwIq3WnnpWO5I9cAKuA93bs9RirxtmOf+ZW9XHVCqLX3vzy2YTxtAs8i0iCtTRhn95u4C7cgXZXO90CMKZUieYkz0wuP3rQpsCjFIaL1UvwpyfJWulligVPx5vxu0QBRU/y/5wZ+Rb5wvPGlN24mquun6enil3RWH9P7VZrKsWOCPTzc= user@microsoft-vscode"
-
+					"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF7fzeXgtSSbsO67Ma41zvuTEzYuWRSVhXF+Rx6wa0Oj user@vscode"
 						];
 				};
 			};
