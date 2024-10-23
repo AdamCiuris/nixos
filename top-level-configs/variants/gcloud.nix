@@ -136,6 +136,10 @@ in
 				];
 				openssh= {
 					authorizedKeys.keys = [ # dXAgdG8gbm8gZ29vZA==
+					# below key is stored on google drive encrypted
+					## do not delete below ever
+					"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICaDIunsw1zzuUYs/kYlLGksYw/sbdtLXH+aP5n49scN user@host"
+					## do not delete above ever
 					"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCqSK7xVD6izqG57PqKJkfeijKzyrptcQ1rbIB4LsMThDZ28DHo2BAW2LSytpJ5insPe9GmqSNAYYCCELOm9XBF4Kg0bnic7eYpCk+Rx7erZ6fHaL+wP+z5Ma9sQnY6u1E0+paNkVIzxbPWF89vuVjCUDyvJkuW86ce7JWbjJVqdCegvFlBAVn4U4y29WTHMTdltejKfTCeiDg2Lov62g6CwJP2IL7a8Ft5C69v3PBVZ9+qQV1BHmCpdU1NJcy1shoMMBh6j0HwynIx1WvmFptx9g7FEi24bb7VyN2f2zK3kAPdbdsLdWJK7FCWPkhFDaJNBbQdto5WlVnwY48UwIq3WnnpWO5I9cAKuA93bs9RirxtmOf+ZW9XHVCqLX3vzy2YTxtAs8i0iCtTRhn95u4C7cgXZXO90CMKZUieYkz0wuP3rQpsCjFIaL1UvwpyfJWulligVPx5vxu0QBRU/y/5wZ+Rb5wvPGlN24mquun6enil3RWH9P7VZrKsWOCPTzc= user@microsoft-vscode"
 					"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF7fzeXgtSSbsO67Ma41zvuTEzYuWRSVhXF+Rx6wa0Oj user@vscode"
 						];
