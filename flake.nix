@@ -292,7 +292,10 @@
         "gcloud" = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           pkgs = myPkgs.x86_64-linux;
-          specialArgs = { inherit inputs; }; # Pass flake inputs to our config
+          specialArgs = { 
+            pkgs-unstable = myPkgsUnstable.x86_64-linux;
+            inherit inputs;
+            }; # Pass flake inputs to our config# Pass flake inputs to our config
           modules =  [
             # > Our main nixos configuration file <
             ./top-level-configs/variants/gcloud.nix
