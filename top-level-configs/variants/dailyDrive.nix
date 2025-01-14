@@ -33,8 +33,8 @@ in
 
 		../../system/networking/ports/allOff.nix
 
-#		../../system/programs/gaming.nix
-		../../system/services/openvpn.nix
+		# ../../system/programs/gaming.nix
+		# ../../system/services/openvpn.nix
 
 		../../system/programs/direnv.nix
 

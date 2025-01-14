@@ -32,12 +32,12 @@ in
 		stateVersion = "24.05";
 	};
 	home.file = { # starts at ~/.config
-		".config/autostart/virt-manager.desktop".source = "${pkgs.virt-manager}/share/applications/virt-manager.desktop";
+		# ".config/autostart/virt-manager.desktop".source = "${pkgs.virt-manager}/share/applications/virt-manager.desktop";
 		# horrible startup javascript apps
 		".config/autostart/brave-browser.desktop".source = "${pkgs.brave}/share/applications/brave-browser.desktop";
-		".config/autostart/firefox.desktop".source = "${pkgs.firefox}/share/applications/firefox.desktop";
+		# ".config/autostart/firefox.desktop".source = "${pkgs.firefox}/share/applications/firefox.desktop";
 		# ".config/autostart/codium.desktop".source = "${pkgs.vscode}/share/applications/codium.desktop";# TODO figure out how to git pkgs.vscodium or pkgs.vscode to point to right place
-		".config/autostart/thunderbird.desktop".source = "${pkgs.thunderbird}/share/applications/thunderbird.desktop";
+		# ".config/autostart/thunderbird.desktop".source = "${pkgs.thunderbird}/share/applications/thunderbird.desktop";
 	};
 	home.packages = with pkgs; [
 		protonup # steam compatibility tools, must be run imperatively with `protonup` in cmd prompt
