@@ -129,7 +129,7 @@
               boot.loader  = lib.mkForce {
                 systemd-boot.enable = false;
                 grub.enable = true;
-		            grub.devices =  ["/dev/vda"] ;
+		            grub.devices =  ["/dev/xvda"] ;
               };
               users ={
                 mutableUsers = true; # let's you change the passwords after btw

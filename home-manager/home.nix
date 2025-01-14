@@ -32,7 +32,6 @@ in
 		vlc # video player
 		nix-index # for nix search
 		xdg-utils # xdg-open
-		qbittorrent # torrent client
 		libreoffice # office suite
 		xclip # cat into clipboard with xclip -sel clip < file
 		(pkgs.nerdfonts.override { fonts=["DroidSansMono" ]; }) # for vscode
