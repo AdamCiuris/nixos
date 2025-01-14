@@ -36,4 +36,4 @@ sudo systemctl stop docker-port-website.service
 sudo docker stop $(sudo docker ps -a -q)
 sudo docker system prune --all
 # sudo docker volumes rm $(sudo docker ps -a -q)
-sudo nixos-rebuild --show-trace  switch --flake ./#$1
+sudo nixos-rebuild --show-trace  switch --flake $nixosConfigPath/#$1
