@@ -38,7 +38,7 @@ in
 
 		../../system/programs/direnv.nix
 
-		] ++ grimoire;
+		] ;
 	services.xserver.desktopManager.cinnamon.enable = true;
 	services.xserver.displayManager.lightdm.enable = true;
 	hardware.system76.enableAll = true;
