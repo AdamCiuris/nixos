@@ -1,0 +1,14 @@
+# adds a resolution to cinnamin 
+# will round the given resolution sometimes
+set -e # stop if fail
+# nix-shell --pure -p xorg.libxcvt # grants access to cvt, --pure doesn't use custom login scripts for bash
+width=$1
+height=$2
+insertThis=$(awk -F'"' '{print $3}' <<< $(nix-shell --pure -p xorg.libxcvt --command "cvt $width $height"))  # extract the stuff for xrandr
+echo $insertThis
+monitorName=$( awk 'END{print $NF}'  <<< $(xrandr --listmonitors))  # extract the monitor name
+echo $monitorName
+xrandr --newmode $width"x"$height  $insertThis # add the mode
+xrandr --addmode $monitorName $width"x"$height
+xrandr --output $monitorName --mode $width"x"$height
+echo "Success!"
