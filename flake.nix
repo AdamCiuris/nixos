@@ -4,7 +4,7 @@
 
   inputs = {
     # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     hardware.url = "github:nixos/nixos-hardware";
 
@@ -13,7 +13,7 @@
 
     # Home manager
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.05";
+      url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-generators = {
@@ -90,10 +90,10 @@
                 pkgs.sbctl # secure boot control
               ];
               boot.loader.systemd-boot.enable = lib.mkForce false; # highest prio
-              boot.lanzaboote = {
-                enable = true;
-                pkiBundle = "/etc/secureboot";
-              };
+              # boot.lanzaboote = {
+              #   enable = true;
+              #   pkiBundle = "/etc/secureboot";
+              # };
               environment.variables.NIXOS_FLAKE_CONFIGURATION = "nixos";
             })
 
@@ -109,11 +109,11 @@
               home-manager.users = {
                 nyx = {
                   imports = [ ./home-manager/users/nyx.nix ];
-                  home.stateVersion="24.05"; 
+                  home.stateVersion="24.11"; 
                 };
                 bael = {
                   imports = [ ./home-manager/users/bael.nix ];
-                  home.stateVersion="24.05"; 
+                  home.stateVersion="24.11"; 
                 };
               };
             }
@@ -125,7 +125,25 @@
           pkgs = myPkgs.x86_64-linux;
           specialArgs = { inherit inputs; }; # Pass flake inputs to our config
           modules =  [
-            ({ pkgs, lib, ... }: { # wtf ????
+            ({ pkgs, lib, fetchFromGitHub, ... }: { # wtf ????
+              # environment.systemPackages = [
+              #   pkgs.qubes-core-vchan-xen
+              # ];
+            # system.virtuali
+              # environment.systemPackages = [
+              #   pkgs.xen
+              # #  ( pkgs.qubes-core-vchan-xen.overrideDerivation (oldAttrs: {
+              # #       pname = "qubes-core-vchan-xen";
+              # #       version = "4.2.6";
+              # #       src = fetchFromGitHub {
+              # #           owner = "QubesOS";
+              # #           repo ="qubes-core-vchan-xen";
+              # #           rev = "v4.2.6";
+              # #           hash = "sha256:02l1vs5c2jfw22gxvl2fb66AAAAAn8ya1i7rphsb5cxsljvxary0";
+              # #       };
+              # #   }))
+                
+              # ];
               boot.loader  = lib.mkForce {
                 systemd-boot.enable = false;
                 grub.enable = true;
@@ -162,7 +180,7 @@
               home-manager.users = {
                 nyx = {
                   imports = [ ./home-manager/users/nyx.nix ];
-                  home.stateVersion="24.05";
+                  home.stateVersion="24.11";
                 };
               };
             }
@@ -189,7 +207,7 @@
               home-manager.users = {
                 nyx = {
                   imports = [ ./home-manager/users/nyx.nix ];
-                  home.stateVersion="24.05";
+                  home.stateVersion="24.11";
                 };
               };
             }
@@ -227,19 +245,19 @@
               home-manager.users = {
                 rdp = {
                   imports = [ ./home-manager/users/rdp.nix ];
-                  home.stateVersion="24.05"; 
+                  home.stateVersion="24.11"; 
                 };
                 teach = {
                   imports = [ ./home-manager/users/teach.nix ];
-                  home.stateVersion="24.05"; 
+                  home.stateVersion="24.11"; 
                 };
                 tunnelThruMe = {
                   imports = [ ./home-manager/users/tunnelThruMe.nix ];
-                  home.stateVersion="24.05"; 
+                  home.stateVersion="24.11"; 
                 };
                 chi = {
                   imports = [ ./home-manager/users/clubMember.nix ];
-                  home.stateVersion="24.05"; 
+                  home.stateVersion="24.11"; 
                 };
               };
               home-manager.useUserPackages = true;
@@ -273,15 +291,15 @@
               home-manager.users = {
                 rdp = {
                   imports = [ ./home-manager/users/rdp.nix ];
-                  home.stateVersion="24.05"; 
+                  home.stateVersion="24.11"; 
                 };
                 nyx = {
                   imports = [ ./home-manager/users/nyx.nix ];
-                  home.stateVersion="24.05"; 
+                  home.stateVersion="24.11"; 
                 };
                 tunnelThruMe = {
                   imports = [ ./home-manager/users/tunnelThruMe.nix ];
-                  home.stateVersion="24.05"; 
+                  home.stateVersion="24.11"; 
                 };
               };
               home-manager.sharedModules = [ plasma-manager.homeManagerModules.plasma-manager ];
@@ -312,15 +330,15 @@
               home-manager.users = {
                 rdp = {
                   imports = [ ./home-manager/users/rdp.nix ];
-                  home.stateVersion="24.05"; 
+                  home.stateVersion="24.11"; 
                 };
                 nyx = {
                   imports = [ ./home-manager/users/nyx.nix ];
-                  home.stateVersion="24.05"; 
+                  home.stateVersion="24.11"; 
                 };
                 tunnelThruMe = {
                   imports = [ ./home-manager/users/tunnelThruMe.nix ];
-                  home.stateVersion="24.05"; 
+                  home.stateVersion="24.11"; 
                 };
               };
               home-manager.sharedModules = [ plasma-manager.homeManagerModules.plasma-manager ];

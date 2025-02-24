@@ -1,6 +1,6 @@
 {	config,lib, pkgs,... }:
 let
-	amIstandalone = if ./.  != /etc/nixos/home-manager then true else false; # :l <nixpkgs/nixos>
+	amIstandalone =  false; # :l <nixpkgs/nixos>
 in
 {
 

@@ -17,7 +17,7 @@
 	home ={
 		username = "rdp";
 		homeDirectory = "/home/rdp";
-		stateVersion = "24.05";
+		stateVersion = "24.11";
 	};
 
 

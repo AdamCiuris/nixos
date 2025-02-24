@@ -46,7 +46,6 @@
 
 	# Enable CUPS to print documents.
 
-	sound.enable = true; # Whether to enable ALSA sound
 	
 	security.rtkit.enable = true;
 
@@ -68,11 +67,10 @@
 		nano # text editor
 		nginx # web server
 		baobab # disk usage analyzer
-		psensor # fan speed and temperature monitor
 		nmap # network scanner
 	];
 	
 	# Before changing this value read the documentation for this option
 	# (e.g. man configuration.ngix or on https://nixos.org/nixos/options.html).
-	system.stateVersion = "24.05"; # Did you read the comment?
+	system.stateVersion = "24.11"; # Did you read the comment?
 }
