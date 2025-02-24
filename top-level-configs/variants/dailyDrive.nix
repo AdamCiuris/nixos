@@ -23,7 +23,8 @@ in
 		../../system/virtualization/portfolio-website.nix
 		# ../../system/systemd/gunicorn.nix
 		# ../../system/services/nginx.nix
-		../../system/systemd/directories.nix
+		# ../../system/systemd/directories.nix
+		../../system/systemd/mullvad-browser.nix
 		# ../../system/services/printers.nix
 
 		# ../../system/services/iphone.nix
@@ -33,6 +34,7 @@ in
 
 		../../system/networking/ports/allOff.nix
 
+		# ./renderdoc.nix
 		# ../../system/programs/gaming.nix
 		# ../../system/services/openvpn.nix
 
