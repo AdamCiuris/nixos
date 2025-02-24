@@ -15,7 +15,7 @@ let
 		# BEGIN XDG_DATA_DIRS CHECK
 		# used to add .desktop files to xdg-mime from nix profile if dne
 		# TODO figure out why this gets entered every home-manager switch
-		local xdgCheck="$HOME/.nix_profile/share/applications"
+		xdgCheck="$HOME/.nix_profile/share/applications"
 		if  [[ ":$XDG_DATA_DIRS:" != *":$xdgCheck:"* ]] ; then
 			export XDG_DATA_DIRS="$xdgCheck${":$XDG_DATA_DIRS"}"
 		fi	
