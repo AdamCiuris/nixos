@@ -123,10 +123,11 @@ in
 			shd101wyy.markdown-preview-enhanced
 			ms-toolsai.jupyter
 			github.copilot-chat
+			github.copilot
 			
 		]) ++ [ #  "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
 			(ext "Nix" "bbenoist" "1.0.1" "sha256-qwxqOGublQeVP2qrLF94ndX/Be9oZOn+ZMCFX1yyoH0=") # https://marketplace.visualstudio.com/items?itemName=bbenoist.Nix
-			(ext "copilot" "GitHub"  "1.276.1398" "sha256-3ge/JMyzalCgTuOPQPWCrqZMeH0IQRCT+tleg/6mc5A=") # https://marketplace.visualstudio.com/items?itemName=GitHub.copilot
+			# (ext "copilot" "GitHub"  "1.276.1398" "sha256-3ge/JMyzalCgTuOPQPWCrqZMeH0IQRCT+tleg/6mc5A=") # https://marketplace.visualstudio.com/items?itemName=GitHub.copilot
 			(ext  "bash-debug" "rogalmic" "0.3.9" "sha256-f8FUZCvz/PonqQP9RCNbyQLZPnN5Oce0Eezm/hD19Fg=") # https://marketplace.visualstudio.com/items?itemName=rogalmic.bash-debug
 			(ext "nix-ide" "jnoortheen" "0.3.1" "sha256-05oMDHvFM/dTXB6T3rcDK3EiNG2T0tBN9Au9b+Bk7rI=" ) # https://marketplace.visualstudio.com/items?itemName=jnoortheen.nix-ide
 		];
