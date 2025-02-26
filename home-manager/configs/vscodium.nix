@@ -1,4 +1,4 @@
-{ config, pkgs, ...}:
+{ config, pkgs, pkgs-unstable, ...}:
 let 
 	ext =  name: publisher: version: sha256: pkgs.vscode-utils.buildVscodeMarketplaceExtension {
 	mktplcRef = { inherit name publisher version sha256 ; };
@@ -6,7 +6,7 @@ let
 in
 {
 	programs.vscode = {
-		package=pkgs.vscodium;
+		package=pkgs-unstable.vscodium;
 		enable=true;
 		userSettings  = {
 			"files.autoSave" = "afterDelay";
@@ -100,7 +100,7 @@ in
 				when = "editorTextFocus && github.copilot.activated && !commentEditorFocused && !inInteractiveInput && !interactiveEditorFocused";
 			}
 			{
-				key = "alt+c";
+				key = "ctrl+super+c";
 				command = "editor.action.inlineSuggest.trigger";
 				when = "config.github.copilot.inlineSuggest.enable && editorTextFocus && !editorHasSelection && !inlineSuggestionsVisible";
 			}
@@ -110,8 +110,8 @@ in
 			}
 		];
 		mutableExtensionsDir = false; # stops vscode from editing ~/.vscode/extensions/* which makes the following extensions actually install
-		# installing malware
 
+		# installing malware
 		extensions = (with pkgs.vscode-extensions; [
 			ms-python.vscode-pylance
 			ms-vscode-remote.remote-containers
@@ -122,13 +122,13 @@ in
 			mkhl.direnv
 			shd101wyy.markdown-preview-enhanced
 			ms-toolsai.jupyter
+			github.copilot-chat
 			
 		]) ++ [ #  "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
 			(ext "Nix" "bbenoist" "1.0.1" "sha256-qwxqOGublQeVP2qrLF94ndX/Be9oZOn+ZMCFX1yyoH0=") # https://marketplace.visualstudio.com/items?itemName=bbenoist.Nix
-			(ext "copilot" "GitHub"  "1.208.963" "sha256-KK+jscoH/tByYw5BL2c5xEbqErnJE30enTqHWJzhIQk=") # https://marketplace.visualstudio.com/items?itemName=GitHub.copilot
-			# (ext "copilot" "GitHub"  "1.197.0" "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=") # https://marketplace.visualstudio.com/items?itemName=GitHub.copilot
+			(ext "copilot" "GitHub"  "1.276.1398" "sha256-3ge/JMyzalCgTuOPQPWCrqZMeH0IQRCT+tleg/6mc5A=") # https://marketplace.visualstudio.com/items?itemName=GitHub.copilot
 			(ext  "bash-debug" "rogalmic" "0.3.9" "sha256-f8FUZCvz/PonqQP9RCNbyQLZPnN5Oce0Eezm/hD19Fg=") # https://marketplace.visualstudio.com/items?itemName=rogalmic.bash-debug
-			(ext "nix-ide" "jnoortheen" "0.3.1" "sha256-jwOM+6LnHyCkvhOTVSTUZvgx77jAg6hFCCpBqY8AxIg=" ) # https://marketplace.visualstudio.com/items?itemName=jnoortheen.nix-ide
+			(ext "nix-ide" "jnoortheen" "0.3.1" "sha256-05oMDHvFM/dTXB6T3rcDK3EiNG2T0tBN9Au9b+Bk7rI=" ) # https://marketplace.visualstudio.com/items?itemName=jnoortheen.nix-ide
 		];
 	}; # END VSCODE
 }
