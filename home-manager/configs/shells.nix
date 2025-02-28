@@ -21,8 +21,12 @@ let
 		fi	
 		# ENd XDG_DATA_DIRS CHECK
 		# BEGIN FUNCTIONS
+		opts() {
+			# opens a new firefox in a nix-shell on the nixos options page, pipes to nohup's thing and detaches from shell with &
+			nohup nix-shell --pure -p mullvad-browser --run "mullvad-browser https://search.nixos.org/options" -- 2>&1 &
+		}
 		discord() {
-			local NIXPKGS_ALLOW_UNFREE=1 nohup nix-shell --pure -p discord  --command discord -- 2>$1 & 
+			local NIXPKGS_ALLOW_UNFREE=1 nohup nix-shell --pure -p discord  --command discord -- 2>&1 & 
 		}
 		pvenv() {
 			# starts a python virtual environment named after first arg and if a path to a requirements file is provided as second arg it installs it
