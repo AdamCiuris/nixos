@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs,qubes-nixos-template, lib, ... }:
 let 
 	 filterAttrSet = attrSet: pattern:
     lib.attrsets.filterAttrs (name: value: builtins.match pattern value != null ) attrSet;
@@ -72,13 +72,15 @@ in
 		docker-client
 		libimobiledevice
 	];
-	users ={
+	users = 
+	 {
 		mutableUsers = true; # let's you change the passwords after btw
 		users= {
 		# set a password with ‘passwd’ $USER.
-			nyx = {
+			nyx = lib.mkForce {
 				# hash a password with mkpasswd -m sha-512, or with -s $SALT
 				isNormalUser = true;
+				group = "users";
 				description = "nyx";
 				initialHashedPassword = "$6$7mFX0wL.lFB9nhjR$PUMBogxDPqc5ZVGbUj9QHY.OasKbE7tuEYN.xFmY/G7zTzOCHD39VD3.aSQT6o1j4xtH4pDGYJyKrM2zKB8vG1";
 				shell=pkgs.zsh;
@@ -89,6 +91,38 @@ in
 					];
 				packages = with pkgs; [
 					zsh
+				];
+			};
+			root = lib.mkForce  {
+				autoSubUidGidRange = false;
+				createHome = false;
+				cryptHomeLuks = null;
+				description = "it's me the system admin are you doing what you're supposed to";
+				expires = null;
+				extraGroups = [  ];
+				group = "root";
+				initialHashedPassword = "$6$7mFX0wL.lFB9nhjR$PUMBogxDPqc5ZVGbUj9QHY.OasKbE7tuEYN.xFmY/G7zTzOCHD39VD3.aSQT6o1j4xtH4pDGYJyKrM2zKB8vG1";
+				hashedPassword = null;
+				hashedPasswordFile = null;
+				home = "/root";
+				homeMode = "700";
+				ignoreShellProgramCheck = false;
+				initialPassword = null;
+				isNormalUser = false;
+				isSystemUser = false;
+				linger = false;
+				name = "root";
+				openssh = {  };
+				pamMount = {  };
+				password = null;
+				passwordFile = null;
+				subGidRanges = [  ];
+				subUidRanges = [  ];
+				uid = 0;
+				useDefaultShell = false;
+				packages = with pkgs; [
+					bash
+					nano
 				];
 			};
 			bael = {
