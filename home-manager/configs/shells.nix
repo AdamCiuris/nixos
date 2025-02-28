@@ -21,6 +21,9 @@ let
 		fi	
 		# ENd XDG_DATA_DIRS CHECK
 		# BEGIN FUNCTIONS
+		discord() {
+			local NIXPKGS_ALLOW_UNFREE=1 nohup nix-shell --pure -p discord  --command discord -- 2>$1 & 
+		}
 		pvenv() {
 			# starts a python virtual environment named after first arg and if a path to a requirements file is provided as second arg it installs it
 			# "deactivate" leaves the venv
@@ -33,6 +36,10 @@ let
 				source $activate && echo "deactivate to leave"
 			fi
 		}
+		# opts() {
+		# 	opens a new firefox in a nix-shell on the nixos options page, pipes to nohup's thing and detaches from shell with &
+		# 	nohup nix-shell --pure -p firefox --run "firefox https://search.nixos.org/options" -- &
+		# }
 		apt-remove() {
 			# removes a package from apt and nix
 			local firstArg="$1"

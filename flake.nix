@@ -8,6 +8,11 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     hardware.url = "github:nixos/nixos-hardware";
 
+
+    qubes-nixos-template = {
+      url = "github:evq/qubes-nixos-template";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # https://github.com/NixOS/nixos-hardware
     # <nixos-hardware/system76> add something like this to hardware-configuration.nix imports
 
@@ -43,7 +48,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, hardware, lanzaboote, vscode-server, home-manager, plasma-manager, nixos-generators, flake-utils, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable,qubes-nixos-template, hardware, lanzaboote, vscode-server, home-manager, plasma-manager, nixos-generators, flake-utils, ... }@inputs:
     let
       forAllSystems = nixpkgs.lib.genAttrs [
         "x86_64-linux"
@@ -55,6 +60,9 @@
       myPkgs = forAllSystems (system:
         import inputs.nixpkgs {
           inherit system;
+            #           overlays template= [
+            #   qubes-nixos-.overlays.default
+            # ];
           # NOTE: Using `nixpkgs.config` in your NixOS config won't work
           # Instead, you should set nixpkgs configs here
           # (https://nixos.org/manual/nixpkgs/stable/#idm140737322551056)
@@ -73,11 +81,6 @@
 
       nixosConfigurations = {
         # https://github.com/nix-community/nixos-generators?tab=readme-ov-file#using-in-a-flake
-        formatConfigs.exampleCustomFormat = { config, modulesPath, ... }: {
-          imports = [ "${toString modulesPath}/installer/cd-dvd/installation-cd-base.nix" ];
-          formatAttr = "isoImage";
-          fileExtension = ".iso";
-        };
         
         "nixos" = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
@@ -102,7 +105,6 @@
             # home-manager junk
             home-manager.nixosModules.home-manager
             hardware.nixosModules.system76
-            nixos-generators.nixosModules.all-formats # nix build .\#nixosConfigurations.nixos.config.formats. and hit tab to see all
             # nix build .\#nixosConfigurations.nixos.config.formats.install-iso -o ./result
             {
               home-manager.extraSpecialArgs = { inherit inputs; }; # Pass flake input to home-manager
@@ -123,7 +125,11 @@
         "vm" = nixpkgs.lib.nixosSystem { # slightly modifying stuff for qemu/kvm vms
           system = "x86_64-linux";
           pkgs = myPkgs.x86_64-linux;
-          specialArgs = { inherit inputs; }; # Pass flake inputs to our config
+          specialArgs = { 
+            pkgs-unstable = myPkgsUnstable.x86_64-linux;
+
+            inherit inputs; }; # Pass flake inputs to our config
+
           modules =  [
             ({ pkgs, lib, fetchFromGitHub, ... }: { # wtf ????
               # environment.systemPackages = [
@@ -144,24 +150,12 @@
               # #   }))
                 
               # ];
-              boot.loader  = lib.mkForce {
+              boot.loader  = lib.mkDefault  {
                 systemd-boot.enable = false;
                 grub.enable = true;
 		            grub.devices =  ["/dev/xvda"] ;
               };
-              users ={
-                mutableUsers = true; # let's you change the passwords after btw
-                users= {
-                  nyx = {
-                  openssh = lib.mkForce  {
-                      authorizedKeys.keys = [ 
-                      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILEGYDZwVL7yY5U8idqOJ7laCmr2V/I+QSbvTFkVLSxN nyx@nixos"
-                      ];
-                    };
-                  };
-              }; # end users
 
-              };
               swapDevices = lib.mkForce [ ];
               services.system76-scheduler.enable = lib.mkForce false;
               hardware.system76.firmware-daemon.enable = lib.mkForce false;
@@ -173,17 +167,22 @@
             ./top-level-configs/variants/dailyDrive.nix
             # home-manager junk
             home-manager.nixosModules.home-manager
-            nixos-generators.nixosModules.all-formats # nix build .\#nixosConfigurations.nixos.config.formats. and hit tab to see all
+            # qubes-nixos-template.nixosModules.default
+            # qubes-nixos-template.nixosProfiles.default
             # nix build .\#nixosConfigurations.nixos.config.formats.install-iso -o ./result
-            {
-              home-manager.extraSpecialArgs = { inherit inputs; }; # Pass flake input to home-manager
+            ({ lib, pkgs, ... }: {
+              home-manager.extraSpecialArgs = { 
+                pkgs-unstable = myPkgsUnstable.x86_64-linux;
+                inherit inputs; 
+                }; # Pass flake input to home-manager
               home-manager.users = {
                 nyx = {
+                  home.homeDirectory = lib.mkForce "/home/nyx";
                   imports = [ ./home-manager/users/nyx.nix ];
                   home.stateVersion="24.11";
                 };
               };
-            }
+            })
           ];
         };
         "ssh" = nixpkgs.lib.nixosSystem { # slightly modifying stuff for qemu/kvm vms
