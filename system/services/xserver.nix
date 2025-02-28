@@ -1,12 +1,12 @@
 { config, pkgs, ... }: 
 {
 	# Enable the X11 windowing system.
+	services.libinput.enable = true; 	# Enable touchpad support (enabled default in most desktopManager).
+  services.displayManager.autoLogin.user = null; # don't set
 	services.xserver = {
 		enable = true;
-    libinput.enable = true; 	# Enable touchpad support (enabled default in most desktopManager).
-    displayManager.autoLogin.user = null; # don't set
 		displayManager.autoLogin.enable = false; # do not autologin
-    layout = "us";
-		xkbVariant = "";
+    xkb.layout = "us";
+		xkb.variant = "";
 	};
 }
