@@ -6,7 +6,7 @@ let
 in
 {
 	programs.vscode = {
-		package=pkgs.vscodium;
+		package=pkgs-unstable.vscodium;
 		enable=true;
 		userSettings  = {
 			"files.autoSave" = "afterDelay";
@@ -27,7 +27,7 @@ in
 			command = "workbench.action.terminal.focusPrevious";
 			}
 			{
-				key = "alt+q";
+				key = "alt+k";
 				command = "workbench.action.terminal.kill";
 				when = "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported";
 			}
