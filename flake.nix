@@ -34,9 +34,13 @@
       url = "github:nix-community/nixos-vscode-server";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nurl = {
+      url = "github:nix-community/nurl";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable,qubes-nixos-template, hardware, lanzaboote, vscode-server, home-manager, nixos-generators, flake-utils, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable,nurl, qubes-nixos-template, hardware, lanzaboote, vscode-server, home-manager, nixos-generators, flake-utils, ... }@inputs:
     let
       forAllSystems = nixpkgs.lib.genAttrs [
         "x86_64-linux"

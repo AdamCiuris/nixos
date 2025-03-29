@@ -90,6 +90,7 @@ in
 					"wheel" 
 					];
 				packages = with pkgs; [
+					nurl
 					zsh
 				];
 			};
