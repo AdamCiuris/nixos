@@ -111,8 +111,51 @@
               };
             })
           ];
+        };
+        "vm-xrdp" = nixpkgs.lib.nixosSystem { # slightly modifying stuff for qemu/kvm vms
+          system = "x86_64-linux";
+          pkgs = myPkgs.x86_64-linux;
+          specialArgs = {
+            pkgs-unstable = myPkgsUnstable.x86_64-linux;
+          };
+          modules =  [
+            ({ pkgs, lib, fetchFromGitHub, ... }: { # wtf ????
+              boot.loader  = lib.mkDefault  {
+                systemd-boot.enable = false;
+                grub.enable = true;
+		            grub.devices =  ["/dev/xvda"] ;
+              };
 
-		};
+              swapDevices = lib.mkForce [ ];
+              services.system76-scheduler.enable = lib.mkForce false;
+              hardware.system76.firmware-daemon.enable = lib.mkForce false;
+
+              environment.variables.NIXOS_FLAKE_CONFIGURATION = "vm-xrdp";
+                  
+
+            })
+            ./top-level-configs/variants/dailyDrive.nix
+            ./system/services/xrdp.nix
+            # home-manager junk
+            home-manager.nixosModules.home-manager
+            # qubes-nixos-template.nixosModules.default
+            # qubes-nixos-template.nixosProfiles.default
+            # nix build .\#nixosConfigurations.nixos.config.formats.install-iso -o ./result
+            ({ lib, pkgs, ... }: {
+              home-manager.extraSpecialArgs = { 
+                  inherit inputs; 
+                  pkgs-unstable = myPkgsUnstable.x86_64-linux;
+              }; # Pass flake input to home-manager
+              home-manager.users = {
+                nyx = {
+                  home.homeDirectory = lib.mkForce "/home/nyx";
+                  imports = [ ./home-manager/users/nyx.nix ];
+                  home.stateVersion="24.11";
+                };
+              };
+            })
+          ];
+        };
 
       };
     };
