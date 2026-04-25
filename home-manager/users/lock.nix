@@ -12,7 +12,7 @@
 	home ={
 		username = "lock";
 		homeDirectory = "/home/lock";
-		stateVersion = "24.11";
+		stateVersion = "25.05";
 	};
 	home.file = { # starts at ~/.config
 		# horrible startup javascript apps

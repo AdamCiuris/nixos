@@ -10,12 +10,12 @@ in
 		[ # Include the results of the hardware scan.
 		../configuration.nix
 
-		../../hardware/bluetooth.nix
-		../../hardware/opengl.nix
+		#../../hardware/bluetooth.nix
+		#../../hardware/opengl.nix
 
 		../../hardware-configuration.nix
 
-		../../system/virtualization/libvirtd.nix
+	#	../../system/virtualization/libvirtd.nix
 		
 		# ../../system/specialisations/default-specialisation.nix
 		# ../../system/specialisations/display-desktop-managers.nix
@@ -43,9 +43,6 @@ in
 		] ;
 	services.xserver.desktopManager.cinnamon.enable = true;
 	services.xserver.displayManager.lightdm.enable = true;
-	hardware.system76.enableAll = true;
-	services.system76-scheduler.enable = true;
-	hardware.system76.firmware-daemon.enable = true;
 
 	networking.enableIPv6 = lib.mkForce false; # ipv4 only pls
 
@@ -65,12 +62,19 @@ in
 		# };
 	};
 
+          #    boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
 
+	services.mullvad-vpn.enable = true;
+	services.mullvad-vpn.package = pkgs.mullvad-vpn;
+	
+	# Optional: Install CLI tools in user environment
 
 	environment.systemPackages = with pkgs; [
 		mangohud # fps monitor for games
 		docker-client
 		libimobiledevice
+		mullvad
+
 	];
 	users = 
 	 {
@@ -82,7 +86,7 @@ in
 				isNormalUser = true;
 				group = "users";
 				description = "nyx";
-				initialHashedPassword = "$6$7mFX0wL.lFB9nhjR$PUMBogxDPqc5ZVGbUj9QHY.OasKbE7tuEYN.xFmY/G7zTzOCHD39VD3.aSQT6o1j4xtH4pDGYJyKrM2zKB8vG1";
+				initialHashedPassword = "$6$RpMWh3rMAFoxJxXN$j9BoFqCS4obdqcVgYlTkhRPW2.Y6iah76aEQwY96av7sX.gIx0kk3ZVLJODqOBSPr4A5/MLtBC4ORLoYSJuf70";
 				shell=pkgs.zsh;
 				useDefaultShell = true; # should be zsh
 				extraGroups = [ 
@@ -102,7 +106,7 @@ in
 				expires = null;
 				extraGroups = [  ];
 				group = "root";
-				initialHashedPassword = "$6$7mFX0wL.lFB9nhjR$PUMBogxDPqc5ZVGbUj9QHY.OasKbE7tuEYN.xFmY/G7zTzOCHD39VD3.aSQT6o1j4xtH4pDGYJyKrM2zKB8vG1";
+				initialHashedPassword = "$6$RpMWh3rMAFoxJxXN$j9BoFqCS4obdqcVgYlTkhRPW2.Y6iah76aEQwY96av7sX.gIx0kk3ZVLJODqOBSPr4A5/MLtBC4ORLoYSJuf70";
 				hashedPassword = null;
 				hashedPasswordFile = null;
 				home = "/root";
@@ -130,7 +134,7 @@ in
 				# hash a password with mkpasswd -m sha-512, or with -s $SALT
 				isNormalUser = true;
 				description = "bael - no sudo, vscode.";
-				initialHashedPassword = "$6$iTFD.aCs0URORQdw$WHydkMWviBZhIQMoB2Dn2a.e5fwL/BQuBm7Fi5/Ftw0kPmsicvZfvo2ni8WJl94G11k1CDW9bHLCK3hZvgiV91";
+				initialHashedPassword = "$6$RpMWh3rMAFoxJxXN$j9BoFqCS4obdqcVgYlTkhRPW2.Y6iah76aEQwY96av7sX.gIx0kk3ZVLJODqOBSPr4A5/MLtBC4ORLoYSJuf70";
 				shell=pkgs.zsh;
 				useDefaultShell = true; # should be zsh
 				extraGroups = [ # no sudoers?

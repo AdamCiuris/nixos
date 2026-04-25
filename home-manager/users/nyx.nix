@@ -29,7 +29,7 @@ in
 	home ={
 		username = "nyx";
 		homeDirectory = "/home/nyx";
-		stateVersion = "24.11";
+		stateVersion = "25.05";
 	};
 	home.file = { # starts at ~/.config
 		# ".config/autostart/virt-manager.desktop".source = "${pkgs.virt-manager}/share/applications/virt-manager.desktop";

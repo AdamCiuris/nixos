@@ -16,7 +16,7 @@
 	home ={
 		username = "bael";
 		homeDirectory = "/home/bael";
-		stateVersion = "24.11";
+		stateVersion = "25.05";
 	};
 	home.file = { # starts at ~/.config
 		".config/autostart/brave-browser.desktop".source = "${pkgs.brave}/share/applications/brave-browser.desktop";
