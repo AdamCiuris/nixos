@@ -81,7 +81,16 @@
                   device = "/dev/disk/by-uuid/dec3bf87-dd58-4f79-b035-f14b36016691";
                   preLVM = true;
                 };
+                storage = {
+                  device = "/dev/disk/by-uuid/63be47d3-6c3e-49c3-8fab-4a31d73c9b1f";
+                  preLVM = true;
+                };
               };	
+              fileSystems."/mnt/storage" = {
+                  device = "/dev/mapper/hdd-storage";
+                  fsType = "ext4";
+                };
+
               swapDevices = lib.mkForce [ ];
               boot.kernelParams = [ "processor.max_cstate=4" "amd_iomu=soft" "idle=nomwait"];
               boot.kernelPackages = pkgs.linuxPackages_latest;

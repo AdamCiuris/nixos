@@ -8,7 +8,7 @@
 	imports =
 		[ # Include the results of the hardware scan.
 
-		../system/devices/swapDevices.nix
+		#../system/devices/swapDevices.nix
 
 		../system/systemd/timers.nix
 
@@ -23,7 +23,7 @@
 
 		../system/programs/msmtp.nix
 
-		../system/virtualization/docker.nix
+		#../system/virtualization/docker.nix
 
 		]  ;
 

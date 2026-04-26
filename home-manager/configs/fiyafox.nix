@@ -12,7 +12,7 @@
           "browser.startup.homepage" = "https://open.spotify.com/";
         };
         search.force = true; # rm whatever config is already there
-        search.default = "DuckDuckGo";
+        search.default = "ddg";
         search.engines = {
           "Nix Packages" = {
             urls = [{

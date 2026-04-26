@@ -15,7 +15,6 @@ in
 			"files.exclude" = ""; # stop excluding files please
 			"workbench.colorTheme"= "Tomorrow Night Blue";
 			"editor.multiCursorModifier" = "ctrlCmd"; # ctrl + click for multi cursor
-			"terminal.integrated.fontFamily" = "DroidSansM Nerd Font"; # fc-list to see all fonts
 		};
 		keybindings =  [
 			{

@@ -74,6 +74,10 @@ in
 		docker-client
 		libimobiledevice
 		mullvad
+		(pkgs.makeAutostartItem {
+      name = "mullvad-vpn";
+      package = pkgs.mullvad-vpn;
+    })
 
 	];
 	users = 

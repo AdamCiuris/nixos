@@ -31,7 +31,7 @@
 			brave
 
 			# x2g0
-			(pkgs.nerdfonts.override { fonts=["DroidSansMono" ]; }) # for vscode
+			(pkgs.-fonts.override { fonts=["DroidSansMono" ]; }) # for vscode
 			];
 
 

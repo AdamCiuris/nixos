@@ -40,7 +40,7 @@ in
 		# ".config/autostart/thunderbird.desktop".source = "${pkgs.thunderbird}/share/applications/thunderbird.desktop";
 	};
 	home.packages = with pkgs; [
-		protonup # steam compatibility tools, must be run imperatively with `protonup` in cmd prompt
+		protonup-ng # steam compatibility tools, must be run imperatively with `protonup` in cmd prompt
 		wireshark # packet sniffer
 		gnupg # gpg
 		yt-dlp # youtube-dl fork

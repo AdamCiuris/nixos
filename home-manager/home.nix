@@ -34,7 +34,6 @@ in
 		xdg-utils # xdg-open
 		libreoffice # office suite
 		xclip # cat into clipboard with xclip -sel clip < file
-		(pkgs.nerdfonts.override { fonts=["DroidSansMono" ]; }) # for vscode
 		];
 
 }

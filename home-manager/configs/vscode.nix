@@ -17,7 +17,6 @@ in
 			"files.exclude" = ""; # stop excluding files please
 			"workbench.colorTheme"= "Red";
 			"editor.multiCursorModifier" = "ctrlCmd"; # ctrl + click for multi cursor
-			"terminal.integrated.fontFamily" = "DroidSansM Nerd Font"; # fc-list to see all fonts
 		};
 		# should just add new entries...
 		extensions = (with pkgs.vscode-extensions; [
