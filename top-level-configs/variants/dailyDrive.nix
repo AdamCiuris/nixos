@@ -10,12 +10,12 @@ in
 		[ # Include the results of the hardware scan.
 		../configuration.nix
 
-		#../../hardware/bluetooth.nix
-		#../../hardware/opengl.nix
+		../../hardware/bluetooth.nix
+		../../hardware/opengl.nix
 
 		../../hardware-configuration.nix
 
-	#	../../system/virtualization/libvirtd.nix
+		../../system/virtualization/libvirtd.nix
 		
 		# ../../system/specialisations/default-specialisation.nix
 		# ../../system/specialisations/display-desktop-managers.nix
@@ -23,11 +23,11 @@ in
 		../../system/virtualization/portfolio-website.nix
 		# ../../system/systemd/gunicorn.nix
 		# ../../system/services/nginx.nix
-		# ../../system/systemd/directories.nix
+		../../system/systemd/directories.nix
 		../../system/systemd/mullvad-browser.nix
 		# ../../system/services/printers.nix
-
-		# ../../system/services/iphone.nix
+		../../system/programs/mullvad.nix
+		../../system/services/iphone.nix
 		# ../../system/services/nextcloud.nix
 		../../system/services/tor.nix
 		../../system/services/xserver.nix
@@ -35,7 +35,7 @@ in
 		../../system/networking/ports/allOff.nix
 
 		# ./renderdoc.nix
-		# ../../system/programs/gaming.nix
+		../../system/programs/gaming.nix
 		# ../../system/services/openvpn.nix
 
 		../../system/programs/direnv.nix
@@ -64,20 +64,13 @@ in
 
           #    boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
 
-	services.mullvad-vpn.enable = true;
-	services.mullvad-vpn.package = pkgs.mullvad-vpn;
-	
+
 	# Optional: Install CLI tools in user environment
 
 	environment.systemPackages = with pkgs; [
 		mangohud # fps monitor for games
 		docker-client
 		libimobiledevice
-		mullvad
-		(pkgs.makeAutostartItem {
-      name = "mullvad-vpn";
-      package = pkgs.mullvad-vpn;
-    })
 
 	];
 	users = 

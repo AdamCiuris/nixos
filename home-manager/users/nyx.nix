@@ -43,6 +43,8 @@ in
 		protonup-ng # steam compatibility tools, must be run imperatively with `protonup` in cmd prompt
 		wireshark # packet sniffer
 		gnupg # gpg
+		remmina # ssh and vnc
+		veracrypt
 		yt-dlp # youtube-dl fork
 	];
 	home.sessionVariables = {

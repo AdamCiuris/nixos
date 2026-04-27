@@ -5,7 +5,7 @@
   swapDevices = [
     {
       device = "/__swapfile__";
-      size = 1024*32; # in MiB, 32 GiB
+      size = 1024*16; # in MiB, 32 GiB
       priority = 60;
       # label = "swap";
     }
