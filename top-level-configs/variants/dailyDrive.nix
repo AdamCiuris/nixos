@@ -115,32 +115,15 @@ in
 				];
 			};
 			root = lib.mkForce  {
-				autoSubUidGidRange = false;
-				createHome = false;
-				cryptHomeLuks = null;
 				description = "it's me the system admin are you doing what you're supposed to";
-				expires = null;
-				extraGroups = [  ];
 				group = "root";
 				initialHashedPassword = "$6$RpMWh3rMAFoxJxXN$j9BoFqCS4obdqcVgYlTkhRPW2.Y6iah76aEQwY96av7sX.gIx0kk3ZVLJODqOBSPr4A5/MLtBC4ORLoYSJuf70";
-				hashedPassword = null;
-				hashedPasswordFile = null;
 				home = "/root";
 				homeMode = "700";
-				ignoreShellProgramCheck = false;
-				initialPassword = null;
-				isNormalUser = false;
-				isSystemUser = false;
-				linger = false;
 				name = "root";
-				openssh = {  };
-				pamMount = {  };
-				password = null;
-				passwordFile = null;
-				subGidRanges = [  ];
-				subUidRanges = [  ];
-				uid = 0;
-				useDefaultShell = false;
+				shell=pkgs.bash;
+				isNormalUser = true; # should be zsh
+				useDefaultShell = false; # should be zsh
 				packages = with pkgs; [
 					bash
 					nano
