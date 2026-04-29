@@ -12,7 +12,10 @@
 
     # nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # https://github.com/NixOS/nixos-hardware
     # <nixos-hardware/system76> add something like this to hardware-configuration.nix imports
-
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # Home manager
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
@@ -37,10 +40,11 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable,nurl, hardware, lanzaboote, vscode-server, home-manager, nixos-generators, flake-utils, ... }@inputs:
+  outputs = { self, nur, nixpkgs, nixpkgs-unstable,nurl, hardware, lanzaboote, vscode-server, home-manager, nixos-generators, flake-utils, ... }@inputs:
     let
       forAllSystems = nixpkgs.lib.genAttrs [
         "x86_64-linux"
+
       ];
     in
     rec {
@@ -49,8 +53,11 @@
       myPkgs = forAllSystems (system:
         import inputs.nixpkgs {
           inherit system;
+          overlays =  [ inputs.nur.overlays.default ];
+
           config.allowUnfree = true;
         }
+        
       );
       myPkgsUnstable = forAllSystems (system:
         import inputs.nixpkgs-unstable {
@@ -70,9 +77,14 @@
           system = "x86_64-linux";
           pkgs = myPkgs.x86_64-linux;
           specialArgs = {
+            inherit inputs;
             pkgs-unstable = myPkgsUnstable.x86_64-linux;
           };
+
+
+
           modules =  [
+
             ({ pkgs, lib, fetchFromGitHub, ... }: { # wtf ????
               boot.loader.systemd-boot.enable = true;
               boot.loader.efi.canTouchEfiVariables = true;
@@ -103,6 +115,8 @@
             home-manager.nixosModules.home-manager
 
             ({ lib, pkgs, ... }: {
+
+              home-manager.useGlobalPkgs = true;
               home-manager.extraSpecialArgs = { 
                   inherit inputs; 
                   pkgs-unstable = myPkgsUnstable.x86_64-linux;
@@ -111,6 +125,11 @@
                 nyx = {
                   home.homeDirectory = lib.mkForce "/home/nyx";
                   imports = [ ./home-manager/users/nyx.nix ];
+                  home.stateVersion="25.05";
+                };
+                bwiuh = {
+                  home.homeDirectory = lib.mkForce "/home/bwiuh";
+                  imports = [ ./home-manager/users/bwiuh.nix ];
                   home.stateVersion="25.05";
                 };
               };

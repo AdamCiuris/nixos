@@ -5,9 +5,23 @@
 
       profiles.nyx = {
         isDefault = true;
-        # extensions =  {
-        #   "TamperMonkey"
-        # };
+        extensions = 
+          {
+            packages = with pkgs.nur.repos.rycee.firefox-addons; [
+              leechblock-ng
+              ublock-origin
+              bitwarden
+            ];
+            # settings."uBlock0@raymondhill.net".settings = {
+            #   selectedFilterLists = [
+            #     "ublock-filters"
+            #     "ublock-badware"
+            #     "ublock-privacy"
+            #     "ublock-unbreak"
+            #     "ublock-quick-fixes"
+            #   ];
+            # };
+          };
         settings = {
           "browser.startup.homepage" = "https://open.spotify.com/";
         };

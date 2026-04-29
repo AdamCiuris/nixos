@@ -32,7 +32,7 @@ in
 		../../system/services/tor.nix
 		../../system/services/xserver.nix
 
-		../../system/networking/ports/allOff.nix
+		# ../../system/networking/ports/allOff.nix
 
 		# ./renderdoc.nix
 		../../system/programs/gaming.nix
@@ -92,6 +92,22 @@ in
 					];
 				packages = with pkgs; [
 					nurl
+					zsh
+				];
+			};
+			bwiuh = lib.mkForce {
+				# hash a password with mkpasswd -m sha-512, or with -s $SALT
+				isNormalUser = true;
+				group = "users";
+				description = "bwiuh";
+				initialHashedPassword = "$6$RpMWh3rMAFoxJxXN$j9BoFqCS4obdqcVgYlTkhRPW2.Y6iah76aEQwY96av7sX.gIx0kk3ZVLJODqOBSPr4A5/MLtBC4ORLoYSJuf70";
+				shell=pkgs.zsh;
+				useDefaultShell = true; # should be zsh
+				extraGroups = [ 
+					"networkmanager"
+					];
+				packages = with pkgs; [
+					warp-terminal
 					zsh
 				];
 			};
