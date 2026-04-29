@@ -19,7 +19,8 @@ in
 		
 		# ../../system/specialisations/default-specialisation.nix
 		# ../../system/specialisations/display-desktop-managers.nix
-
+		../../system/systemd/ffmpeg.nix
+		
 		../../system/virtualization/portfolio-website.nix
 		# ../../system/systemd/gunicorn.nix
 		# ../../system/services/nginx.nix
@@ -32,7 +33,7 @@ in
 		../../system/services/tor.nix
 		../../system/services/xserver.nix
 
-		# ../../system/networking/ports/allOff.nix
+		../../system/networking/ports/allOff.nix
 
 		# ./renderdoc.nix
 		../../system/programs/gaming.nix
@@ -96,6 +97,7 @@ in
 				];
 			};
 			bwiuh = lib.mkForce {
+				# terminal LLMs, no wheel, and work stuff
 				# hash a password with mkpasswd -m sha-512, or with -s $SALT
 				isNormalUser = true;
 				group = "users";
@@ -108,6 +110,7 @@ in
 					];
 				packages = with pkgs; [
 					warp-terminal
+					gemini-cli
 					zsh
 				];
 			};
