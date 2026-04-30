@@ -8,10 +8,11 @@
 
     serviceConfig = {
       Type = "simple";
+      enable = true;
       # 1. Re-enable this: FFmpeg will crash if the folder doesn't exist.
       # %h is the systemd shortcut for your home directory.
-      # user = "root";
-      ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p /recordings";
+      user = "${config.users.users.nyx.name}"; # usually just resolves to "nyx"
+      ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p %h/recordings";
       
       ExecStart = ''
         ${pkgs.ffmpeg}/bin/ffmpeg \
@@ -22,7 +23,7 @@
           -segment_time 3600 \
           -reset_timestamps 1 \
           -strftime 1 \
-          "/recordings/rec_%%Y-%%m-%%d_%%H-%%M-%%S.mp3"
+          "%h/recordings/rec_%%Y-%%m-%%d_%%H-%%M-%%S.mp3"
       '';
       Restart = "always";
       RestartSec = "5s";
