@@ -53,8 +53,15 @@
       myPkgs = forAllSystems (system:
         import inputs.nixpkgs {
           inherit system;
-          overlays =  [ inputs.nur.overlays.default ];
-
+          overlays =  [ inputs.nur.overlays.default 
+      (final: prev: {
+        unstable = import inputs.nixpkgs-unstable {
+          inherit system;
+          config.allowUnfree = true; # Pass config to the unstable import too!
+        };
+      })
+          ];
+# 2. Custom overlay for unstable packages
           config.allowUnfree = true;
         }
         

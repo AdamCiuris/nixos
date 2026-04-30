@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-unstable, ...}:
+{ config, pkgs,  ...}:
 let 
 	ext =  name: publisher: version: sha256: pkgs.vscode-utils.buildVscodeMarketplaceExtension {
 	mktplcRef = { inherit name publisher version sha256 ; };
@@ -6,7 +6,7 @@ let
 in
 {
 	programs.vscode = {
-		package=pkgs.vscodium;
+		package=pkgs.unstable.vscodium;
 		enable=true;
 		userSettings  = {
 			"files.autoSave" = "afterDelay";
@@ -121,13 +121,16 @@ in
 			mkhl.direnv
 			shd101wyy.markdown-preview-enhanced
 			ms-toolsai.jupyter
-			github.copilot-chat
-			github.copilot
-			
+			# github.copilot-chat
+			# github.copilot
+			# Google.geminicodeassist
+			Google.gemini-cli-vscode-ide-companion			
 		]) ++ [ #  "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
 			(ext "Nix" "bbenoist" "1.0.1" "sha256-qwxqOGublQeVP2qrLF94ndX/Be9oZOn+ZMCFX1yyoH0=") # https://marketplace.visualstudio.com/items?itemName=bbenoist.Nix
 			# (ext "copilot" "GitHub"  "1.276.1398" "sha256-3ge/JMyzalCgTuOPQPWCrqZMeH0IQRCT+tleg/6mc5A=") # https://marketplace.visualstudio.com/items?itemName=GitHub.copilot
 			(ext  "bash-debug" "rogalmic" "0.3.9" "sha256-f8FUZCvz/PonqQP9RCNbyQLZPnN5Oce0Eezm/hD19Fg=") # https://marketplace.visualstudio.com/items?itemName=rogalmic.bash-debug
+			# (ext  "geminicodeassist" "google" "2.79.0" "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=") # https://marketplace.visualstudio.com/items?itemName=rogalmic.bash-debug
+			# (ext  "gemini-cli-vscode-ide-companion" "google" "0.20.0" "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=") # https://marketplace.visualstudio.com/items?itemName=rogalmic.bash-debug
 			(ext "nix-ide" "jnoortheen" "0.3.1" "sha256-05oMDHvFM/dTXB6T3rcDK3EiNG2T0tBN9Au9b+Bk7rI=" ) # https://marketplace.visualstudio.com/items?itemName=jnoortheen.nix-ide
 		];
 	}; # END VSCODE

@@ -40,10 +40,11 @@ in
 		# ".config/autostart/thunderbird.desktop".source = "${pkgs.thunderbird}/share/applications/thunderbird.desktop";
 	};
 	home.packages = with pkgs; [
-		protonup-ng # steam compatibility tools, must be run imperatively with `protonup` in cmd prompt
+		unstable.protonup-ng # steam compatibility tools, must be run imperatively with `protonup` in cmd prompt
 		wireshark # packet sniffer
 		gnupg # gpg
 		remmina # ssh and vnc
+		unstable.gemini-cli # google shell llm
 		veracrypt
 		yt-dlp # youtube-dl fork
 	];

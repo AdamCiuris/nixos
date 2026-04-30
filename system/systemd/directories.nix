@@ -1,4 +1,9 @@
 { config, pkgs, lib, ... }:
+
+# 777 OWNER, GROUP, OTHERS
+# 7 rwx complete override capability
+# 6 rw- can read and modify
+# 4 r-- members can only read
 {
   systemd.tmpfiles.settings = {
     "nottemp"={
@@ -15,6 +20,13 @@
             mode = "0700"; # root only rwx
             user = "root";
             group = "root";
+          };
+    };
+    "${config.users.users.nyx.home}/recordings" = {
+          d = {
+            mode = "0600"; # root only rwx
+            user = "nyx";
+            group = "users";
           };
     };
       "${config.users.users.nyx.home}/share" = { # sudo mount -t 9p -o trans=virtio share /mnt/    
