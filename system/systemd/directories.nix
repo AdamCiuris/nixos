@@ -22,7 +22,7 @@
             group = "root";
           };
     };
-    "${config.users.users.nyx.home}/recordings" = {
+    "${config.users.users.nyx.home}/version_controlled" = {
           d = {
             mode = "0600"; # root only rwx
             user = "nyx";
