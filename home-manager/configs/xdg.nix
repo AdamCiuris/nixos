@@ -40,7 +40,10 @@ let
       "text/html" = browser;
       "text/plain" = ["code.desktop"];
       "x-scheme-handler/chrome" = ["brave.desktop"];
-      "inode/directory" = ["nemo"];
+      "inode/directory" = ["nemo.desktop"];
+      "application/x-gnome-saved-search" = [ "nemo.desktop" ];
+      "x-scheme-handler/zoommtg" = ["zoom.desktop"];
+      "x-scheme-handler/zoomus" = ["zoom.desktop"];
     }
     // image
     // video
@@ -56,7 +59,6 @@ in {
       enable = true;
       defaultApplications = associations;
     };
-
     # userDirs = {
     #   enable = true;
     #   createDirectories = true;
