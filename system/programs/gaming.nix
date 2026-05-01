@@ -33,7 +33,7 @@ services.wivrn = {
     libvdpau-va-gl
   ];
   programs.adb.enable = true;
-  # users.users.nyx.extraGroups = [ "adbusers" "video" "render"];
+  users.users.nyx.extraGroups = [ "adbusers" "video" "render"];
   
   # security.rtkit.enable = true;
 
