@@ -1,6 +1,11 @@
 { config, lib, pkgs, ... }: 
 {
-  hardware.pulseaudio = {
+	# ystemctl --user restart pipewire-pulse wireplumber pipewire
+	environment.systemPackages = with pkgs; [ 
+      # alsa-utils # arecord
+      # pulseaudio # Provides pactl
+    ];
+  services.pulseaudio = {
     enable = false;
   }; # Using PipeWire as the sound server conflicts with PulseAudio. This option requires `hardware.pulseaudio.enable` to be set to false
 	services.pipewire = {
