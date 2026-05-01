@@ -12,7 +12,7 @@ in
 			"files.autoSave" = "afterDelay";
 			"files.autoSaveDelay" = 0;
 			"window.zoomLevel"= -1;
-			"files.exclude" = ""; # stop excluding files please
+			# "files.exclude" = ""; # stop excluding files please
 			"workbench.colorTheme"= "Tomorrow Night Blue";
 			"editor.multiCursorModifier" = "ctrlCmd"; # ctrl + click for multi cursor
 		};
@@ -111,7 +111,7 @@ in
 		mutableExtensionsDir = false; # stops vscode from editing ~/.vscode/extensions/* which makes the following extensions actually install
 
 		# installing malware
-		extensions = (with pkgs.vscode-extensions; [
+		extensions = (with pkgs.unstable.vscode-extensions; [
 			ms-python.vscode-pylance
 			ms-vscode-remote.remote-containers
 			# ms-vscode-remote.remote-ssh
@@ -121,17 +121,15 @@ in
 			mkhl.direnv
 			shd101wyy.markdown-preview-enhanced
 			ms-toolsai.jupyter
-			# github.copilot-chat
-			# github.copilot
 			# Google.geminicodeassist
-			Google.gemini-cli-vscode-ide-companion			
+			Google.gemini-cli-vscode-ide-companion # geminmini	
+			# it is unfortunately faster to update these extensions using their specific versions below
 		]) ++ [ #  "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
 			(ext "Nix" "bbenoist" "1.0.1" "sha256-qwxqOGublQeVP2qrLF94ndX/Be9oZOn+ZMCFX1yyoH0=") # https://marketplace.visualstudio.com/items?itemName=bbenoist.Nix
-			# (ext "copilot" "GitHub"  "1.276.1398" "sha256-3ge/JMyzalCgTuOPQPWCrqZMeH0IQRCT+tleg/6mc5A=") # https://marketplace.visualstudio.com/items?itemName=GitHub.copilot
 			(ext  "bash-debug" "rogalmic" "0.3.9" "sha256-f8FUZCvz/PonqQP9RCNbyQLZPnN5Oce0Eezm/hD19Fg=") # https://marketplace.visualstudio.com/items?itemName=rogalmic.bash-debug
-			# (ext  "geminicodeassist" "google" "2.79.0" "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=") # https://marketplace.visualstudio.com/items?itemName=rogalmic.bash-debug
-			# (ext  "gemini-cli-vscode-ide-companion" "google" "0.20.0" "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=") # https://marketplace.visualstudio.com/items?itemName=rogalmic.bash-debug
-			(ext "nix-ide" "jnoortheen" "0.3.1" "sha256-05oMDHvFM/dTXB6T3rcDK3EiNG2T0tBN9Au9b+Bk7rI=" ) # https://marketplace.visualstudio.com/items?itemName=jnoortheen.nix-ide
+			(ext  "geminicodeassist" "Google" "2.79.0" "sha256-/8QmCFtD7f/RNkNuZexvoevpLa9FqrZfxqmPo2Ss4zk=") # https://marketplace.visualstudio.com/items?itemName=Google.geminicodeassist
+			# (ext  "gemini-cli-vscode-ide-companion" "Google" "0.25.2" "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=") # https://marketplace.visualstudio.com/items?itemName=Google.gemini-cli-vscode-ide-companion
+			(ext "nix-ide" "jnoortheen" "0.5.5" "sha256-epdEMPAkSo0IXsd+ozicI8bjPPquDKIzB3ONRUYWwn8=" ) # https://marketplace.visualstudio.com/items?itemName=jnoortheen.nix-ide
 		];
 	}; # END VSCODE
 }
