@@ -85,7 +85,7 @@
           pkgs = myPkgs.x86_64-linux;
           specialArgs = {
             inherit inputs;
-            pkgs-unstable = myPkgsUnstable.x86_64-linux;
+            # pkgs-unstable = myPkgsUnstable.x86_64-linux;
           };
 
 
@@ -106,11 +106,11 @@
                 };
               };	
               fileSystems."/mnt/storage" = {
-                  device = "/dev/mapper/hdd-storage";
+                  device = "/dev/mapper/storage";
                   fsType = "ext4";
                 };
 
-              swapDevices = lib.mkForce [ ];
+              # swapDevices = lib.mkForce [ ];
               boot.kernelParams = [ "processor.max_cstate=4" "amd_iomu=soft" "idle=nomwait"];
               boot.kernelPackages = pkgs.linuxPackages_latest;
               environment.variables.NIXOS_FLAKE_CONFIGURATION = "pc";
