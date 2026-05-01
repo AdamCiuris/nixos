@@ -33,7 +33,7 @@ in
 		../../system/services/tor.nix
 		../../system/services/xserver.nix
 
-		../../system/networking/ports/allOff.nix
+		# ../../system/networking/ports/allOff.nix
 
 		# ./renderdoc.nix
 		../../system/programs/gaming.nix
