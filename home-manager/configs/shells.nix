@@ -156,7 +156,7 @@ in
 	# BEGIN ZSH
 	programs.zsh = {
 		enable = true;
-		enableAutosuggestions = true;
+		autosuggestion.enable = true;
 		syntaxHighlighting.enable = true;
 		oh-my-zsh={
 			enable = true;
@@ -167,6 +167,6 @@ in
 			plugins = [ "git" "sudo" "systemd" "python"];  # a bunch of aliases and a few functions
 			theme = "agnoster";  # https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 			};
-		initExtra = zshExtra + shellExtra;
+		initContent = zshExtra + shellExtra;
 	}; # END ZSH
 }

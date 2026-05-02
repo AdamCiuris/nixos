@@ -54,12 +54,12 @@
 
           "NixOS Wiki" = {
             urls = [{ template = "https://wiki.nixos.org/index.php?search={searchTerms}"; }];
-            iconUpdateURL = "https://wiki.nixos.org/favicon.png";
+            icon = "https://wiki.nixos.org/favicon.png";
             updateInterval = 24 * 60 * 60 * 1000; # every day
             definedAliases = [ ":w" ];
           };
 
-          "YouTube" = {
+          "youtube" = {
             urls = [{ template = "https://www.youtube.com/results?search_query={searchTerms}"; }];
             icon = "https://www.youtube.com/favicon.ico";
             definedAliases = [ ":yt" ];
@@ -70,8 +70,8 @@
             definedAliases = [ ":gh" ];
           };
 
-          "Bing".metaData.hidden = true;
-          "Google".metaData.alias = ":g"; # builtin engines only support specifying one additional alias
+          "bing".metaData.hidden = true;
+          "google".metaData.alias = ":g"; # builtin engines only support specifying one additional alias
         };
       };
 

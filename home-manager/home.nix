@@ -6,7 +6,6 @@ in
 
 	# Let Home Manager install and manage itself.
 	programs.home-manager.enable = amIstandalone; # only needed for standalone
-	nixpkgs.config.allowUnfree = true;
 
 	home.sessionVariables = {
 		EDITOR = "nano";

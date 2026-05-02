@@ -16,7 +16,7 @@ in
 
 
 		../configs/xdg.nix
-		../configs/firefox.nix
+		../configs/brave.nix
 		../configs/vscodium.nix
 		../configs/thunderbird.nix
 		../configs/git.nix

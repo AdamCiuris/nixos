@@ -110,7 +110,7 @@
                   fsType = "ext4";
                 };
 
-              # swapDevices = lib.mkForce [ ];
+              swapDevices = lib.mkForce [ ];
               boot.kernelParams = [ "processor.max_cstate=4" "amd_iomu=soft" "idle=nomwait"];
               boot.kernelPackages = pkgs.linuxPackages_latest;
               environment.variables.NIXOS_FLAKE_CONFIGURATION = "pc";
