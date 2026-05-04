@@ -6,7 +6,7 @@
     {
       device = "/__swapfile__";
       size = 1024*16; # in MiB, 32 GiB
-      priority = 60;
+      priority = 10;
       # label = "swap";
     }
   ];

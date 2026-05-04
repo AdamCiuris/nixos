@@ -63,6 +63,7 @@
 
 
 	environment.systemPackages = with pkgs; [
+		
 		vim # text editor, worse
 		nano # text editor
 		nginx # web server
