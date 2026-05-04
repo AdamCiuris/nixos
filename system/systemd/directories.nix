@@ -24,7 +24,7 @@
     };
     "${config.users.users.nyx.home}/version_controlled" = {
           d = {
-            mode = "0600"; # root only rwx
+            mode = "0744"; # root only rwx
             user = "nyx";
             group = "users";
           };
