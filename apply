@@ -26,15 +26,23 @@ echo "Finished config linking to $nixosConfigPath"
 echo "Removing $nixosConfigPath/hardware-configuration.nix..."
 sudo rm /etc/nixos/hardware-configuration.nix # remove hardware config
 sudo nixos-generate-config # to get your hardware config back
-# rebuild and switch
-echo "Rebuilding and switching to new config..."
-if [ -z $1 ]; then # -z true if len of str is 0
-    sudo nixos-rebuild --show-trace  switch --flake $nixosConfigPath/#$NIXOS_FLAKE_CONFIGURATION
-    exit 0
+# Parse arguments
+UPDATE_FLAKE=no
+FLAKE_CONFIG=$NIXOS_FLAKE_CONFIGURATION
+
+for arg in "$@"; do
+    if [ "$arg" == "update=yes" ]; then
+        UPDATE_FLAKE=yes
+    else
+        FLAKE_CONFIG=$arg
+    fi
+done
+
+if [ "$UPDATE_FLAKE" == "yes" ]; then
+    echo "Updating flake..."
+    sudo nix flake update --flake $nixosConfigPath
 fi
-sudo systemctl stop docker-port-website.service 
-sudo docker stop $(sudo docker ps -a -q)
-sudo docker system prune --all
-# sudo docker volumes rm $(sudo docker ps -a -q)
-sudo nix flake update --flake $nixosConfigPath # updates flake.lock, remakes it from scratch
-sudo nixos-rebuild --show-trace  switch --flake $nixosConfigPath/#$1
+
+# rebuild and switch
+echo "Rebuilding and switching to new config using flake configuration: $FLAKE_CONFIG"
+sudo nixos-rebuild --show-trace switch --flake $nixosConfigPath/#$FLAKE_CONFIG
