@@ -6,7 +6,8 @@
   services.displayManager.autoLogin.enable = false; # do not autologin
 	services.xserver = {
 		enable = true;
-    xkb.layout = "us";
+    	xkb.layout = "us,ru,jp,il,ua,latam,ara";
 		xkb.variant = "";
+		xkb.options = "grp:ctrl_alt_toggle";
 	};
 }

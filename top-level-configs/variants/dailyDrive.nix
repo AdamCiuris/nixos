@@ -72,8 +72,14 @@ in
 		mangohud # fps monitor for games
 		docker-client
 		libimobiledevice
-
+		# xkb-switch
 	];
+	# services.sxhkd = {
+  #   enable = true;
+  #   keybindings = {
+  #     "ctrl + alt + r" = "xkb-switch --next";
+  #   };
+	# };
 	users = 
 	 {
 		mutableUsers = true; # let's you change the passwords after btw
