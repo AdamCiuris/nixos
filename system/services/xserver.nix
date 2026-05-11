@@ -6,7 +6,7 @@
   services.displayManager.autoLogin.enable = false; # do not autologin
 	services.xserver = {
 		enable = true;
-    	xkb.layout = "us,ru,jp,il,ua,latam,ara";
+    	xkb.layout = "us,ru,jp,il,ua,latam,ara"; # /run/current-sysem/sw/share/X11/xkb/rules/base.lst
 		xkb.variant = "";
 		xkb.options = "grp:ctrl_alt_toggle";
 	};
