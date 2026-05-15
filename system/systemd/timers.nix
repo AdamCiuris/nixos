@@ -29,6 +29,7 @@
       ${lib.getExe (pkgs.python3.withPackages (python-pkgs: [
 			python-pkgs.pandas
 			python-pkgs.numpy
+			python-pkgs.python-dotenv
 		]))} ${config.users.users.nyx.home}/Downloads/randumb/randomize.py
     '';
     serviceConfig = {
@@ -46,24 +47,24 @@
 
   # test with sudo systemctl status nyx_backup.service
   # https://help.ubuntu.com/community/BackupYourSystem/TAR
-  systemd.services."nyx_backup" = {
-    path= [ pkgs.gnutar 
-      pkgs.gzip
-    ];
-    script = ''
+  # systemd.services."nyx_backup" = {
+  #   path= [ pkgs.gnutar 
+  #     pkgs.gzip
+  #   ];
+  #   script = ''
 
-      ${lib.getExe  pkgs.gnutar} -cvpzf nyx_home_backup.tar.gz --exclude=${config.users.users.nyx.home}/.local --exclude=${config.users.users.nyx.home}/share --exclude=${config.users.users.nyx.home}/Private --exclude=${config.users.users.nyx.home}/GITHUB --one-file-system ${config.users.users.nyx.home} 
-    '';
-    serviceConfig = {
-      # Type = "oneshot";
-      User = "${config.users.users.root.name}";
-    };
-  };
-  systemd.timers."nyx_backup" = {
-    wantedBy = [ "timers.target" ]; 
-    timerConfig = {
-      OnCalendar = "weekly";
-      Persistent = true;
-    };
-  };
+  #     ${lib.getExe  pkgs.gnutar} -cvpzf nyx_home_backup.tar.gz --exclude=${config.users.users.nyx.home}/.local --exclude=${config.users.users.nyx.home}/share --exclude=${config.users.users.nyx.home}/Private --exclude=${config.users.users.nyx.home}/GITHUB --one-file-system ${config.users.users.nyx.home} 
+  #   '';
+  #   serviceConfig = {
+  #     # Type = "oneshot";
+  #     User = "${config.users.users.root.name}";
+  #   };
+  # };
+  # systemd.timers."nyx_backup" = {
+  #   wantedBy = [ "timers.target" ]; 
+  #   timerConfig = {
+  #     OnCalendar = "weekly";
+  #     Persistent = true;
+  #   };
+  # };
 }

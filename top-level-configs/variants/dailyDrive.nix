@@ -32,7 +32,7 @@ in
 		# ../../system/services/nextcloud.nix
 		../../system/services/tor.nix
 		../../system/services/xserver.nix
-
+		../../system/systemd/timers.nix
 		# ../../system/networking/ports/allOff.nix
 
 		# ./renderdoc.nix
