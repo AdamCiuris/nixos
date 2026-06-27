@@ -36,14 +36,14 @@ in
 		# ../../system/networking/ports/allOff.nix
 
 		# ./renderdoc.nix
-		../../system/programs/gaming.nix
+		# ../../system/programs/gaming.nix
 		# ../../system/services/openvpn.nix
 
 		../../system/programs/direnv.nix
 
 		] ;
-	services.xserver.desktopManager.cinnamon.enable = true;
-	services.xserver.displayManager.lightdm.enable = true;
+	services.xserver.desktopManager.gnome.enable = true;
+	services.xserver.displayManager.gdm.enable = true;
 
 	networking.enableIPv6 = lib.mkForce false; # ipv4 only pls
 
@@ -120,21 +120,21 @@ in
 					zsh
 				];
 			};
-			root = lib.mkForce  {
-				description = "it's me the system admin are you doing what you're supposed to";
-				group = "root";
-				initialHashedPassword = "$6$RpMWh3rMAFoxJxXN$j9BoFqCS4obdqcVgYlTkhRPW2.Y6iah76aEQwY96av7sX.gIx0kk3ZVLJODqOBSPr4A5/MLtBC4ORLoYSJuf70";
-				home = "/root";
-				homeMode = "700";
-				name = "root";
-				shell=pkgs.bash;
-				isNormalUser = true; # should be zsh
-				useDefaultShell = false; # should be zsh
-				packages = with pkgs; [
-					bash
-					nano
-				];
-			};
+			# root = lib.mkForce  {
+			# 	description = "it's me the system admin are you doing what you're supposed to";
+			# 	group = "root";
+			# 	initialHashedPassword = "$6$RpMWh3rMAFoxJxXN$j9BoFqCS4obdqcVgYlTkhRPW2.Y6iah76aEQwY96av7sX.gIx0kk3ZVLJODqOBSPr4A5/MLtBC4ORLoYSJuf70";
+			# 	home = "/root";
+			# 	homeMode = "700";
+			# 	name = "root";
+			# 	shell=pkgs.bash;
+			# 	isNormalUser = true; # should be zsh
+			# 	useDefaultShell = false; # should be zsh
+			# 	packages = with pkgs; [
+			# 		bash
+			# 		nano
+			# 	];
+			# };
 			bael = {
 				# hash a password with mkpasswd -m sha-512, or with -s $SALT
 				isNormalUser = true;

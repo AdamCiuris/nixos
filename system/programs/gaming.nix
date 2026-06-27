@@ -32,7 +32,7 @@ services.wivrn = {
     libva-vdpau-driver
     libvdpau-va-gl
   ];
-  programs.adb.enable = true;
+  # programs.adb.enable = true;
   users.users.nyx.extraGroups = [ "adbusers" "video" "render"];
   
   # security.rtkit.enable = true;
@@ -41,13 +41,13 @@ services.wivrn = {
     android-tools
   ];
 
-  programs.steam = {
-    enable = true;
-    package = pkgs.unstable.steam; # Force Steam to use the unstable package
-    gamescopeSession.enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-  };
+  # programs.steam = {
+  #   enable = true;
+  #   package = pkgs.unstable.steam; # Force Steam to use the unstable package
+  #   gamescopeSession.enable = true;
+  #   remotePlay.openFirewall = true;
+  #   dedicatedServer.openFirewall = true;
+  # };
 
   programs.gamemode.enable = true;
 }

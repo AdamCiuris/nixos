@@ -29,7 +29,7 @@ in
 	home ={
 		username = "nyx";
 		homeDirectory = "/home/nyx";
-		stateVersion = "25.05";
+		stateVersion = "25.11";
 	};
 	home.file = { # starts at ~/.config
 		# ".config/autostart/virt-manager.desktop".source = "${pkgs.virt-manager}/share/applications/virt-manager.desktop";
@@ -40,7 +40,7 @@ in
 		# ".config/autostart/thunderbird.desktop".source = "${pkgs.thunderbird}/share/applications/thunderbird.desktop";
 	};
 	home.packages = with pkgs; [
-		unstable.protonup-ng # steam compatibility tools, must be run imperatively with `protonup` in cmd prompt
+		# unstable.protonup-ng # steam compatibility tools, must be run imperatively with `protonup` in cmd prompt
 		wireshark # packet sniffer
 		gnupg # gpg
 		unstable.remmina # ssh and vnc
@@ -49,10 +49,10 @@ in
 		veracrypt
 		yt-dlp # youtube-dl fork
 	];
-	home.sessionVariables = {
-		STEAM_EXTRA_COMPAT_TOOLS_PATHS = 
-			"\${HOME}/.steam/root/compatibilitytools.d";
-	};
+	# home.sessionVariables = {
+	# 	STEAM_EXTRA_COMPAT_TOOLS_PATHS = 
+			# "\${HOME}/.steam/root/compatibilitytools.d";
+	# };
 
 
 

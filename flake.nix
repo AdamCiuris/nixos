@@ -4,7 +4,7 @@
 
   inputs = {
     # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     hardware.url = "github:nixos/nixos-hardware";
 
@@ -95,22 +95,12 @@
             ({ pkgs, lib, fetchFromGitHub, ... }: { # wtf ????
               boot.loader.systemd-boot.enable = true;
               boot.loader.efi.canTouchEfiVariables = true;
-              boot.initrd.luks.devices = {
-                crypted = {
-                  device = "/dev/disk/by-uuid/dec3bf87-dd58-4f79-b035-f14b36016691";
-                  preLVM = true;
-                };
-                storage = {
-                  device = "/dev/disk/by-uuid/63be47d3-6c3e-49c3-8fab-4a31d73c9b1f";
-                  preLVM = true;
-                };
-              };	
-              fileSystems."/mnt/storage" = {
-                  device = "/dev/mapper/storage";
-                  fsType = "ext4";
-                };
 
-              # swapDevices = lib.mkForce [ ];
+            #    storage = {
+             #     device = "/dev/disk/by-uuid/63be47d3-6c3e-49c3-8fab-4a31d73c9b1f";
+             #     preLVM = true;
+           #     };
+               swapDevices = lib.mkForce [ ];
               boot.kernelParams = [ "processor.max_cstate=4" "amd_iomu=soft" "idle=nomwait"];
               boot.kernelPackages = pkgs.linuxPackages_latest;
               environment.variables.NIXOS_FLAKE_CONFIGURATION = "pc";
@@ -132,12 +122,12 @@
                 nyx = {
                   home.homeDirectory = lib.mkForce "/home/nyx";
                   imports = [ ./home-manager/users/nyx.nix ];
-                  home.stateVersion="25.05";
+                  home.stateVersion="25.11";
                 };
                 bwiuh = {
                   home.homeDirectory = lib.mkForce "/home/bwiuh";
                   imports = [ ./home-manager/users/bwiuh.nix ];
-                  home.stateVersion="25.05";
+                  home.stateVersion="25.11";
                 };
               };
             })

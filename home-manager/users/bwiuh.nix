@@ -26,7 +26,7 @@ in
 	home ={
 		username = "bwiuh";
 		homeDirectory = "/home/bwiuh";
-		stateVersion = "25.05";
+		stateVersion = "25.11";
 	};
 	home.file = { # starts at ~/.config
 		# ".config/autostart/virt-manager.desktop".source = "${pkgs.virt-manager}/share/applications/virt-manager.desktop";
