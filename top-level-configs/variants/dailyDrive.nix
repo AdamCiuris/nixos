@@ -17,11 +17,11 @@ in
 
 		../../system/virtualization/libvirtd.nix
 		
-		# ../../system/specialisations/default-specialisation.nix
+		#  ../../system/specialisations/default-specialisation.nix
 		# ../../system/specialisations/display-desktop-managers.nix
-		../../system/systemd/ffmpeg.nix
+		# ../../system/systemd/ffmpeg.nix
 		
-		../../system/virtualization/portfolio-website.nix
+		# ../../system/virtualization/portfolio-website.nix
 		# ../../system/systemd/gunicorn.nix
 		# ../../system/services/nginx.nix
 		../../system/systemd/directories.nix
@@ -36,17 +36,18 @@ in
 		# ../../system/networking/ports/allOff.nix
 
 		# ./renderdoc.nix
-		# ../../system/programs/gaming.nix
+		../../system/programs/gaming.nix
 		# ../../system/services/openvpn.nix
 
 		../../system/programs/direnv.nix
 
 		] ;
-	services.xserver.desktopManager.gnome.enable = true;
-	services.xserver.displayManager.gdm.enable = true;
-
+#	services.desktopManager.plasma6.enable = true;
+#	services.displayManager.sddm.enable = true;
+services.xserver.desktopManager.cinnamon.enable = true;
+services.xserver.displayManager.lightdm.enable = true;
 	networking.enableIPv6 = lib.mkForce false; # ipv4 only pls
-
+	# boot.kernelParams = [ "video=1920x1080" ];
 	nix = import ../nix/nixOptions.nix { 
 		inherit config pkgs;
 		nixPath = [ # echo $NIX_PATH

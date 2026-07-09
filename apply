@@ -45,4 +45,4 @@ fi
 
 # rebuild and switch
 echo "Rebuilding and switching to new config using flake configuration: $FLAKE_CONFIG"
-sudo nixos-rebuild --show-trace switch --flake $nixosConfigPath/#$FLAKE_CONFIG
+sudo nixos-rebuild --show-trace --keep-going switch --flake $nixosConfigPath/#$FLAKE_CONFIG

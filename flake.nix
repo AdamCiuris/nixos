@@ -18,7 +18,7 @@
     };
     # Home manager
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-generators = {
@@ -96,13 +96,16 @@
               boot.loader.systemd-boot.enable = true;
               boot.loader.efi.canTouchEfiVariables = true;
 
-            #    storage = {
-             #     device = "/dev/disk/by-uuid/63be47d3-6c3e-49c3-8fab-4a31d73c9b1f";
-             #     preLVM = true;
-           #     };
-               swapDevices = lib.mkForce [ ];
-              boot.kernelParams = [ "processor.max_cstate=4" "amd_iomu=soft" "idle=nomwait"];
-              boot.kernelPackages = pkgs.linuxPackages_latest;
+              swapDevices = lib.mkForce [ ];
+              
+              boot.kernelParams = [ 
+                "processor.max_cstate=4" 
+                "amd_iomu=soft" 
+                "idle=nomwait" 
+                "nvidia-drm.fbdev=0" 
+              ];
+              boot.kernelPackages = pkgs.linuxPackages; # latest long term support version
+
               environment.variables.NIXOS_FLAKE_CONFIGURATION = "pc";
                   
 
@@ -114,6 +117,7 @@
             ({ lib, pkgs, ... }: {
 
               home-manager.useGlobalPkgs = true;
+              home-manager.backupFileExtension = "hmBackUp";
               home-manager.extraSpecialArgs = { 
                   inherit inputs; 
                   pkgs-unstable = myPkgsUnstable.x86_64-linux;
@@ -122,12 +126,12 @@
                 nyx = {
                   home.homeDirectory = lib.mkForce "/home/nyx";
                   imports = [ ./home-manager/users/nyx.nix ];
-                  home.stateVersion="25.11";
+                  home.stateVersion="26.05";
                 };
                 bwiuh = {
                   home.homeDirectory = lib.mkForce "/home/bwiuh";
                   imports = [ ./home-manager/users/bwiuh.nix ];
-                  home.stateVersion="25.11";
+                  home.stateVersion="26.05";
                 };
               };
             })

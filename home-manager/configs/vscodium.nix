@@ -5,8 +5,8 @@ let
 	};
 in
 {
-	programs.vscode = {
-		package=pkgs.unstable.vscodium;
+	programs.vscodium = {
+#		package=pkgs.unstable.vscodium;
 		enable=true;
 		profiles.default = {
 			userSettings  = {

@@ -23,11 +23,12 @@ services.wivrn = {
   # You should use the default configuration (which is no configuration), as that works the best out of the box.
   # However, if you need to configure something see https://github.com/WiVRn/WiVRn/blob/master/docs/configuration.md for configuration options and https://mynixos.com/nixpkgs/option/services.wivrn.config.json for an example configuration.
 };
-
   # services.wivrn.steam.importOXRRuntimes = true;
 
   # programs.envision.openFirewall = true;
-
+boot.kernelParams = [
+  "video=Unknown-1:1920x1080@60"
+];
   hardware.graphics.extraPackages = with pkgs.unstable; [
     libva-vdpau-driver
     libvdpau-va-gl
@@ -41,13 +42,13 @@ services.wivrn = {
     android-tools
   ];
 
-  # programs.steam = {
-  #   enable = true;
-  #   package = pkgs.unstable.steam; # Force Steam to use the unstable package
-  #   gamescopeSession.enable = true;
-  #   remotePlay.openFirewall = true;
-  #   dedicatedServer.openFirewall = true;
-  # };
+  programs.steam = {
+    enable = true;
+    package = pkgs.unstable.steam; # Force Steam to use the unstable package
+    gamescopeSession.enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+  };
 
   programs.gamemode.enable = true;
 }

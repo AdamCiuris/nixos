@@ -16,8 +16,8 @@ in
 
 
 		../configs/xdg.nix
-		../configs/brave.nix
-		../configs/vscodium.nix
+#		../configs/brave.nix
+#		../configs/vscodium.nix
 		../configs/thunderbird.nix
 		../configs/git.nix
 		../configs/ssh.nix
@@ -26,7 +26,7 @@ in
 	home ={
 		username = "bwiuh";
 		homeDirectory = "/home/bwiuh";
-		stateVersion = "25.11";
+		stateVersion = "26.05";
 	};
 	home.file = { # starts at ~/.config
 		# ".config/autostart/virt-manager.desktop".source = "${pkgs.virt-manager}/share/applications/virt-manager.desktop";
