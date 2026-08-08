@@ -70,7 +70,7 @@
 		};
 	};
 	
-	# https://nixos.wiki/wiki/Bluetooth
+	# https://wiki.nixos.org/wiki/Bluetooth
 	hardware.bluetooth.enable = true;
 	programs.zsh.enable = true; 
 	users ={
