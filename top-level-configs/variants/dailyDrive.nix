@@ -26,12 +26,16 @@ in
 		# ../../system/services/nginx.nix
 		../../system/systemd/directories.nix
 		../../system/systemd/mullvad-browser.nix
+		../../system/services/tailscale.nix
+		../../system/services/jellyfin.nix
+		../../system/systemd/power.nix
 		# ../../system/services/printers.nix
 		../../system/programs/mullvad.nix
 		../../system/services/iphone.nix
 		# ../../system/services/nextcloud.nix
 		../../system/services/tor.nix
 		../../system/services/xserver.nix
+		# ../../system/services/matrix.nix
 		../../system/systemd/timers.nix
 		# ../../system/networking/ports/allOff.nix
 
@@ -68,11 +72,12 @@ services.xserver.displayManager.lightdm.enable = true;
 
 
 	# Optional: Install CLI tools in user environment
-
 	environment.systemPackages = with pkgs; [
 		mangohud # fps monitor for games
 		docker-client
 		libimobiledevice
+		  hashcat
+  cudatoolkit
 		# xkb-switch
 	];
 	# services.sxhkd = {
@@ -91,7 +96,7 @@ services.xserver.displayManager.lightdm.enable = true;
 				isNormalUser = true;
 				group = "users";
 				description = "nyx";
-				initialHashedPassword = "$6$RpMWh3rMAFoxJxXN$j9BoFqCS4obdqcVgYlTkhRPW2.Y6iah76aEQwY96av7sX.gIx0kk3ZVLJODqOBSPr4A5/MLtBC4ORLoYSJuf70";
+				initialHashedPassword = "$6$lU2SgMLEUnc2iUNO$c7Q6KluoqxDkBAJgUbjgM97mFw8/MHNgiFYYPzwxZvRhFQdH8P8v7AXsN6D8DZ7DNQeSgzyZ7hF7HG3MOiNYo1";
 				shell=pkgs.zsh;
 				useDefaultShell = true; # should be zsh
 				extraGroups = [ 
@@ -116,7 +121,6 @@ services.xserver.displayManager.lightdm.enable = true;
 					"networkmanager"
 					];
 				packages = with pkgs; [
-					warp-terminal
 					gemini-cli
 					zsh
 				];
