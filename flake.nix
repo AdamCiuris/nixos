@@ -110,6 +110,7 @@
                   imports = [ ./home-manager/users/nyx.nix ];
                   home.stateVersion="26.05";
                 };
+
               };
             })
           ];
