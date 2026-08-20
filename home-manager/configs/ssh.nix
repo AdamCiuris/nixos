@@ -18,5 +18,23 @@
 				# ];
 				identityFile = "~/.ssh/server_ided ";		
 		};
+		matchBlocks."gce-builder" = {
+  hostname = "instance-20260818-184352";
+  # hostname = "nixos";
+  user = "adamciuris_gmail_com";
+  identityFile = "~/.ssh/google_compute_engine";
+  proxyCommand = "gcloud compute start-iap-tunnel %h %p --listen-on-stdin --zone=us-central1-c --project=home-lab-in-quotes";
+  extraOptions = {
+    StrictHostKeyChecking = "no";
+  };
+};
 	};
 }
+
+
+# Host gce-builder
+#     HostName instance-20260818-184352
+#     User gcloud
+#     IdentityFile ~/.ssh/google_compute_engine
+#     ProxyCommand gcloud compute start-iap-tunnel %h %p --listen-on-stdin --zone=YOUR_ZONE --project=YOUR_PROJECT
+#     StrictHostKeyChecking no

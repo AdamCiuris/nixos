@@ -16,6 +16,7 @@ in
 
 
 		../configs/brave.nix
+		../configs/ai-slop.nix
 		../configs/fiyafox.nix
 		../configs/dconf.nix
 		../configs/shells.nix
@@ -44,9 +45,7 @@ in
 		wireshark # packet sniffer
 		gnupg # gpg
 		unstable.remmina # ssh and vnc
-		koreader # open-source e-reader
 		unstable.gemini-cli # google shell llm
-		veracrypt
 		# unstable.vscodium
 		yt-dlp # youtube-dl fork
 	];

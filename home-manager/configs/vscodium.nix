@@ -77,37 +77,6 @@ in
 					key = "ctrl+alt+m";
 					command = "markdown.showLockedPreviewToSide";
 				}
-				# BEGIN COPILOT SHORTCUTS
-				{
-					key = "ctrl+/";
-					command = "github.copilot.acceptCursorPanelSolution";
-					when = "github.copilot.activated && github.copilot.panelVisible && activeWebviewPanelId == 'GitHub Copilot Suggestions'";
-				}
-				{
-					
-					key = "alt+]";
-					command = "github.copilot.nextPanelSolution";
-					when = "github.copilot.activated && github.copilot.panelVisible && activeWebviewPanelId == 'GitHub Copilot Suggestions'";
-				}
-				{
-					key = "alt+[";
-					command = "github.copilot.previousPanelSolution";
-					when = "github.copilot.activated && github.copilot.panelVisible && activeWebviewPanelId == 'GitHub Copilot Suggestions'";
-				}
-				{
-					key = "ctrl+enter";
-					command = "github.copilot.generate";
-					when = "editorTextFocus && github.copilot.activated && !commentEditorFocused && !inInteractiveInput && !interactiveEditorFocused";
-				}
-				{
-					key = "ctrl+super+c";
-					command = "editor.action.inlineSuggest.trigger";
-					when = "config.github.copilot.inlineSuggest.enable && editorTextFocus && !editorHasSelection && !inlineSuggestionsVisible";
-				}
-				{
-				key =  "ctrl+alt+i";
-				command =  "workbench.action.chat.open";
-				}
 			];
 			# installing malware
 			extensions = (with pkgs.unstable.vscode-extensions; [
@@ -120,6 +89,7 @@ in
 				mkhl.direnv
 				shd101wyy.markdown-preview-enhanced
 				ms-toolsai.jupyter
+				saoudrizwan.claude-dev
 				# Google.geminicodeassist
 				Google.gemini-cli-vscode-ide-companion # geminmini	
 				# it is unfortunately faster to update these extensions using their specific versions below
