@@ -108,52 +108,7 @@ services.xserver.displayManager.lightdm.enable = true;
 					zsh
 				];
 			};
-			bwiuh = lib.mkForce {
-				# terminal LLMs, no wheel, and work stuff
-				# hash a password with mkpasswd -m sha-512, or with -s $SALT
-				isNormalUser = true;
-				group = "users";
-				description = "bwiuh";
-				initialHashedPassword = "$6$RpMWh3rMAFoxJxXN$j9BoFqCS4obdqcVgYlTkhRPW2.Y6iah76aEQwY96av7sX.gIx0kk3ZVLJODqOBSPr4A5/MLtBC4ORLoYSJuf70";
-				shell=pkgs.zsh;
-				useDefaultShell = true; # should be zsh
-				extraGroups = [ 
-					"networkmanager"
-					];
-				packages = with pkgs; [
-					gemini-cli
-					zsh
-				];
-			};
-			# root = lib.mkForce  {
-			# 	description = "it's me the system admin are you doing what you're supposed to";
-			# 	group = "root";
-			# 	initialHashedPassword = "$6$RpMWh3rMAFoxJxXN$j9BoFqCS4obdqcVgYlTkhRPW2.Y6iah76aEQwY96av7sX.gIx0kk3ZVLJODqOBSPr4A5/MLtBC4ORLoYSJuf70";
-			# 	home = "/root";
-			# 	homeMode = "700";
-			# 	name = "root";
-			# 	shell=pkgs.bash;
-			# 	isNormalUser = true; # should be zsh
-			# 	useDefaultShell = false; # should be zsh
-			# 	packages = with pkgs; [
-			# 		bash
-			# 		nano
-			# 	];
-			# };
-			bael = {
-				# hash a password with mkpasswd -m sha-512, or with -s $SALT
-				isNormalUser = true;
-				description = "bael - no sudo, vscode.";
-				initialHashedPassword = "$6$RpMWh3rMAFoxJxXN$j9BoFqCS4obdqcVgYlTkhRPW2.Y6iah76aEQwY96av7sX.gIx0kk3ZVLJODqOBSPr4A5/MLtBC4ORLoYSJuf70";
-				shell=pkgs.zsh;
-				useDefaultShell = true; # should be zsh
-				extraGroups = [ # no sudoers?
-					"networkmanager"
-					];
-				packages = with pkgs; [
-					zsh
-				];
-			};
+
 		};
 	};
 	

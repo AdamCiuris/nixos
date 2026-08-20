@@ -128,11 +128,7 @@
                   imports = [ ./home-manager/users/nyx.nix ];
                   home.stateVersion="26.05";
                 };
-                bwiuh = {
-                  home.homeDirectory = lib.mkForce "/home/bwiuh";
-                  imports = [ ./home-manager/users/bwiuh.nix ];
-                  home.stateVersion="26.05";
-                };
+
               };
             })
           ];
