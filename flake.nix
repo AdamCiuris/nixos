@@ -8,39 +8,21 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     hardware.url = "github:nixos/nixos-hardware";
 
-
-
     # nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # https://github.com/NixOS/nixos-hardware
     # <nixos-hardware/system76> add something like this to hardware-configuration.nix imports
-    nur = {
-      url = "github:nix-community/NUR";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     # Home manager
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-generators = {
-      url = "github:nix-community/nixos-generators";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    lanzaboote = {
-      url = "github:nix-community/lanzaboote/v0.4.1";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     vscode-server = {
       url = "github:nix-community/nixos-vscode-server";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nurl = {
-      url = "github:nix-community/nurl";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+
   };
 
-  outputs = { self, nur, nixpkgs, nixpkgs-unstable,nurl, hardware, lanzaboote, vscode-server, home-manager, nixos-generators, flake-utils, ... }@inputs:
+  outputs = { self, nur, nixpkgs, nixpkgs-unstable, vscode-server, home-manager, flake-utils, ... }@inputs:
     let
       forAllSystems = nixpkgs.lib.genAttrs [
         "x86_64-linux"
@@ -80,7 +62,7 @@
         # https://github.com/nix-community/nixos-generators?tab=readme-ov-file#using-in-a-flake
         
 
-        "pc" = nixpkgs.lib.nixosSystem { # slightly modifying stuff for qemu/kvm vms
+        "asus-laptop" = nixpkgs.lib.nixosSystem { # slightly modifying stuff for qemu/kvm vms
           system = "x86_64-linux";
           pkgs = myPkgs.x86_64-linux;
           specialArgs = {
@@ -106,11 +88,11 @@
               ];
               boot.kernelPackages = pkgs.linuxPackages; # latest long term support version
 
-              environment.variables.NIXOS_FLAKE_CONFIGURATION = "pc";
+              environment.variables.NIXOS_FLAKE_CONFIGURATION = "asus-laptop";
                   
 
             })
-            ./top-level-configs/variants/dailyDrive.nix
+            ./top-level-configs/configuration.nix
             # home-manager junk
             home-manager.nixosModules.home-manager
 
@@ -126,11 +108,6 @@
                 nyx = {
                   home.homeDirectory = lib.mkForce "/home/nyx";
                   imports = [ ./home-manager/users/nyx.nix ];
-                  home.stateVersion="26.05";
-                };
-                bwiuh = {
-                  home.homeDirectory = lib.mkForce "/home/bwiuh";
-                  imports = [ ./home-manager/users/bwiuh.nix ];
                   home.stateVersion="26.05";
                 };
               };
