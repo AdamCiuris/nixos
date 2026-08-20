@@ -3,6 +3,19 @@ let
 	ext =  name: publisher: version: sha256: pkgs.vscode-utils.buildVscodeMarketplaceExtension {
 	mktplcRef = { inherit name publisher version sha256 ; };
 	};
+	extOpenVsx = publisher: extName: version: sha256: 
+    pkgs.vscode-utils.buildVscodeExtension {
+      pname = "${publisher}-${extName}"; # <-- Explicitly set pname
+      name = "${publisher}-${extName}-${version}"; # <-- Fallback for older nixpkgs
+      vscodeExtPublisher = publisher;
+      vscodeExtName = extName;
+      vscodeExtUniqueId = "${publisher}.${extName}";
+      version = version;
+      src = pkgs.fetchurl {
+        url = "https://open-vsx.org/api/${publisher}/${extName}/${version}/file/${publisher}.${extName}-${version}.vsix";
+        inherit sha256;
+      };
+    };
 in
 {
 	programs.vscodium = {
@@ -120,13 +133,13 @@ in
 				mkhl.direnv
 				shd101wyy.markdown-preview-enhanced
 				ms-toolsai.jupyter
-				# Google.geminicodeassist
-				Google.gemini-cli-vscode-ide-companion # geminmini	
+
+
 				# it is unfortunately faster to update these extensions using their specific versions below
 			]) ++ [ #  "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
 				(ext "Nix" "bbenoist" "1.0.1" "sha256-qwxqOGublQeVP2qrLF94ndX/Be9oZOn+ZMCFX1yyoH0=") # https://marketplace.visualstudio.com/items?itemName=bbenoist.Nix
 				(ext  "bash-debug" "rogalmic" "0.3.9" "sha256-f8FUZCvz/PonqQP9RCNbyQLZPnN5Oce0Eezm/hD19Fg=") # https://marketplace.visualstudio.com/items?itemName=rogalmic.bash-debug
-				(ext  "geminicodeassist" "Google" "2.79.0" "sha256-/8QmCFtD7f/RNkNuZexvoevpLa9FqrZfxqmPo2Ss4zk=") # https://marketplace.visualstudio.com/items?itemName=Google.geminicodeassist
+				(extOpenVsx "jeanp413" "open-remote-ssh" "0.3.1" "c6f16b225ab86925f2bd9e8cc5ba31e614978ccfa120f1509bdf6e99e5bef13f")
 				# (ext  "gemini-cli-vscode-ide-companion" "Google" "0.25.2" "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=") # https://marketplace.visualstudio.com/items?itemName=Google.gemini-cli-vscode-ide-companion
 				(ext "nix-ide" "jnoortheen" "0.5.5" "sha256-epdEMPAkSo0IXsd+ozicI8bjPPquDKIzB3ONRUYWwn8=" ) # https://marketplace.visualstudio.com/items?itemName=jnoortheen.nix-ide
 			];

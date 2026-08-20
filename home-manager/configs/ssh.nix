@@ -18,5 +18,10 @@
 				# ];
 				identityFile = "~/.ssh/server_ided ";		
 		};
+		matchBlocks."nyx-asus-laptop" = {
+				hostname = "100.81.2.91"; # subject to change TODO find out some way to imperatively set this or change accordingly
+				user = "nyx";
+				proxyCommand = "nc -X 5 -x 127.0.0.1:1055 %h %p";
+		};
 	};
 }
