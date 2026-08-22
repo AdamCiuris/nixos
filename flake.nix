@@ -74,23 +74,13 @@
 
           modules =  [
 
+
+
             ({ pkgs, lib, fetchFromGitHub, ... }: { # wtf ????
               boot.loader.systemd-boot.enable = true;
               boot.loader.efi.canTouchEfiVariables = true;
-
-              swapDevices = lib.mkForce [ ];
-              
-              boot.kernelParams = [ 
-                "processor.max_cstate=4" 
-                "amd_iomu=soft" 
-                "idle=nomwait" 
-                "nvidia-drm.fbdev=0" 
-              ];
               boot.kernelPackages = pkgs.linuxPackages; # latest long term support version
-
               environment.variables.NIXOS_FLAKE_CONFIGURATION = "asus-laptop";
-                  
-
             })
             ./top-level-configs/configuration.nix
             # home-manager junk
