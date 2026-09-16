@@ -20,6 +20,8 @@
 		../system/services/spice-vdagentd.nix
 		# ../system/services/clamav.nix
 		../system/networking/network.nix
+		../system/networking/microvm/microvm-tailscale.nix
+		# ../system/networking/microvm/microvm-wireguard.nix
 
 		../system/programs/msmtp.nix
 

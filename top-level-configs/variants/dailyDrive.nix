@@ -26,7 +26,7 @@ in
 		# ../../system/services/nginx.nix
 		../../system/systemd/directories.nix
 		../../system/systemd/mullvad-browser.nix
-		../../system/services/tailscale.nix
+		# ../../system/services/tailscale.nix
 		# ../../system/services/jellyfin.nix
 		../../system/systemd/power.nix
 		# ../../system/services/printers.nix

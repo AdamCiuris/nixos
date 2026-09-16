@@ -8,10 +8,28 @@
         HostName = "github.com";
         IdentityFile = "~/.ssh/id_ed25519_github";
       };
+
+      # 1. Define the local VM Jump Host explicitly
+      "127.0.0.1" = {
+        Port = "2222";
+        User = "root";
+        IdentityFile = "~/.ssh/id_ed25519_ts";
+        IdentitiesOnly = "yes";
+        StrictHostKeyChecking = "no";
+        UserKnownHostsFile = "/dev/null";
+      };
+
+      # 2. Catch-all for any raw Tailscale IP you type in the terminal
+      "100.*" = {
+        ProxyJump = "127.0.0.1";
+      };
+
+      # 3. Your specific laptop config
       "nyx-asus-laptop" = {
-        HostName = "100.81.2.91"; # subject to change TODO find out some way to imperatively set this or change accordingly
+        HostName = "100.81.2.91"; # See note below about this TODO
         User = "nyx";
-        ProxyCommand = "nc -X 5 -x 127.0.0.1:1055 %h %p";
+        # Replaced the old nc ProxyCommand with the VM ProxyJump
+        ProxyJump = "127.0.0.1";
       };
       
       "gce-builder" = {
@@ -23,7 +41,6 @@
         ControlPath = "/home/nyx/.ssh/master-%r@%h:%p";
         ControlPersist = "10m";
         
-        # extraOptions are now placed directly alongside standard directives
         StrictHostKeyChecking = "no";
         ServerAliveInterval = "15";
         ServerAliveCountMax = "5";
