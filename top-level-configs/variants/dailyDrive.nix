@@ -9,6 +9,7 @@ in
 	imports =
 		[ # Include the results of the hardware scan.
 		../configuration.nix
+		../../tests/goss.nix
 
 		../../hardware/bluetooth.nix
 		../../hardware/opengl.nix
@@ -16,21 +17,20 @@ in
 		../../hardware-configuration.nix
 
 		../../system/virtualization/libvirtd.nix
+
+		../nix/cache.nix
 		
-		#  ../../system/specialisations/default-specialisation.nix
-		# ../../system/specialisations/display-desktop-managers.nix
 		# ../../system/systemd/ffmpeg.nix
 		
-		# ../../system/virtualization/portfolio-website.nix
 		# ../../system/systemd/gunicorn.nix
 		# ../../system/services/nginx.nix
 		../../system/systemd/directories.nix
 		../../system/systemd/mullvad-browser.nix
 		../../system/services/tailscale.nix
-		../../system/services/jellyfin.nix
+		# ../../system/services/jellyfin.nix
 		../../system/systemd/power.nix
 		# ../../system/services/printers.nix
-		../../system/programs/mullvad.nix
+		# ../../system/programs/mullvad.nix
 		../../system/services/iphone.nix
 		# ../../system/services/nextcloud.nix
 		../../system/services/tor.nix
@@ -38,16 +38,11 @@ in
 		# ../../system/services/matrix.nix
 		../../system/systemd/timers.nix
 		# ../../system/networking/ports/allOff.nix
-
-		# ./renderdoc.nix
 		../../system/programs/gaming.nix
-		# ../../system/services/openvpn.nix
 
 		../../system/programs/direnv.nix
 
 		] ;
-#	services.desktopManager.plasma6.enable = true;
-#	services.displayManager.sddm.enable = true;
 services.xserver.desktopManager.cinnamon.enable = true;
 services.xserver.displayManager.lightdm.enable = true;
 	networking.enableIPv6 = lib.mkForce false; # ipv4 only pls
@@ -58,34 +53,17 @@ services.xserver.displayManager.lightdm.enable = true;
 		"nixpkgs=/home/nyx/.nix-defexpr/channels/nixpkgs"
 		"nixos-config=/etc/nixos/top-level-config/variants/dailyDrive.nix"
 		];
-		# settings = {
-		# 	substituters = [
-		# 		"cache.sirius.com"
-		# 	];
-		# 	trusted-public-keys = [
-		# 		"cache.sirius.com:aHUH6urBnqoXpmTdAUMT5nwt38iaIn8tdXKW6NH6xUo=%"
-		# 	];
-		# };
 	};
 
-          #    boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
 
+	programs.eden.enable = true; # switch emulation
 
 	# Optional: Install CLI tools in user environment
 	environment.systemPackages = with pkgs; [
 		mangohud # fps monitor for games
 		docker-client
 		libimobiledevice
-		  hashcat
-  cudatoolkit
-		# xkb-switch
 	];
-	# services.sxhkd = {
-  #   enable = true;
-  #   keybindings = {
-  #     "ctrl + alt + r" = "xkb-switch --next";
-  #   };
-	# };
 	users = 
 	 {
 		mutableUsers = true; # let's you change the passwords after btw
@@ -102,14 +80,13 @@ services.xserver.displayManager.lightdm.enable = true;
 				extraGroups = [ 
 					"networkmanager"
 					"wheel" 
+					"kvm"
 					];
 				packages = with pkgs; [
 					nurl
 					zsh
 				];
 			};
-
 		};
 	};
-	
 }

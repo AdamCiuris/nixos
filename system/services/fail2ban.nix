@@ -10,7 +10,7 @@ banaction_allports = iptables-allports
 mta = msmtp
 logtarget = FILE
 loglevel = DEBUG
-action = %(action_mw)s[from=paperpl88s@gmail.com, sender=paperpl88s@gmail.com, destination=adamciuris@gmail.com, sendername=Fail2Ban]
+action = %(action_mw)s[from=paperpl88s@gmail.com, sender=paperpl88s@gmail.com, destination=nyx@localhost, sendername=Fail2Ban]
 bantime = 300m
 maxretry = 3'';
 sshd=''

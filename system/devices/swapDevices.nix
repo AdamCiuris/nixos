@@ -1,6 +1,5 @@
 { config, lib, pkgs, ... }:
 # https://www.youtube.com/watch?v=RGVt16xiERc
-
 {
   # do not ever use a swapfile on low end machines
   # Remove or comment out the physical swapfile
@@ -13,7 +12,7 @@
   };
 
   boot.kernel.sysctl = {
-    # zram is fast; encourage the kernel to use it proactively
+    # 3. 1 DISCOURAGES swapping. 100-150 ENCOURAGES it for zram.
     "vm.swappiness" = 100;
     
     # Keep metadata cached

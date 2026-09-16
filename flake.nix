@@ -21,6 +21,11 @@
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # switch emulation
+    eden-nix = {
+      url = "github:Daaboulex/eden-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -32,15 +37,19 @@
 
     vscode-server = {
       url = "github:nix-community/nixos-vscode-server";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs"; # doesn't have an input called nixpkgs in it's package
     };
     nurl = {
       url = "github:nix-community/nurl";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    microvm = {
+      url = "github:microvm-nix/microvm.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nur, nixpkgs, nixpkgs-unstable,nurl, hardware, lanzaboote, vscode-server, home-manager, nixos-generators, flake-utils, ... }@inputs:
+  outputs = { self, nur, nixpkgs, nixpkgs-unstable, microvm, eden-nix, nurl, hardware, lanzaboote, vscode-server, home-manager, nixos-generators, flake-utils, ... }@inputs:
     let
       forAllSystems = nixpkgs.lib.genAttrs [
         "x86_64-linux"
@@ -54,6 +63,7 @@
         import inputs.nixpkgs {
           inherit system;
           overlays =  [ inputs.nur.overlays.default 
+
       (final: prev: {
         unstable = import inputs.nixpkgs-unstable {
           inherit system;
@@ -96,7 +106,7 @@
               boot.loader.systemd-boot.enable = true;
               boot.loader.efi.canTouchEfiVariables = true;
 
-              swapDevices = lib.mkForce [ ];
+              # swapDevices = lib.mkForce [ ];
               
               boot.kernelParams = [ 
                 "processor.max_cstate=4" 
@@ -112,8 +122,9 @@
             })
             ./top-level-configs/variants/dailyDrive.nix
             # home-manager junk
+            microvm.nixosModules.host
             home-manager.nixosModules.home-manager
-
+inputs.eden-nix.nixosModules.default # <--- Add this line
             ({ lib, pkgs, ... }: {
 
               home-manager.useGlobalPkgs = true;

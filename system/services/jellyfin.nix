@@ -3,7 +3,7 @@
 {
   # Enable the Jellyfin media server
   services.jellyfin = {
-    enable = true;
+    enable = false;
     user = "nyx"; # need this to be able to access user directories
     # We set this to false because we want to explicitly restrict 
     # access to the Tailscale network below, rather than opening it globally.

@@ -3,5 +3,8 @@
   gc.automatic = true;
 	gc.options = "--delete-older-than 20d";
 	settings.experimental-features = ["nix-command" "flakes"]; # needed to try flakes from tutorial
-
+	optimise = {
+    automatic = true;
+    dates = [ "monthly" ];
+  };
 }

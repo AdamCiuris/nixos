@@ -14,6 +14,7 @@ in
 	imports = [
     ../home.nix
 
+		../configs/ai-slop.nix
 
 		../configs/brave.nix
 		../configs/fiyafox.nix
@@ -41,13 +42,8 @@ in
 	};
 	home.packages = with pkgs; [
 	 unstable.protonup-ng # steam compatibility tools, must be run imperatively with `protonup` in cmd prompt
-		wireshark # packet sniffer
 		gnupg # gpg
 		unstable.remmina # ssh and vnc
-		koreader # open-source e-reader
-		unstable.gemini-cli # google shell llm
-		veracrypt
-		# unstable.vscodium
 		yt-dlp # youtube-dl fork
 	];
 	home.sessionVariables = {

@@ -1,6 +1,6 @@
 {  config, pkgs, ...}:
 let
-  gcloudOrNot = false; # TODO figure out condition for this
+	
   bashExtra = ''
 	eval "$(direnv hook bash)"
 	'';
@@ -61,6 +61,10 @@ let
 			local A=$(ls -a |  wc -l)
 			local B=$($A-2)
 			echo $B
+		}
+		# Capture command output to a temp file while displaying it
+		cx() {
+				"$@" 2>&1 | tee /tmp/last_cmd_output.txt
 		}
 		pathappend() {
 			for ARG in "$@"
@@ -140,18 +144,7 @@ in
 	programs.bash ={
 		enable=true;
 		historyControl = ["ignoredups"];
-		initExtra =  if !gcloudOrNot then shellExtra 
-			# add this email thing for gcloud only
-			else shellExtra + ''
-			# BEGIN LOGIN NOTIF
-			echo "To: adamciuris@gmail.com    \n   
-			Hi,\n
-			$USER logging in at $(date) from $(who | awk '{print $5}')\n
-			Hopefully it's you!\n
-			" | msmtp -t
-
-			# END LOGIN NOTIF
-		'';
+		initExtra =  shellExtra;
 	}; # END BASH
 	# BEGIN ZSH
 	programs.zsh = {
