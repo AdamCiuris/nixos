@@ -29,6 +29,7 @@ in
 		# ../../system/services/tailscale.nix
 		# ../../system/services/jellyfin.nix
 		../../system/systemd/power.nix
+		../../system/systemd/rsync.nix
 		# ../../system/services/printers.nix
 		# ../../system/programs/mullvad.nix
 		../../system/services/iphone.nix
