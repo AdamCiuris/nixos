@@ -22,28 +22,24 @@ in
 		
 		# ../../system/systemd/ffmpeg.nix
 		
-		# ../../system/systemd/gunicorn.nix
-		# ../../system/services/nginx.nix
 		../../system/systemd/directories.nix
 		../../system/systemd/mullvad-browser.nix
-		# ../../system/services/tailscale.nix
-		# ../../system/services/jellyfin.nix
 		../../system/systemd/power.nix
 		../../system/systemd/rsync.nix
 		# ../../system/services/printers.nix
 		# ../../system/programs/mullvad.nix
 		../../system/services/iphone.nix
-		# ../../system/services/nextcloud.nix
 		../../system/services/tor.nix
 		../../system/services/xserver.nix
-		# ../../system/services/matrix.nix
 		../../system/systemd/timers.nix
 		# ../../system/networking/ports/allOff.nix
 		../../system/programs/gaming.nix
-
+		../../system/services/openssh.nix
 		../../system/programs/direnv.nix
 
 		] ;
+
+		programs.local-aider.enable = true;
 services.xserver.desktopManager.cinnamon.enable = true;
 services.xserver.displayManager.lightdm.enable = true;
 	networking.enableIPv6 = lib.mkForce false; # ipv4 only pls

@@ -68,11 +68,14 @@
         unstable = import inputs.nixpkgs-unstable {
           inherit system;
           config.allowUnfree = true; # Pass config to the unstable import too!
+          config.cudaSupport = true; # Pass config to the unstable import too!
+          
         };
       })
           ];
 # 2. Custom overlay for unstable packages
           config.allowUnfree = true;
+          config.cudaSupport = true;
         }
         
       );
@@ -80,8 +83,10 @@
         import inputs.nixpkgs-unstable {
           inherit system;
           config.allowUnfree = true;
+          config.cudaSupport = true;
         }
       );
+      
       # vimjoyer iso nonsense https://www.youtube.com/watch?v=-G8mN6HJSZE&
 
 
@@ -101,13 +106,16 @@
 
 
           modules =  [
-
+              # Updates microcode for the Intel i5-6600K
+              hardware.nixosModules.common-cpu-intel
+              # Standard desktop PC profile (power management, baseline kernel modules)
+              hardware.nixosModules.common-pc
+              # Enables periodic TRIM (fstrim) for your PNY and Kingston SSDs
+              hardware.nixosModules.common-pc-ssd
             ({ pkgs, lib, fetchFromGitHub, ... }: { # wtf ????
               boot.loader.systemd-boot.enable = true;
               boot.loader.efi.canTouchEfiVariables = true;
 
-              # swapDevices = lib.mkForce [ ];
-              
               boot.kernelParams = [ 
                 "processor.max_cstate=4" 
                 "amd_iomu=soft" 

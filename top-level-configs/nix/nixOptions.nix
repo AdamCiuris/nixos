@@ -7,4 +7,5 @@
     automatic = true;
     dates = [ "monthly" ];
   };
+  settings.trusted-users = [ "root" "nyx" "@wheel" ]; # on asus-laptop
 }

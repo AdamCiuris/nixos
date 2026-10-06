@@ -8,29 +8,23 @@
 	imports =
 		[ # Include the results of the hardware scan.
 		../distributed-builds.nix
-		../system/devices/swapDevices.nix
 
 		../system/systemd/timers.nix
 
-
-		# ../system/.secret.nix
 		../system/devices/swapDevices.nix
 		../system/services/fail2ban.nix
 		../system/services/pipewire.nix
 		../system/services/spice-vdagentd.nix
-		# ../system/services/clamav.nix
 		../system/networking/network.nix
 		../system/networking/microvm/microvm-tailscale.nix
 		# ../system/networking/microvm/microvm-wireguard.nix
 
 		../system/programs/msmtp.nix
 
-		#../system/virtualization/docker.nix
 
 		]  ;
 
 	systemd.enableEmergencyMode = false;
-#	home-manager.backupFileExtension = "hmBackup";
 	time.timeZone = "America/Chicago";
 	# Select internationalisation properties.
 	i18n.defaultLocale = "en_US.UTF-8";
@@ -46,9 +40,6 @@
 		LC_TIME = "en_US.UTF-8";
 	};
 
-	# Enable CUPS to print documents.
-
-	
 	security.rtkit.enable = true;
 
 	programs.zsh.enable = true; 
@@ -61,8 +52,6 @@
 
 
 	environment.systemPackages = with pkgs; [
-		
-		vim # text editor, worse
 		nano # text editor
 		nginx # web server
 		baobab # disk usage analyzer

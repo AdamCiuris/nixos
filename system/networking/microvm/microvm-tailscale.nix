@@ -12,19 +12,24 @@
         proto = "9p";
       }
     ];
+    services.tailscale.extraDaemonFlags = [ "--socks5-server=0.0.0.0:1055" ];
     # Authorize your host machine's public key for passwordless login
     users.users.root.openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKPpADlS0ygwT0SvAeTPHmLpA8WEi9IlHtYQKxKkTVhE nyx@nixos"
     ];
-
-    microvm.forwardPorts = [
+networking.firewall.allowedTCPPorts = [ 1055 ];
+    microvm.forwardPorts = [ 
       {
         from = "host";
         host.port = 2222;
         guest.port = 22;
       }
+      {
+        from = "host"; # SOCKS proxy for tailnetting
+        host.port = 1055;
+        guest.port = 1055;
+      }
     ];
-
     # Enable SSH in the VM to act as the proxy
     services.openssh = {
       enable = true;
