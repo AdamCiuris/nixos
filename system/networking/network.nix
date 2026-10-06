@@ -6,7 +6,7 @@
 
   networking = {   
     hostName = "nixos";
-    enableIPv6 = false; # ipv4 only pls
+    enableIPv6 = true; # ipv4 only pls
     
     networkmanager = {
       enable = true;
