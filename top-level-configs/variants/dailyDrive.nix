@@ -39,7 +39,7 @@ in
 
 		] ;
 
-		programs.local-aider.enable = true;
+		# programs.local-aider.enable = true;
 services.xserver.desktopManager.cinnamon.enable = true;
 services.xserver.displayManager.lightdm.enable = true;
 	networking.enableIPv6 = lib.mkForce false; # ipv4 only pls
