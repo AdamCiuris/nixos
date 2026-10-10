@@ -26,7 +26,7 @@
       "asus-laptop:D0dVckw0IxslbmwmBJ0492FQZQmT+A0aNDjSkA13QNg="
       "nixos-cuda.org-1:6QW64hjvwc93v5IX7jx10m+n5zGkK2i/r18bL3U5G/0="
     ];
-    connect-timeout = 5;
+    connect-timeout = 1;
   };
 
   #  sudo nixos-rebuild switch --flake .#pc \
