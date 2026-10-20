@@ -2,7 +2,9 @@
 {
   services.openssh = {
     enable = true;
-    permitRootLogin = "no";
-    passwordAuthentication = false; # if false require pub key
+    settings = {
+      PermitRootLogin = "no"; # Keep your original value ("yes", "no", "prohibit-password", etc.)
+      PasswordAuthentication = false; # Keep your original boolean value
+    };
   };
 }

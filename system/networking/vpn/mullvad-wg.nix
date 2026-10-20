@@ -10,7 +10,7 @@
     
     # Home Manager will automatically APPEND this to the shellExtra 
     # you already defined in your other Home Manager file.
-    programs.zsh.initExtra = ''
+    programs.zsh.initContent = ''
       mullvad_swap() {
           local conf_dir="/etc/wireguard/conf"
           local current_conf="$conf_dir/current.conf"
@@ -59,6 +59,6 @@
     '';
 
     # Optional: Do the exact same thing for bash if you ever drop into it
-    programs.bash.initExtra = config.home-manager.users.nyx.programs.zsh.initExtra;
+    programs.bash.initExtra = config.home-manager.users.nyx.programs.zsh.initContent;
   };
 }
