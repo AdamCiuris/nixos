@@ -16,16 +16,18 @@
 		../system/networking/ports/allOff.nix
 		../system/networking/ports/ssh.nix
 
-		../system/services/binary-cache.nix
-		../system/services/fail2ban.nix
+		# ../system/services/binary-cache.nix
+		# ../system/services/fail2ban.nix
 		../system/services/ffmpeg.nix
-		../system/services/jellyfin.nix
+		../system/services/tailscale/jellyfin.nix
+		../system/services/tailscale/kavita.nix
+    	../system/services/tailscale/ytdlp-web.nix
 		# ../system/services/matrix.nix
 		../system/services/mysql.nix
 		../system/services/nginx.nix
 		../system/services/pipewire.nix
 		../system/services/spice-vdagentd.nix
-		../system/services/tailscale.nix
+		../system/services/tailscale/tailscale.nix
 		../system/services/tor.nix
 		../system/services/xserver.nix
 
@@ -38,25 +40,41 @@
 		../hardware-configuration.nix
 		];
 
+  services.ytdlp-web = {
+    enable = true;
+    port = 8097;
+    # downloadDir = "/mnt/usb/tmp";
+  };
+virtualisation.docker.enable = true;
+
+
+services.harmonia = {
+    enable = true;
+    signKeyPaths = [ "/etc/nix/cache-key.secret" ];
+  };
+
+  # Open the port specifically for your Tailscale network
+  networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ 5000 ];
+
+
 		programs.nix-ld.enable = true; # for vscode-server
 		nix = import ./nix/nixOptions.nix { 
 
-
+		settings.trusted-users = [ "root" "nyx" ];
 		inherit config pkgs;
 		nixPath = [ # echo $NIX_PATH
 		"nixpkgs=/home/nyx/.nix-defexpr/channels/nixpkgs"
 		"nixos-config=/etc/nixos/top-level-config/variants/dailyDrive.nix"
 		];
-		# settings = {
-		# 	substituters = [
-		# 		"cache.sirius.com"
-		# 	];
-		# 	trusted-public-keys = [
-		# 		"cache.sirius.com:aHUH6urBnqoXpmTdAUMT5nwt38iaIn8tdXKW6NH6xUo=%"
-		# 	];
-		# };
 	};
-	systemd.enableEmergencyMode = false; # TODO why do i have this? just go into emergency mode
+# Remove this:
+# networking.firewall.interfaces.tailscale0.allowedTCPPorts = [ 5000 ];
+
+# Add this:
+networking.firewall.allowedTCPPorts = [ 5000 ];
+
+	# systemd.enableEmergencyMode = false; # TODO why do i have this? just go into emergency mode
+	# boot.initrd.systemd.enable = false; # TODO why do i have this? just go into emergency mode
 	time.timeZone = "America/Chicago";
 	# Select internationalisation properties.
 	i18n.defaultLocale = "en_US.UTF-8";
@@ -102,9 +120,29 @@
 			};
     };
    };
+   # https://phoenixnap.com/kb/linux-swap-file
+# https://search.nixos.org/options?channel=24.05&show=swapDevices&from=0&size=50&sort=relevance&type=packages&query=swap
+  # 1. Define the swap file
+  swapDevices = [
+    {
+      device = "/__swapfile__";
+      size = 8192*2; # Size in Megabytes (Adjust to 2048, 8192, etc., as needed)
+    }
+  ];
+
+  # 2. Tune kernel parameters for minimal swap usage
+  boot.kernel.sysctl = {
+    # Only swap when absolutely necessary to prevent OOM (default is 60)
+    "vm.swappiness" = 1;
+
+    # Keep filesystem metadata in RAM longer to reduce disk I/O stutter (default is 100)
+    "vm.vfs_cache_pressure" = 50;
+
+    # Wake up the memory manager earlier to slowly free RAM in the background
+    # rather than freezing the system with sudden, massive paging (default is 10)
+    "vm.watermark_scale_factor" = 125;
+  };
 #   services.xserver.enable = true;
-  services.xserver.desktopManager.cinnamon.enable = true;
-  services.xserver.displayManager.lightdm.enable = true;
   networking.enableIPv6 = lib.mkForce false; # ipv4 only pls
 
 	security.rtkit.enable = true;
